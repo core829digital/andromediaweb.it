@@ -1,8 +1,8 @@
-﻿import type { Metadata } from "next";
-import { keyPoints, faq, site } from "@/lib/site-data";
+import type { Metadata } from "next";
+import { keyPoints, faq } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { TraceNode, ColorFade } from "@/components/trace-line";
+import { CallButton } from "@/components/call-button";
 import { Icon } from "@/components/icons";
 import { HomeFeatureMarquee } from "@/components/site/showcase";
 import {
@@ -63,23 +63,17 @@ export default function ChiSiamoPage() {
           </div>
         </Container>
       </Section>
-
-      <ColorFade from="light" to="dark" />
-
-      <Section dark>
+      <Section>
         <Container className="py-24">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="font-heading text-3xl uppercase leading-snug md:text-4xl">
               Costruiamo storie avvincenti,
               <br />
-              <span className="text-outline-light">che risuonano con il tuo pubblico.</span>
+              <span className="text-outline">che risuonano con il tuo pubblico.</span>
             </p>
           </Reveal>
         </Container>
       </Section>
-
-      <ColorFade from="dark" to="light" />
-
       {/* FAQ */}
       <Section>
         <Container className="max-w-4xl py-24">
@@ -106,19 +100,10 @@ export default function ChiSiamoPage() {
           <Reveal className="mt-14 flex flex-col items-center gap-5 border border-border p-10 text-center">
             <p className="micro-label">Hai bisogno di aiuto?</p>
             <h3 className="font-heading text-2xl uppercase">Scrivici â€” rispondiamo 24/7</h3>
-            <a
-              href={site.contact.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-2 flex h-12 items-center gap-3 bg-foreground px-8 font-mono text-xs uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground"
-            >
-              Prenota una call <Icon name="arrow-up-right" size={14} />
-            </a>
+            <CallButton label="Prenota una call" className="mt-2" />
           </Reveal>
         </Container>
       </Section>
-
-      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }

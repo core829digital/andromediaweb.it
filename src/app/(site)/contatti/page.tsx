@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { TraceNode } from "@/components/trace-line";
 import { Icon } from "@/components/icons";
 import { site } from "@/lib/site-data";
 import { ContactForm } from "@/components/site/contact-form";
@@ -112,8 +111,6 @@ export default function ContattiPage() {
           </div>
         </Container>
       </Section>
-
-      <TraceNode className="h-16" />
     </>
   );
 }

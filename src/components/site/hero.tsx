@@ -2,25 +2,12 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
 import { Icon } from "@/components/icons";
+import { CallButton } from "@/components/call-button";
 import { site } from "@/lib/site-data";
-
-const rotatingClaims = [
-  "Eleva il tuo Brand.",
-  "Cresci online.",
-  "Conquista la scena.",
-  "The future is now.",
-];
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % rotatingClaims.length), 3200);
-    return () => clearInterval(t);
-  }, []);
 
   return (
     <section className="relative flex min-h-svh flex-col overflow-hidden bg-background">
@@ -91,30 +78,14 @@ export function Hero() {
           className="mt-10 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
         >
           <div className="max-w-md">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              {rotatingClaims[idx]}
-              <span className="animate-caret ml-1 inline-block h-4 w-[7px] translate-y-0.5 bg-foreground" />
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            <p className="text-base leading-relaxed text-muted-foreground">
               Brand identity, siti web su misura, SEO, social media e
               intelligenza artificiale. Tutto in un unico orbita creativa.
             </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a
-              href={site.contact.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex h-12 items-center justify-center gap-3 whitespace-nowrap bg-foreground px-7 font-mono text-xs uppercase tracking-[0.22em] text-background transition-all duration-300 hover:bg-muted-foreground"
-            >
-              Prenota una call
-              <Icon
-                name="arrow-up-right"
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
+            <CallButton label="Prenota una call" />
             <Link
               href="/servizi"
               className="group flex h-12 items-center justify-center gap-3 whitespace-nowrap border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] transition-all duration-300 hover:border-foreground"

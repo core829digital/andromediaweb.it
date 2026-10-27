@@ -1,8 +1,8 @@
-﻿import type { Metadata } from "next";
-import { services, process, site } from "@/lib/site-data";
+import type { Metadata } from "next";
+import { services, process } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { TraceNode, ColorFade } from "@/components/trace-line";
+import { CallButton } from "@/components/call-button";
 import { Icon } from "@/components/icons";
 import {
   Accordion,
@@ -64,17 +64,13 @@ export default function ServiziPage() {
           </div>
         </Container>
       </Section>
-
-      <ColorFade from="light" to="dark" />
-
       {/* Dettagli */}
-      <Section dark>
+      <Section>
         <Container className="max-w-4xl py-24">
           <SectionHeading
             icon="node"
             label="La nostra attivitÃ "
             title="Dettagli in profonditÃ "
-            className="text-background"
           />
           <div className="mt-10">
             <Accordion type="single" collapsible className="w-full">
@@ -82,15 +78,15 @@ export default function ServiziPage() {
                 <AccordionItem
                   key={s.id}
                   value={s.id}
-                  className="border-background/15"
+                  className={"border-border"}
                 >
-                  <AccordionTrigger className="py-5 text-left text-background hover:no-underline">
+                  <AccordionTrigger className="py-5 text-left hover:no-underline">
                     <span className="flex items-baseline gap-4 font-heading text-base uppercase tracking-wide">
-                      <span className="font-mono text-xs text-background/40">{s.index}</span>
+                      <span className="font-mono text-xs text-muted-foreground/60">{s.index}</span>
                       {s.title}
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-6 pl-9 text-sm leading-relaxed text-background/60">
+                  <AccordionContent className="pb-6 pl-9 text-sm leading-relaxed text-muted-foreground">
                     {s.desc}
                   </AccordionContent>
                 </AccordionItem>
@@ -99,9 +95,6 @@ export default function ServiziPage() {
           </div>
         </Container>
       </Section>
-
-      <ColorFade from="dark" to="light" />
-
       {/* Processo */}
       <Section>
         <Container className="py-24">
@@ -121,25 +114,18 @@ export default function ServiziPage() {
       </Section>
 
       {/* CTA */}
-      <Section dark>
+      <Section>
         <Container className="py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-5 !text-background/50">Eleva il tuo Brand</p>
+            <p className="micro-label mb-5">Eleva il tuo Brand</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">
               Parliamo del tuo progetto
             </h2>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={site.contact.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 items-center gap-3 bg-background px-7 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:bg-background/80"
-              >
-                Prenota una call <Icon name="arrow-up-right" size={14} />
-              </a>
+              <CallButton label="Prenota una call" />
               <Link
                 href="/contatti"
-                className="flex h-12 items-center gap-3 border border-background/25 px-7 font-mono text-xs uppercase tracking-[0.22em] text-background transition-colors hover:border-background"
+                className="flex h-12 items-center gap-3 border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:border-foreground"
               >
                 Contatti <Icon name="arrow-right" size={14} />
               </Link>
@@ -147,8 +133,6 @@ export default function ServiziPage() {
           </Reveal>
         </Container>
       </Section>
-
-      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }

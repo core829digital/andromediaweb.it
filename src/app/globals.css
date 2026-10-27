@@ -168,62 +168,58 @@
   .grid-bg-fade {
     mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 72%);
   }
-
-  /* Outlined display text (calco del logo) */
-  .text-outline {
-    -webkit-text-stroke: 1px oklch(0.11 0 0);
-    color: transparent;
-  }
-  .text-outline-light {
-    -webkit-text-stroke: 1px oklch(0.985 0 0);
-    color: transparent;
-  }
 }
 
-/* ---------- Superfici dark: regole di visibilità coerenti ---------- */
+/* ---------- Dark mode: adattamenti ---------- */
 
-.dark-surface {
-  background: var(--foreground);
-  color: var(--background);
+.dark .grid-bg {
+  background-image:
+    linear-gradient(to right, oklch(0.985 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.985 0 0 / 4%) 1px, transparent 1px);
 }
 
-.dark-surface .micro-label {
-  color: oklch(0.985 0 0 / 55%);
+/* ---------- Campo pattern MW: si rivela solo attorno al mouse ---------- */
+
+.mw-pattern {
+  position: relative;
+  isolation: isolate;
 }
 
-.dark-surface p,
-.dark-surface li {
-  color: oklch(0.985 0 0 / 60%);
+.mw-pattern-field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("/branding/icon-do-black.png");
+  background-size: 118px 118px;
+  background-repeat: repeat;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  -webkit-mask-image: radial-gradient(
+    circle 150px at var(--mx, 50%) var(--my, 50%),
+    oklch(0 0 0 / 90%) 0%,
+    transparent 70%
+  );
+  mask-image: radial-gradient(
+    circle 150px at var(--mx, 50%) var(--my, 50%),
+    oklch(0 0 0 / 90%) 0%,
+    transparent 70%
+  );
 }
 
-.dark-surface h1,
-.dark-surface h2,
-.dark-surface h3,
-.dark-surface h4 {
-  color: var(--background);
+.mw-pattern.pattern-on .mw-pattern-field {
+  opacity: 0.085;
 }
 
-.dark-surface a {
-  color: var(--background);
+.dark .mw-pattern-field {
+  background-image: url("/branding/icon-trans-white.png");
 }
 
-/* link "solidi" (bottone invertito) mantengono il proprio colore */
-.dark-surface a.bg-background,
-.dark-surface a.text-foreground {
-  color: var(--foreground);
+.dark .mw-pattern.pattern-on .mw-pattern-field {
+  opacity: 0.11;
 }
 
-.dark-surface [data-slot="accordion-trigger"] {
-  color: var(--background);
-}
-
-.dark-surface [data-slot="accordion-trigger-icon"] {
-  color: oklch(0.985 0 0 / 55%);
-}
-
-.dark-surface [data-slot="accordion-trigger-icon"]:hover {
-  color: var(--background);
-}
+/* il pattern sta dietro al contenuto grazie a isolation + z-index -1 */
 
 /* ---------- Lenis smooth scroll ---------- */
 
@@ -241,67 +237,15 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* ---------- Trailing line (tramite spaziale tra le sezioni) ----------
-   Linea dritta, sottile, con nodo-punto che allinea le sezioni.
-   Nessuna animazione invasiva: solo un respiro lento del nodo. */
+/* ---------- Titoli outline (testo vuoto con contorno) ---------- */
 
-.trace-node {
-  position: relative;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    oklch(0 0 0 / 16%) 30%,
-    oklch(0 0 0 / 16%) 70%,
-    transparent 100%
-  );
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px oklch(0.14 0 0);
 }
 
-/* nodo terminale: punto tecnico di sezione */
-.trace-node::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -4px;
-  height: 7px;
-  width: 7px;
-  transform: translateX(-50%);
-  border-radius: 9999px;
-  border: 1px solid oklch(0.11 0 0);
-  background: var(--background);
-  box-shadow: 0 0 0 4px var(--background);
-}
-
-.trace-node.dark::after {
-  border-color: oklch(0.985 0 0);
-  background: var(--foreground);
-  box-shadow: 0 0 0 4px var(--foreground);
-}
-
-/* variante orizzontale (footer) */
-.trace-node-h {
-  position: relative;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    oklch(0 0 0 / 14%) 30%,
-    oklch(0 0 0 / 14%) 70%,
-    transparent 100%
-  );
-}
-
-.trace-node-h::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 7px;
-  width: 7px;
-  transform: translate(-50%, -50%);
-  border-radius: 9999px;
-  border: 1px solid oklch(0.11 0 0);
-  background: var(--background);
+.dark .text-outline {
+  -webkit-text-stroke-color: oklch(0.985 0 0);
 }
 
 /* ---------- Marquee logos ---------- */

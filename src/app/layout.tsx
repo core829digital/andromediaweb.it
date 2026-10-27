@@ -56,13 +56,18 @@ export const viewport: Viewport = {
   themeColor: "#0a0a0a",
 };
 
+const themeInit = `(function(){try{var t=localStorage.getItem("aw-theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.classList.add("dark");}catch(e){}})();`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
       className={`${unbounded.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+        {/* anti-FOUC: imposta il tema prima del primo paint */}
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

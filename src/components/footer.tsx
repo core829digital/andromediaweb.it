@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Icon, type IconName } from "@/components/icons";
+import { LogoFull } from "@/components/logo";
 import { site } from "@/lib/site-data";
-import { TraceNodeH } from "@/components/trace-line";
 
 const legalLinks = [
   { href: "/privacy-policy", label: "Privacy Policy" },
@@ -32,16 +32,10 @@ export function Footer() {
   useEffect(() => setYear(new Date().getFullYear()), []);
 
   return (
-    <footer className="relative mt-14 border-t border-border bg-background">
+    <footer className="relative mt-14 bg-background">
       <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
-        <div className="mb-8 flex flex-col gap-6 border-b border-border pb-8 md:flex-row md:items-center md:justify-between">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/branding/thefutureisnow-black-tran.png"
-            alt="Andromedia Web — The future is now"
-            className="h-9 w-auto select-none md:h-11"
-            draggable={false}
-          />
+        <div className="mb-8 flex flex-col gap-6 pb-8 md:flex-row md:items-center md:justify-between">
+          <LogoFull className="h-9 md:h-11" />
           <div className="flex gap-2">
             {site.socials.map((s) => (
               <a
@@ -163,7 +157,6 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <TraceNodeH />
         <div className="flex flex-col items-center justify-between gap-2 pb-2 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground md:flex-row">
           <p>
             © {year ?? 2026} {site.name} — P. IVA: {site.legal.piva}

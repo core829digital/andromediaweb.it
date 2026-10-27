@@ -177,7 +177,7 @@ export function BlogGrid({ posts }: { posts: PostItem[] }) {
 
 export function HomeFeatureMarquee() {
   return (
-    <div className="relative overflow-hidden border-y border-border py-6">
+    <div className="relative overflow-hidden py-6">
       <div className="animate-marquee flex w-max items-center gap-14 pr-14">
         {[...clientNames, ...clientNames].map((n, i) => (
           <span

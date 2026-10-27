@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/reveal";
 import { Icon, type IconName } from "@/components/icons";
+import { PatternField } from "@/components/pattern-field";
 import { cn } from "@/lib/utils";
 
 /** Etichetta micro + titolo display, inaugurazione standard di sezione. */
@@ -22,7 +23,7 @@ export function SectionHeading({
       className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}
     >
       {icon && (
-        <span className="flex h-14 w-14 items-center justify-center border border-border text-muted-foreground">
+        <span className="flex h-14 w-14 items-center justify-center border border-border text-muted-foreground transition-all duration-500 hover:rotate-90 hover:border-foreground hover:text-foreground">
           <Icon name={icon} size={22} />
         </span>
       )}
@@ -39,26 +40,25 @@ export function SectionHeading({
   );
 }
 
+/**
+ * Sezione standard: campo pattern MW con reveal radiale attorno al
+ * mouse; il tono (chiaro/scuro) segue il tema globale del sito.
+ */
 export function Section({
   children,
   className,
   id,
-  dark = false,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
-  dark?: boolean;
 }) {
   return (
     <section
       id={id}
-      className={cn(
-        "relative",
-        dark && "dark-surface",
-        className
-      )}
+      className={cn("mw-pattern relative", className)}
     >
+      <PatternField />
       {children}
     </section>
   );

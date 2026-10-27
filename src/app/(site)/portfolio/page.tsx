@@ -1,10 +1,8 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Section, Container } from "@/components/section";
 import { PortfolioSection } from "@/components/site/showcase";
 import { Reveal } from "@/components/reveal";
-import { ColorFade } from "@/components/trace-line";
-import { site } from "@/lib/site-data";
-import { Icon } from "@/components/icons";
+import { CallButton } from "@/components/call-button";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -37,30 +35,17 @@ export default function PortfolioPage() {
           <PortfolioSection limit={24} />
         </Container>
       </Section>
-
-      <ColorFade from="light" to="dark" />
-
-      <Section dark>
+      <Section>
         <Container className="py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-5 !text-background/50">Il tuo progetto Ã¨ il prossimo</p>
+            <p className="micro-label mb-5">Il tuo progetto Ã¨ il prossimo</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">
               Mettiamolo in orbita
             </h2>
-            <a
-              href={site.contact.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-9 flex h-13 items-center gap-3 bg-background px-8 py-4 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:bg-background/80"
-            >
-              Prenota una call
-              <Icon name="arrow-up-right" size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            <CallButton label="Prenota una call" className="mt-9" />
           </Reveal>
         </Container>
       </Section>
-
-      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }
