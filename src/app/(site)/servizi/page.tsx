@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { services, process } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
@@ -11,12 +10,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
+import { buildPageMetadata } from "@/lib/site-settings";
 
-export const metadata: Metadata = {
-  title: "Servizi",
-  description:
-    "Brand Identity, Ottimizzazione SEO, Social Media Marketing, Sponsorizzazioni Advertising, Intelligenza Artificiale e Sviluppo Siti Web ed E-Commerce.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata("servizi", {
+    title: "Servizi",
+    description:
+      "Brand Identity, Ottimizzazione SEO, Social Media Marketing, Sponsorizzazioni Advertising, Intelligenza Artificiale e Sviluppo Siti Web ed E-Commerce.",
+  });
+}
 
 export default function ServiziPage() {
   return (

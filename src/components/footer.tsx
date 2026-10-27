@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Icon, type IconName } from "@/components/icons";
 import { LogoFull } from "@/components/logo";
 import { site } from "@/lib/site-data";
+import type { SiteGlobal } from "@/lib/site-settings";
 
 const legalLinks = [
   { href: "/privacy-policy", label: "Privacy Policy" },
@@ -25,11 +26,19 @@ const linkGroups = [
   },
 ];
 
-export function Footer() {
+export function Footer({ info }: { info?: SiteGlobal }) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [year, setYear] = useState<number | null>(null);
   useEffect(() => setYear(new Date().getFullYear()), []);
+
+  const brandName = info?.name ?? site.name;
+  const claim = info?.tagline ?? site.claim;
+  const contactEmail = info?.email ?? site.contact.email;
+  const contactPhone = info?.phone ?? site.contact.phone;
+  const phoneHref = info?.phone ? `tel:${info.phone.replace(/[^\d+]/g, "")}` : site.contact.phoneHref;
+  const contactAddress = info?.address ?? `${site.contact.address} — ${site.contact.city}`;
+  const socials = info?.socials?.length ? info.socials : site.socials;
 
   return (
     <footer className="relative mt-14 bg-background">
@@ -37,7 +46,7 @@ export function Footer() {
         <div className="mb-8 flex flex-col gap-6 pb-8 md:flex-row md:items-center md:justify-between">
           <LogoFull className="h-9 md:h-11" />
           <div className="flex gap-2">
-            {site.socials.map((s) => (
+            {socials.map((s) => (
               <a
                 key={s.name}
                 href={s.href}
@@ -95,20 +104,20 @@ export function Footer() {
             <ul className="space-y-1.5 text-xs text-muted-foreground">
               <li className="flex items-center gap-2.5">
                 <Icon name="mail" size={13} />
-                <a href={`mailto:${site.contact.email}`} className="hover:text-foreground">
-                  {site.contact.email}
+                <a href={`mailto:${contactEmail}`} className="hover:text-foreground">
+                  {contactEmail}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Icon name="phone" size={13} />
-                <a href={site.contact.phoneHref} className="hover:text-foreground">
-                  {site.contact.phone}
+                <a href={phoneHref} className="hover:text-foreground">
+                  {contactPhone}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Icon name="pin" size={13} className="mt-0.5 shrink-0" />
                 <span>
-                  {site.contact.address} — {site.contact.city}
+                  {contactAddress}
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
@@ -159,9 +168,9 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-2 pb-2 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground md:flex-row">
           <p>
-            © {year ?? 2026} {site.name} — P. IVA: {site.legal.piva}
+            © {year ?? 2026} {brandName} — P. IVA: {site.legal.piva}
           </p>
-          <p>{site.claim}</p>
+          <p>{claim}</p>
           <Link href="/admin" className="transition-colors hover:text-foreground">
             Backoffice
           </Link>

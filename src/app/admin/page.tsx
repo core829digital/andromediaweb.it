@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { verifySessionToken } from "@/lib/auth";
 import { LoginForm } from "./login-form";
-import { AdminDashboard } from "./admin-dashboard";
+import { AdminShell } from "@/components/admin/shell";
 import { LogoMark } from "@/components/logo";
 
 export const metadata = {
@@ -24,7 +24,7 @@ async function AdminGate() {
   const token = (await cookies()).get("aw_admin")?.value;
   const email = verifySessionToken(token);
   if (!email) return <LoginForm />;
-  return <AdminDashboard email={email} />;
+  return <AdminShell email={email} />;
 }
 
 export default function AdminPage() {

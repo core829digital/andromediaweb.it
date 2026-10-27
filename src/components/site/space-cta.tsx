@@ -15,7 +15,17 @@ const stars = Array.from({ length: 42 }, (_, i) => ({
  * Sezione finale fullscreen: "Un giorno o giorno uno?" con campo
  * stellare che pulsa e testo che emerge guidato dallo scroll.
  */
-export function SpaceCta() {
+export function SpaceCta({
+  titleA = "Un giorno o",
+  titleB = "giorno uno?",
+  label = "Hai un'idea in mente?",
+  buttonLabel = "Parliamone",
+}: {
+  titleA?: string;
+  titleB?: string;
+  label?: string;
+  buttonLabel?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -59,14 +69,14 @@ export function SpaceCta() {
           style={{ opacity: titleOpacity, y: titleY }}
           className="relative z-10 flex flex-col items-center text-center"
         >
-          <p className="micro-label mb-6">Hai un'idea in mente?</p>
+          <p className="micro-label mb-6">{label}</p>
           <h2 className="font-heading text-4xl uppercase leading-[1.05] md:text-6xl">
-            Un giorno o
+            {titleA}
             <br />
-            <span className="text-outline">giorno uno?</span>
+            <span className="text-outline">{titleB}</span>
           </h2>
           <CallButton
-            label="Parliamone"
+            label={buttonLabel}
             size="md"
             className="mt-10 h-14 px-9 tracking-[0.25em]"
           />

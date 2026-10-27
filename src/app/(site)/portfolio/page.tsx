@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import { Section, Container } from "@/components/section";
+import { buildPageMetadata } from "@/lib/site-settings";
 import { PortfolioSection } from "@/components/site/showcase";
 import { Reveal } from "@/components/reveal";
 import { CallButton } from "@/components/call-button";
 
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "I lavori svolti da Andromedia Web: e-commerce, siti web, branding, social media e intelligenza artificiale.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata("portfolio", {
+    title: "Portfolio",
+    description: "I lavori svolti da Andromedia Web: e-commerce, siti web, branding, social media e intelligenza artificiale.",
+  });
+}
 
 export default function PortfolioPage() {
   return (

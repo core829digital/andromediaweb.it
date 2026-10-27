@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     url: site.url,
     title: `${site.name} — The Future is Now`,
     description: site.description,
-    images: [{ url: "/branding/thefutureisnow-black-tran.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: site.name }],
   },
-  icons: { icon: "/branding/icon-do.png" },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

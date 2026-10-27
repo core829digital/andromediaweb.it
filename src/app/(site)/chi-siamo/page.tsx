@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import { keyPoints, faq } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { CallButton } from "@/components/call-button";
 import { Icon } from "@/components/icons";
+import { buildPageMetadata } from "@/lib/site-settings";
 import { HomeFeatureMarquee } from "@/components/site/showcase";
 import {
   Accordion,
@@ -12,11 +12,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const metadata: Metadata = {
-  title: "Chi siamo",
-  description:
-    "Andromedia Web: attraverso il lavoro e le relazioni umane plasmiamo il nostro percorso. Esperienza, direzione, organizzazione, team, evoluzione e umanità.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata("chi-siamo", {
+    title: "Chi siamo",
+    description:
+      "Andromedia Web: attraverso il lavoro e le relazioni umane plasmiamo il nostro percorso. Esperienza, direzione, organizzazione, team, evoluzione e umanità.",
+  });
+}
 
 export default function ChiSiamoPage() {
   return (

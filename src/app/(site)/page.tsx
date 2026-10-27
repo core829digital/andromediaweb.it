@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site, services, process, faq, keyPoints } from "@/lib/site-data";
+import { site, services, process, keyPoints } from "@/lib/site-data";
+import { buildPageMetadata, getHomeContent, getFaq } from "@/lib/site-settings";
 import { Hero } from "@/components/site/hero";
 import { PortfolioSection } from "@/components/site/showcase";
 import { SectionHeading, Section, Container } from "@/components/section";
@@ -13,10 +14,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function HomePage() {
+export async function generateMetadata() {
+  return buildPageMetadata("home", {
+    title: "Andromedia Web — The future is now",
+    description: site.description,
+    keywords:
+      "agenzia marketing, sviluppo siti web, e-commerce, seo, social media, brand identity, intelligenza artificiale, Foiano della Chiana, Arezzo",
+  });
+}
+
+export default async function HomePage() {
+  const [content, faqItems] = await Promise.all([getHomeContent(), getFaq()]);
+
   return (
     <>
-      <Hero />
+      <Hero content={content.hero} />
 
       {/* Servizi */}
       <Section id="servizi" className="scroll-mt-20">
@@ -24,8 +36,8 @@ export default function HomePage() {
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               icon="star"
-              label="Servizi - Modi in cui lavoriamo"
-              title="Un'agenzia, sei orbite operative"
+              label={content.servizi.label}
+              title={content.servizi.title}
             />
             <Reveal delay={0.15}>
               <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -65,8 +77,8 @@ export default function HomePage() {
         <Container className="py-16 md:py-24">
           <SectionHeading
             icon="compass"
-            label="Visione & Missione"
-            title="L'unico limite è la tua mente."
+            label={content.visione.label}
+            title={content.visione.title}
           />
           <div className="mt-10 grid gap-12 lg:grid-cols-2">
             <Reveal delay={0.1}>
@@ -111,8 +123,8 @@ export default function HomePage() {
           <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               icon="eye"
-              label="Lavori — Esperienza e progetti"
-              title="Costruiamo storie che risuonano"
+              label={content.lavori.label}
+              title={content.lavori.title}
             />
             <Reveal delay={0.15}>
               <Link
@@ -132,8 +144,8 @@ export default function HomePage() {
         <Container className="py-16 md:py-24">
           <SectionHeading
             icon="evolve"
-            label="Processo — Come"
-            title="Lavoriamo all'incrocio tra strategia, creatività e tecnologia"
+            label={content.processo.label}
+            title={content.processo.title}
           />
           <div className="relative mt-12 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
@@ -155,10 +167,10 @@ export default function HomePage() {
       {/* FAQ */}
       <Section>
         <Container className="max-w-4xl py-16 md:py-24">
-          <SectionHeading icon="node" label="Domande frequenti" title="FAQ" align="center" />
+          <SectionHeading icon="node" label={content.faq.label} title={content.faq.title} align="center" />
           <div className="mt-10">
             <Accordion type="single" collapsible className="w-full">
-              {faq.map((f, i) => (
+              {faqItems.map((f, i) => (
                 <AccordionItem key={i} value={`f-${i}`} className="border-border">
                   <AccordionTrigger className="py-5 text-left font-heading text-base uppercase tracking-wide hover:no-underline">
                     <span className="flex items-baseline gap-4">

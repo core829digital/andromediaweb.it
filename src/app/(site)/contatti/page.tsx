@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { Icon } from "@/components/icons";
 import { site } from "@/lib/site-data";
+import { buildPageMetadata } from "@/lib/site-settings";
 import { ContactForm } from "@/components/site/contact-form";
 
-export const metadata: Metadata = {
-  title: "Contatti",
-  description: "Parliamone di idee e progetti. Andromedia Web — Foiano della Chiana (AR), operativi 24/7.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata("contatti", {
+    title: "Contatti",
+    description: "Parliamone di idee e progetti. Andromedia Web — Foiano della Chiana (AR), operativi 24/7.",
+  });
+}
 
 const contactRows = [
   { icon: "mail" as const, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },

@@ -6,6 +6,15 @@ import { ConvexHttpClient } from "convex/browser";
 import { Icon } from "@/components/icons";
 import { LogoMark } from "@/components/logo";
 import { logout } from "./actions";
+import {
+  postSave,
+  postSetStatus,
+  postRemove,
+  workCreate,
+  workRemove,
+  messageRemove,
+  getUploadUrl,
+} from "./write-actions";
 import { cn } from "@/lib/utils";
 
 const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL ?? "";
@@ -70,11 +79,46 @@ function slugify(s: string): string {
     .replace(/\s+/g, "-");
 }
 
-export function AdminDashboard({ email }: { email: string }) {
+export function AdminDashboard({ email, embedded = false }: { email: string; embedded?: boolean }) {
   const [tab, setTab] = useState<Tab>("blog");
   const [noConvex, setNoConvex] = useState(!convexUrl);
 
   if (noConvex) return <NoConvex />;
+
+  const tabsRow = (className: string) => (
+    <div className={cn("mx-auto flex max-w-7xl gap-1 px-5 md:px-8", className)}>
+      {(["blog", "portfolio", "messaggi"] as Tab[]).map((t) => (
+        <button
+          key={t}
+          onClick={() => setTab(t)}
+          className={cn(
+            "relative px-5 py-3 font-mono text-[11px] uppercase tracking-[0.22em] transition-colors",
+            tab === t ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          {t}
+          {tab === t && <span className="absolute inset-x-3 bottom-0 h-0.5 bg-foreground" />}
+        </button>
+      ))}
+    </div>
+  );
+
+  const panels = (
+    <main className={embedded ? "p-5 md:p-8" : "mx-auto max-w-7xl px-5 py-10 md:px-8"}>
+      {tab === "blog" && <BlogPanel />}
+      {tab === "portfolio" && <PortfolioPanel />}
+      {tab === "messaggi" && <MessagesPanel />}
+    </main>
+  );
+
+  if (embedded) {
+    return (
+      <div className="min-h-full">
+        {tabsRow("max-w-none border-b border-border")}
+        {panels}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-svh bg-background">
@@ -107,30 +151,10 @@ export function AdminDashboard({ email }: { email: string }) {
             </form>
           </div>
         </div>
-        <div className="mx-auto flex max-w-7xl gap-1 px-5 md:px-8">
-          {(["blog", "portfolio", "messaggi"] as Tab[]).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={cn(
-                "relative px-5 py-3 font-mono text-[11px] uppercase tracking-[0.22em] transition-colors",
-                tab === t ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {t}
-              {tab === t && (
-                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-foreground" />
-              )}
-            </button>
-          ))}
-        </div>
+        {tabsRow("")}
       </header>
 
-      <main className="mx-auto max-w-7xl px-5 py-10 md:px-8">
-        {tab === "blog" && <BlogPanel />}
-        {tab === "portfolio" && <PortfolioPanel />}
-        {tab === "messaggi" && <MessagesPanel />}
-      </main>
+      {panels}
     </div>
   );
 }
@@ -160,20 +184,16 @@ function BlogPanel() {
   }, [load]);
 
   async function setStatus(id: string, status: "draft" | "published") {
-    const c = client();
-    if (!c) return;
-    await c.mutation("posts:setStatus" as any, { id, status });
-    await load();
-    setMessage(status === "published" ? "Post pubblicato" : "Post rimandato in bozza");
+    const r = await postSetStatus(id, status);
+    setMessage(r.ok ? (status === "published" ? "Post pubblicato" : "Post rimandato in bozza") : `Errore: ${r.error}`);
+    if (r.ok) await load();
   }
 
   async function remove(id: string) {
     if (!confirm("Eliminare definitivamente questo post?")) return;
-    const c = client();
-    if (!c) return;
-    await c.mutation("posts:remove" as any, { id });
-    await load();
-    setMessage("Post eliminato");
+    const r = await postRemove(id);
+    setMessage(r.ok ? "Post eliminato" : `Errore: ${r.error}`);
+    if (r.ok) await load();
   }
 
   const showEditor = creating || editing;
@@ -316,33 +336,22 @@ function PostEditor({
     e.preventDefault();
     setBusy(true);
     try {
-      const c = client();
-      if (!c) throw new Error("no-convex");
       let coverStorageId: string | undefined;
-      if (file) coverStorageId = await upload(file, "posts:generateUploadUrl");
+      if (file) coverStorageId = await upload(file, "posts");
 
-      const args: any = {
+      const r = await postSave(post?._id ?? null, {
         title: form.title,
         slug: form.slug || slugify(form.title),
         excerpt: form.excerpt,
         content: form.content,
-        tags: form.tags
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
+        tags: form.tags,
         status: form.status,
         ...(coverStorageId ? { coverStorageId } : {}),
-      };
-
-      if (post) {
-        await c.mutation("posts:update" as any, { id: post._id, ...args });
-        onDone("Post aggiornato");
-      } else {
-        await c.mutation("posts:create" as any, args);
-        onDone("Post creato");
-      }
+      });
+      if (!r.ok) throw new Error(r.error ?? "errore");
+      onDone(post ? "Post aggiornato" : "Post creato");
     } catch (err) {
-      alert(err instanceof Error && err.message === "no-convex" ? "Convex non collegato" : "Slug già esistente o errore");
+      alert(err instanceof Error ? err.message : "Errore di salvataggio");
     } finally {
       setBusy(false);
     }
@@ -465,11 +474,9 @@ function PortfolioPanel() {
 
   async function remove(id: string) {
     if (!confirm("Eliminare questo lavoro dal portfolio?")) return;
-    const c = client();
-    if (!c) return;
-    await c.mutation("portfolio:remove" as any, { id });
-    await load();
-    setMessage("Lavoro eliminato");
+    const r = await workRemove(id);
+    setMessage(r.ok ? "Lavoro eliminato" : `Errore: ${r.error}`);
+    if (r.ok) await load();
   }
 
   return (
@@ -551,19 +558,18 @@ function WorkForm({ onDone }: { onDone: (m: string) => void }) {
     e.preventDefault();
     setBusy(true);
     try {
-      const c = client();
-      if (!c) throw new Error("no-convex");
       let imageStorageId: string | undefined;
-      if (file) imageStorageId = await upload(file, "portfolio:generateUploadUrl");
-      await c.mutation("portfolio:create" as any, {
+      if (file) imageStorageId = await upload(file, "portfolio");
+      const r = await workCreate({
         ...form,
         ...(imageStorageId ? { imageStorageId } : {}),
       });
+      if (!r.ok) throw new Error(r.error ?? "errore");
       setForm({ title: "", client: "", url: "", category: "Sito Web", description: "", featured: false });
       setFile(null);
       onDone("Lavoro caricato");
-    } catch {
-      alert("Errore: Convex non collegato o dati mancanti");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Errore: dati mancanti o non validi");
     } finally {
       setBusy(false);
     }
@@ -662,9 +668,7 @@ function MessagesPanel() {
 
   async function remove(id: string) {
     if (!confirm("Eliminare questo messaggio?")) return;
-    const c = client();
-    if (!c) return;
-    await c.mutation("messages:remove" as any, { id });
+    await messageRemove(id);
     await load();
   }
 
@@ -712,12 +716,10 @@ function MessagesPanel() {
 
 /* ================= Upload helper ================= */
 
-async function upload(file: File, fn: string): Promise<string> {
-  const c = client();
-  if (!c) throw new Error("no-convex");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const uploadUrl = (await c.mutation(fn as any, {})) as string;
-  const res = await fetch(uploadUrl, {
+async function upload(file: File, kind: "posts" | "portfolio"): Promise<string> {
+  const up = await getUploadUrl(kind);
+  if (!up.ok || !up.url) throw new Error(up.error ?? "Upload non disponibile");
+  const res = await fetch(up.url, {
     method: "POST",
     headers: { "Content-Type": file.type },
     body: file,

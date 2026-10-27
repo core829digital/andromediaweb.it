@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
 import { Section, Container } from "@/components/section";
 import { Reveal } from "@/components/reveal";
+import { buildPageMetadata } from "@/lib/site-settings";
 import { BlogIndex } from "@/components/site/blog-index";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Approfondimenti, case study e segnali dallo spazio creativo di Andromedia Web.",
-};
+export async function generateMetadata() {
+  return buildPageMetadata("blog", {
+    title: "Blog",
+    description: "Approfondimenti, case study e segnali dallo spazio creativo di Andromedia Web.",
+  });
+}
 
 export default function BlogPage() {
   return (

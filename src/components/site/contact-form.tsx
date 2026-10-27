@@ -1,30 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { ConvexHttpClient } from "convex/browser";
 import { Icon } from "@/components/icons";
 import { site } from "@/lib/site-data";
 
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL ?? "";
-
 export function ContactForm() {
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setState("sending");
+    setError("");
     try {
-      if (!convexUrl) throw new Error("convex-missing");
-      const c = new ConvexHttpClient(convexUrl);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await c.mutation("messages:create" as any, {
-        ...form,
-        source: "contatti",
-        createdAt: Date.now(),
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, source: "contatti" }),
       });
+      const data = (await res.json()) as { ok: boolean; error?: string };
+      if (!res.ok || !data.ok) throw new Error(data.error ?? "errore");
       setState("sent");
-    } catch {
+    } catch (err) {
+      setError(err instanceof Error && err.message !== "errore" ? err.message : "");
       setState("error");
     }
   }
@@ -51,6 +50,7 @@ export function ContactForm() {
       <input
         required
         placeholder="Nome e cognome"
+        maxLength={100}
         value={form.name}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
         className={inputCls}
@@ -59,13 +59,26 @@ export function ContactForm() {
         required
         type="email"
         placeholder="Email"
+        maxLength={200}
         value={form.email}
         onChange={(e) => setForm({ ...form, email: e.target.value })}
         className={inputCls}
       />
+      {/* honeypot anti-spam: nascosto agli umani */}
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        placeholder="Company"
+        value={form.company}
+        onChange={(e) => setForm({ ...form, company: e.target.value })}
+        className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
       <textarea
         required
         rows={5}
+        maxLength={4000}
         placeholder="Raccontaci il tuo progetto…"
         value={form.message}
         onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -81,7 +94,7 @@ export function ContactForm() {
       </button>
       {state === "error" && (
         <p className="text-xs text-muted-foreground">
-          Ops, qualcosa è andato storto. Scrivici direttamente a{" "}
+          {error || "Ops, qualcosa è andato storto."} Scrivici direttamente a{" "}
           <a href={`mailto:${site.contact.email}`} className="underline">
             {site.contact.email}
           </a>

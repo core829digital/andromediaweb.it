@@ -6,9 +6,21 @@ import { Icon } from "@/components/icons";
 import { CallButton } from "@/components/call-button";
 import { HomeFeatureMarquee } from "@/components/site/showcase";
 import { site } from "@/lib/site-data";
+import type { HeroContent } from "@/lib/site-settings";
 
-export function Hero() {
+const HERO_DEFAULT: HeroContent = {
+  microLabel: "Consulenza Creativa",
+  titleA: "Eleva il tuo",
+  titleB: "Brand",
+  subtitle:
+    "Brand identity, siti web su misura, SEO, social media e intelligenza artificiale. Tutto in un unico orbita creativa.",
+  ctaPrimary: { label: "Prenota una call", href: "/contatti" },
+  ctaSecondary: { label: "Esplora i servizi", href: "/servizi" },
+};
+
+export function Hero({ content }: { content?: HeroContent }) {
   const reduce = useReducedMotion();
+  const c = content ?? HERO_DEFAULT;
 
   return (
     <section className="relative flex min-h-svh flex-col overflow-hidden bg-background">
@@ -46,7 +58,7 @@ export function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="micro-label mb-8"
         >
-          ✦ {site.name} — Consulenza Creativa
+          ✦ {site.name} — {c.microLabel}
         </motion.p>
 
         <h1 className="font-heading text-[13vw] uppercase leading-[0.95] tracking-tight sm:text-7xl md:text-8xl lg:text-[7.5rem]">
@@ -57,7 +69,7 @@ export function Hero() {
               animate={{ y: "0%" }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
-              Eleva il tuo
+              {c.titleA}
             </motion.span>
           </span>
           <span className="block overflow-hidden">
@@ -67,7 +79,7 @@ export function Hero() {
               animate={{ y: "0%" }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              Brand
+              {c.titleB}
             </motion.span>
           </span>
         </h1>
@@ -80,18 +92,17 @@ export function Hero() {
         >
           <div className="max-w-md">
             <p className="text-base leading-relaxed text-muted-foreground">
-              Brand identity, siti web su misura, SEO, social media e
-              intelligenza artificiale. Tutto in un unico orbita creativa.
+              {c.subtitle}
             </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <CallButton label="Prenota una call" />
+            <CallButton label={c.ctaPrimary.label} href={c.ctaPrimary.href} />
             <Link
-              href="/servizi"
+              href={c.ctaSecondary.href}
               className="group flex h-12 items-center justify-center gap-3 whitespace-nowrap border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] transition-all duration-300 hover:border-foreground"
             >
-              Esplora i servizi
+              {c.ctaSecondary.label}
               <Icon
                 name="arrow-right"
                 size={14}
