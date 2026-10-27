@@ -140,6 +140,9 @@
     @apply font-heading;
     font-weight: 500;
   }
+  section {
+    transition: background-color 0.8s ease;
+  }
 }
 
 /* ---------- Andromedia Web design system ---------- */
@@ -177,6 +180,51 @@
   }
 }
 
+/* ---------- Superfici dark: regole di visibilità coerenti ---------- */
+
+.dark-surface {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.dark-surface .micro-label {
+  color: oklch(0.985 0 0 / 55%);
+}
+
+.dark-surface p,
+.dark-surface li {
+  color: oklch(0.985 0 0 / 60%);
+}
+
+.dark-surface h1,
+.dark-surface h2,
+.dark-surface h3,
+.dark-surface h4 {
+  color: var(--background);
+}
+
+.dark-surface a {
+  color: var(--background);
+}
+
+/* link "solidi" (bottone invertito) mantengono il proprio colore */
+.dark-surface a.bg-background,
+.dark-surface a.text-foreground {
+  color: var(--foreground);
+}
+
+.dark-surface [data-slot="accordion-trigger"] {
+  color: var(--background);
+}
+
+.dark-surface [data-slot="accordion-trigger-icon"] {
+  color: oklch(0.985 0 0 / 55%);
+}
+
+.dark-surface [data-slot="accordion-trigger-icon"]:hover {
+  color: var(--background);
+}
+
 /* ---------- Lenis smooth scroll ---------- */
 
 html.lenis,
@@ -193,82 +241,67 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* ---------- Trailing line (tramite tra le sezioni) ---------- */
+/* ---------- Trailing line (tramite spaziale tra le sezioni) ----------
+   Linea dritta, sottile, con nodo-punto che allinea le sezioni.
+   Nessuna animazione invasiva: solo un respiro lento del nodo. */
 
-@keyframes trace-dash {
-  to {
-    background-position: 0 -96px;
-  }
-}
-
-.trace-line {
+.trace-node {
   position: relative;
   width: 1px;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    oklch(0 0 0 / 14%) 38%,
-    oklch(0 0 0 / 14%) 62%,
+    oklch(0 0 0 / 16%) 30%,
+    oklch(0 0 0 / 16%) 70%,
     transparent 100%
   );
 }
 
-.trace-line::before,
-.trace-line::after {
+/* nodo terminale: punto tecnico di sezione */
+.trace-node::after {
   content: "";
   position: absolute;
   left: 50%;
-  width: 1px;
+  bottom: -4px;
+  height: 7px;
+  width: 7px;
   transform: translateX(-50%);
-}
-
-/* dashed pulse che percorre la linea dall'alto verso il basso */
-.trace-line::before {
-  top: 0;
-  bottom: 0;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    oklch(0.11 0 0 / 66%) 0px,
-    oklch(0.11 0 0 / 66%) 12px,
-    transparent 12px,
-    transparent 48px
-  );
-  background-size: 1px 96px;
-  animation: trace-dash 4.8s linear infinite;
-}
-
-/* nodo terminale */
-.trace-line::after {
-  content: "";
-  top: 50%;
-  height: 3px;
-  width: 3px;
   border-radius: 9999px;
-  background: oklch(0.11 0 0);
-  translate: -50% -50%;
+  border: 1px solid oklch(0.11 0 0);
+  background: var(--background);
+  box-shadow: 0 0 0 4px var(--background);
 }
 
-.trace-horizontal::before {
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: auto;
-  background-image: repeating-linear-gradient(
+.trace-node.dark::after {
+  border-color: oklch(0.985 0 0);
+  background: var(--foreground);
+  box-shadow: 0 0 0 4px var(--foreground);
+}
+
+/* variante orizzontale (footer) */
+.trace-node-h {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
     to right,
-    oklch(0.11 0 0 / 60%) 0px,
-    oklch(0.11 0 0 / 60%) 12px,
-    transparent 12px,
-    transparent 48px
+    transparent 0%,
+    oklch(0 0 0 / 14%) 30%,
+    oklch(0 0 0 / 14%) 70%,
+    transparent 100%
   );
-  background-size: 96px 1px;
-  transform: translateY(-50%);
-  animation: trace-dash-h 4.8s linear infinite;
 }
 
-@keyframes trace-dash-h {
-  to {
-    background-position: 96px 0;
-  }
+.trace-node-h::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 7px;
+  width: 7px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  border: 1px solid oklch(0.11 0 0);
+  background: var(--background);
 }
 
 /* ---------- Marquee logos ---------- */
@@ -287,6 +320,8 @@ html.lenis body {
 
 /* ---------- Hero: orbite / bagliore logomark ---------- */
 
+/* ---------- Spin loop brand (icona header) ---------- */
+
 @keyframes slow-spin {
   to {
     transform: rotate(360deg);
@@ -294,6 +329,16 @@ html.lenis body {
 }
 .animate-slow-spin {
   animation: slow-spin 60s linear infinite;
+}
+.animate-spin-slow {
+  animation: slow-spin 12s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow,
+  .animate-slow-spin,
+  .animate-marquee {
+    animation: none;
+  }
 }
 
 /* ---------- Typewriter caret (hero) ---------- */

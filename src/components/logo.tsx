@@ -19,6 +19,25 @@ export function LogoMark({
   );
 }
 
+/** Icona pura M/W — versione nera (chiara) e bianca (dark). */
+export function LogoIcon({
+  light = false,
+  className,
+}: {
+  light?: boolean;
+  className?: string;
+}) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={light ? "/branding/icon-trans-white.png" : "/branding/icon-do-black.png"}
+      alt="Andromedia Web"
+      className={cn("h-9 w-auto select-none", className)}
+      draggable={false}
+    />
+  );
+}
+
 /** Wordmark completo "The future is now". */
 export function LogoFull({
   light = false,

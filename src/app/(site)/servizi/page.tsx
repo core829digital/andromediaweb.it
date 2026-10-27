@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { services, process, site } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { TraceLine } from "@/components/trace-line";
+import { TraceNode, ColorFade } from "@/components/trace-line";
 import { Icon } from "@/components/icons";
 import {
   Accordion,
@@ -26,17 +26,17 @@ export default function ServiziPage() {
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Servizi — Modi in cui lavoriamo</p>
+            <p className="micro-label mb-6">Servizi â€” Modi in cui lavoriamo</p>
             <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Sei orbite,
               <br />
               <span className="text-outline">un solo sistema.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              &ldquo;Non vendere prodotti, racconta storie.&rdquo; — Seth Godin.
+              &ldquo;Non vendere prodotti, racconta storie.&rdquo; â€” Seth Godin.
               Ogni azienda ha esigenze uniche: che si tratti di costruire un brand
-              da zero o di portare la tua attività verso un'evoluzione tecnologica,
-              il nostro team è qui per supportarti.
+              da zero o di portare la tua attivitÃ  verso un'evoluzione tecnologica,
+              il nostro team Ã¨ qui per supportarti.
             </p>
           </Reveal>
         </Container>
@@ -65,15 +65,15 @@ export default function ServiziPage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="light" to="dark" />
 
       {/* Dettagli */}
       <Section dark>
         <Container className="max-w-4xl py-24">
           <SectionHeading
             icon="node"
-            label="La nostra attività"
-            title="Dettagli in profondità"
+            label="La nostra attivitÃ "
+            title="Dettagli in profonditÃ "
             className="text-background"
           />
           <div className="mt-10">
@@ -100,12 +100,12 @@ export default function ServiziPage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="dark" to="light" />
 
       {/* Processo */}
       <Section>
         <Container className="py-24">
-          <SectionHeading icon="evolve" label="Processo" title="Scoperta → Strategia → Sviluppo → Lancio" />
+          <SectionHeading icon="evolve" label="Processo" title="Scoperta â†’ Strategia â†’ Sviluppo â†’ Lancio" />
           <div className="mt-12 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
@@ -147,6 +147,8 @@ export default function ServiziPage() {
           </Reveal>
         </Container>
       </Section>
+
+      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }

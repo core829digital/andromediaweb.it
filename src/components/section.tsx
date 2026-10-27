@@ -55,7 +55,7 @@ export function Section({
       id={id}
       className={cn(
         "relative",
-        dark && "bg-foreground text-background",
+        dark && "dark-surface",
         className
       )}
     >

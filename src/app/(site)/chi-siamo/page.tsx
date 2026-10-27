@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { keyPoints, faq, site } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { TraceLine } from "@/components/trace-line";
+import { TraceNode, ColorFade } from "@/components/trace-line";
 import { Icon } from "@/components/icons";
 import { HomeFeatureMarquee } from "@/components/site/showcase";
 import {
@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Chi siamo",
   description:
-    "Andromedia Web: attraverso il lavoro e le relazioni umane plasmiamo il nostro percorso. Esperienza, direzione, organizzazione, team, evoluzione e umanità.",
+    "Andromedia Web: attraverso il lavoro e le relazioni umane plasmiamo il nostro percorso. Esperienza, direzione, organizzazione, team, evoluzione e umanitÃ .",
 };
 
 export default function ChiSiamoPage() {
@@ -25,7 +25,7 @@ export default function ChiSiamoPage() {
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Info — Chi siamo</p>
+            <p className="micro-label mb-6">Info â€” Chi siamo</p>
             <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Esseri umani
               <br />
@@ -64,7 +64,7 @@ export default function ChiSiamoPage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="light" to="dark" />
 
       <Section dark>
         <Container className="py-24">
@@ -78,7 +78,7 @@ export default function ChiSiamoPage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="dark" to="light" />
 
       {/* FAQ */}
       <Section>
@@ -105,7 +105,7 @@ export default function ChiSiamoPage() {
           </div>
           <Reveal className="mt-14 flex flex-col items-center gap-5 border border-border p-10 text-center">
             <p className="micro-label">Hai bisogno di aiuto?</p>
-            <h3 className="font-heading text-2xl uppercase">Scrivici — rispondiamo 24/7</h3>
+            <h3 className="font-heading text-2xl uppercase">Scrivici â€” rispondiamo 24/7</h3>
             <a
               href={site.contact.calendly}
               target="_blank"
@@ -117,6 +117,8 @@ export default function ChiSiamoPage() {
           </Reveal>
         </Container>
       </Section>
+
+      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }

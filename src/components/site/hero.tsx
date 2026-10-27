@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Icon } from "@/components/icons";
-import { LogoMark } from "@/components/logo";
 import { site } from "@/lib/site-data";
 
 const rotatingClaims = [
@@ -131,35 +130,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* scroll hint */}
-      <motion.div
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="relative z-10 mx-auto mb-6 flex flex-col items-center gap-2"
-      >
-        <span className="micro-label !tracking-[0.4em]">Scroll</span>
-        <motion.span
-          animate={reduce ? undefined : { y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-        >
-          <Icon name="arrow-right" size={14} className="rotate-90 text-muted-foreground" />
-        </motion.span>
-      </motion.div>
-
-      {/* orbitante logomark decorativo */}
-      <motion.div
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.08 }}
-        transition={{ delay: 1.4, duration: 1.2 }}
-        className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 lg:block"
-      >
-        <div className="animate-slow-spin">
-          <LogoMark className="h-[420px] w-[420px]" />
-        </div>
-      </motion.div>
+      {/* scroll hint rimosso per richiesta: niente frecce di scroll tra le sezioni */}
     </section>
   );
 }

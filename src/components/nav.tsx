@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { navLinks, site } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icons";
-import { LogoMark } from "@/components/logo";
+import { LogoIcon } from "@/components/logo";
 
 export function Nav() {
   const pathname = usePathname();
@@ -35,8 +35,8 @@ export function Nav() {
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
           <Link href="/" className="group flex items-center gap-3">
-            <span className="transition-transform duration-500 group-hover:rotate-180">
-              <LogoMark />
+            <span className="animate-spin-slow inline-flex">
+              <LogoIcon />
             </span>
             <span className="hidden font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground sm:block">
               {site.name}

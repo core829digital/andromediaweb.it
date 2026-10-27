@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Section, Container } from "@/components/section";
 import { PortfolioSection } from "@/components/site/showcase";
 import { Reveal } from "@/components/reveal";
-import { TraceLine } from "@/components/trace-line";
+import { ColorFade } from "@/components/trace-line";
 import { site } from "@/lib/site-data";
 import { Icon } from "@/components/icons";
 
@@ -18,14 +18,14 @@ export default function PortfolioPage() {
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Lavori — Esperienza e progetti</p>
+            <p className="micro-label mb-6">Lavori â€” Esperienza e progetti</p>
             <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Progetti
               <br />
               <span className="text-outline">in orbita.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Ogni progetto è un sistema vivente: strategia, design e tecnologia
+              Ogni progetto Ã¨ un sistema vivente: strategia, design e tecnologia
               disposti su un'unica traiettoria.
             </p>
           </Reveal>
@@ -38,12 +38,12 @@ export default function PortfolioPage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="light" to="dark" />
 
       <Section dark>
         <Container className="py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-5 !text-background/50">Il tuo progetto è il prossimo</p>
+            <p className="micro-label mb-5 !text-background/50">Il tuo progetto Ã¨ il prossimo</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">
               Mettiamolo in orbita
             </h2>
@@ -59,6 +59,8 @@ export default function PortfolioPage() {
           </Reveal>
         </Container>
       </Section>
+
+      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }

@@ -4,7 +4,8 @@ import { Hero } from "@/components/site/hero";
 import { PortfolioSection, HomeFeatureMarquee } from "@/components/site/showcase";
 import { SectionHeading, Section, Container } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { TraceLine, TraceLineH } from "@/components/trace-line";
+import { TraceNode, ColorFade } from "@/components/trace-line";
+import { SpaceCta } from "@/components/site/space-cta";
 import { Icon } from "@/components/icons";
 import {
   Accordion,
@@ -62,7 +63,8 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      {/* nero → bianco, transizione smooth on scroll */}
+      <ColorFade from="dark" to="light" />
 
       {/* Visione & Missione */}
       <Section>
@@ -109,7 +111,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <TraceNode />
 
       {/* Lavori */}
       <Section id="lavori">
@@ -134,7 +136,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="light" to="dark" />
 
       {/* Processo */}
       <Section id="processo" dark>
@@ -163,7 +165,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      <TraceLine className="h-32" />
+      <ColorFade from="dark" to="light" />
 
       {/* FAQ */}
       <Section>
@@ -191,32 +193,10 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* CTA finale */}
-      <Section dark>
-        <Container className="py-28 md:py-36">
-          <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-6 !text-background/50">Hai un'idea in mente?</p>
-            <h2 className="max-w-3xl font-heading text-4xl uppercase leading-[1.05] md:text-6xl">
-              Un giorno o
-              <br />
-              <span className="text-outline-light">giorno uno?</span>
-            </h2>
-            <Link
-              href={site.contact.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-10 inline-flex h-14 items-center gap-3 bg-background px-9 font-mono text-xs uppercase tracking-[0.25em] text-foreground transition-all duration-300 hover:bg-background/80"
-            >
-              Parliamone
-              <Icon
-                name="arrow-up-right"
-                size={15}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
-          </Reveal>
-        </Container>
-      </Section>
+      {/* CTA finale — fullscreen con nave argento scroll-driven */}
+      <ColorFade from="light" to="dark" />
+      <SpaceCta />
+      <ColorFade from="dark" to="light" node={false} />
     </>
   );
 }
