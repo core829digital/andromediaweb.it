@@ -30,7 +30,7 @@ export default function HomePage() {
             />
             <Reveal delay={0.15}>
               <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-                &ldquo;Non vendere prodotti, racconta storie.&rdquo; â€” Seth Godin.
+                &ldquo;Non vendere prodotti, racconta storie.&rdquo; — Seth Godin.
                 Ogni azienda ha esigenze uniche: noi costruiamo la rotta giusta per la tua.
               </p>
             </Reveal>
@@ -67,7 +67,7 @@ export default function HomePage() {
           <SectionHeading
             icon="compass"
             label="Visione & Missione"
-            title="L'unico limite Ã¨ la tua mente."
+            title="L'unico limite è la tua mente."
           />
           <div className="mt-12 grid gap-12 lg:grid-cols-2">
             <Reveal delay={0.1}>
@@ -78,13 +78,13 @@ export default function HomePage() {
               </p>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
                 Design, tecnologia e marketing creano l'esperienza del brand.
-                Esperienza che promuove la vostra attivitÃ  nel mondo digitale.
+                Esperienza che promuove la vostra attività nel mondo digitale.
               </p>
               <div className="mt-10 flex flex-wrap gap-3">
-                {["Strategia", "CreativitÃ ", "Tecnologia", "Empatia"].map((t) => (
+                {["Strategia", "Creatività", "Tecnologia", "Empatia"].map((t) => (
                   <span
                     key={t}
-                    className="border border-border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
+                    className="rounded-full border border-border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
                   >
                     {t}
                   </span>
@@ -112,7 +112,7 @@ export default function HomePage() {
           <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               icon="eye"
-              label="Lavori â€” Esperienza e progetti"
+              label="Lavori — Esperienza e progetti"
               title="Costruiamo storie che risuonano"
             />
             <Reveal delay={0.15}>
@@ -133,8 +133,8 @@ export default function HomePage() {
         <Container className="py-24 md:py-32">
           <SectionHeading
             icon="evolve"
-            label="Processo â€” Come"
-            title="Lavoriamo all'incrocio tra strategia, creativitÃ  e tecnologia"
+            label="Processo — Come"
+            title="Lavoriamo all'incrocio tra strategia, creatività e tecnologia"
           />
           <div className="relative mt-16 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (

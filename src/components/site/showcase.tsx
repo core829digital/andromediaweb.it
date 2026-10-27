@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
-import { portfolioSeed, clientNames } from "@/lib/site-data";
+import { portfolioSeed, clientLogos } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL ?? "";
@@ -179,14 +179,15 @@ export function HomeFeatureMarquee() {
   return (
     <div className="relative overflow-hidden py-6">
       <div className="animate-marquee flex w-max items-center gap-14 pr-14">
-        {[...clientNames, ...clientNames].map((n, i) => (
-          <span
+        {[...clientLogos, ...clientLogos].map((l, i) => (
+          <img
             key={i}
-            className="flex items-center gap-3 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground"
-          >
-            <span className="inline-block h-1 w-1 rounded-full bg-foreground/50" />
-            {n}
-          </span>
+            src={l.src}
+            alt={l.name}
+            title={l.name}
+            draggable={false}
+            className="h-8 w-auto select-none brightness-0 opacity-70 transition-opacity duration-300 hover:opacity-100 dark:invert"
+          />
         ))}
       </div>
     </div>

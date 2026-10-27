@@ -16,14 +16,14 @@ export default function PortfolioPage() {
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Lavori â€” Esperienza e progetti</p>
+            <p className="micro-label mb-6">Lavori — Esperienza e progetti</p>
             <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Progetti
               <br />
               <span className="text-outline">in orbita.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Ogni progetto Ã¨ un sistema vivente: strategia, design e tecnologia
+              Ogni progetto è un sistema vivente: strategia, design e tecnologia
               disposti su un'unica traiettoria.
             </p>
           </Reveal>
@@ -38,7 +38,7 @@ export default function PortfolioPage() {
       <Section>
         <Container className="py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-5">Il tuo progetto Ã¨ il prossimo</p>
+            <p className="micro-label mb-5">Il tuo progetto è il prossimo</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">
               Mettiamolo in orbita
             </h2>

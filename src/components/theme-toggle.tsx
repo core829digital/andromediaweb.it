@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 function SunIcon({ size = 16 }: { size?: number }) {
   return (
@@ -21,7 +22,7 @@ function MoonIcon({ size = 16 }: { size?: number }) {
 }
 
 /** Toggle dark mode — salva la preferenza e ricollega il tema al sito. */
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -45,7 +46,10 @@ export function ThemeToggle() {
       aria-label={dark ? "Passa al tema chiaro" : "Passa al tema scuro"}
       whileTap={{ scale: 0.88 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-colors duration-300 hover:border-foreground hover:text-foreground"
+      className={cn(
+        "flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors duration-300 hover:border-foreground hover:text-foreground",
+        className
+      )}
     >
       <motion.span
         key={dark ? "moon" : "sun"}

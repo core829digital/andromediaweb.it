@@ -74,7 +74,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state === "sending"}
-        className="group flex h-12 items-center justify-center gap-3 bg-foreground font-mono text-xs uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+        className="group flex h-12 items-center justify-center gap-3 rounded-full bg-foreground font-mono text-xs uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
       >
         {state === "sending" ? "Trasmissione…" : "Invia messaggio"}
         <Icon name="send" size={14} />

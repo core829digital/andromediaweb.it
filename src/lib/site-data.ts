@@ -147,6 +147,7 @@ export const portfolioSeed = [
     client: "Dottor Canapa",
     url: "https://dottorcanapa.com/",
     category: "E-Commerce",
+    imageUrl: "/works/dottor-canapa.jpg",
     description:
       "Consulenza Marketing Dedicata, E-Commerce, Social Media, Intelligenza Artificiale, SEO, Grafiche e Stampe, Set Fotografico Prodotti.",
   },
@@ -155,6 +156,7 @@ export const portfolioSeed = [
     client: "Sara Calligrafia",
     url: "https://saracalligrafia.com/",
     category: "Sito Web",
+    imageUrl: "/works/sara-calligrafia.jpg",
     description: "Sviluppo Sito Web, Adattamento Logo, Mail Professionale, SEO.",
   },
   {
@@ -162,6 +164,7 @@ export const portfolioSeed = [
     client: "The Office Agency",
     url: "https://theofficeagency.it/",
     category: "Sito Web",
+    imageUrl: "/works/the-office-agency.jpg",
     description: "Sviluppo Sito Web, Intelligenza Artificiale, Consulenza Marchio, SEO, Email Professionale.",
   },
   {
@@ -169,6 +172,7 @@ export const portfolioSeed = [
     client: "QuartoAtto",
     url: "https://quartoatto.com/",
     category: "E-Commerce",
+    imageUrl: "/works/quartoatto.jpg",
     description: "Consulenza Marketing Dedicata, E-Commerce, Intelligenza Artificiale, Grafiche, Mail Professionale.",
   },
   {
@@ -176,6 +180,7 @@ export const portfolioSeed = [
     client: "Gelateria C'era Una Volta",
     url: "https://gelateriaceraunavolta.com/",
     category: "Sito Web",
+    imageUrl: "/works/cera-una-volta.jpg",
     description: "Sviluppo Sito Web, Social Media, Grafiche e Stampe.",
   },
   {
@@ -183,24 +188,26 @@ export const portfolioSeed = [
     client: "Winex",
     url: "https://winex.ro/",
     category: "Sito Web",
+    imageUrl: "/works/winex.jpg",
     description: "Consulenza Marketing Dedicata, Sviluppo Sito Web, Intelligenza Artificiale, Grafiche e Stampe, Social Media.",
   },
 ] as const;
 
-export const clientNames = [
-  "Dottor Canapa",
-  "Dog&Cat Market",
-  "QuartoAtto",
-  "Sara Calligrafia",
-  "C'era Una Volta",
-  "Winex",
-  "The Office Agency",
-  "Porsenna Resort",
-  "Agricola Foianese",
-  "Erboristeria L'Alveare",
-  "Residenza Cà dei Frati",
-  "Villa Pandolfini Bozzo",
-  "Role Are Nov",
+/** Loghi dei partner per il marquee — bianchi su trasparente: neri in light mode, bianchi in dark. */
+export const clientLogos = [
+  { name: "Dottor Canapa", src: "/branding/partners/dottor-canapa.png" },
+  { name: "Dog&Cat Market", src: "/branding/partners/dog-and-cat-market.png" },
+  { name: "QuartoAtto", src: "/branding/partners/quartoatto.png" },
+  { name: "Sara Calligrafia", src: "/branding/partners/sara-calligrafia.png" },
+  { name: "C'era Una Volta", src: "/branding/partners/cera-una-volta.png" },
+  { name: "Winex Infissi", src: "/branding/partners/winex-infissi.png" },
+  { name: "The Office Agency", src: "/branding/partners/the-office-agency.png" },
+  { name: "Porsenna Resort", src: "/branding/partners/porsenna-resort.png" },
+  { name: "Agricola Foianese", src: "/branding/partners/agricola-foianese.png" },
+  { name: "Erboristeria L'Alveare", src: "/branding/partners/erboristeria-alveare.png" },
+  { name: "Residenza Cà dei Frati", src: "/branding/partners/residenza-ca-dei-frati.png" },
+  { name: "Villa Pandolfini Bozzo", src: "/branding/partners/villa-pandolfini-bozzo.png" },
+  { name: "Role Are Nov", src: "/branding/partners/role-are-nov.png" },
 ] as const;
 
 export const navLinks = [

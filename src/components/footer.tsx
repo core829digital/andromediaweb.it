@@ -144,7 +144,7 @@ export function Footer() {
                 <button
                   type="submit"
                   aria-label="Iscriviti"
-                  className="flex h-9 w-9 shrink-0 items-center justify-center bg-foreground text-background transition-colors hover:bg-muted-foreground"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground text-background transition-colors hover:bg-muted-foreground"
                 >
                   <Icon name="arrow-right" size={14} />
                 </button>

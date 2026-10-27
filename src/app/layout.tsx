@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Unbounded, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site-data";
@@ -67,10 +66,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        {/* anti-FOUC: imposta il tema prima del primo paint (iniettato nel head da next/script) */}
-        <Script id="aw-theme-init" strategy="beforeInteractive">
-          {themeInit}
-        </Script>
+        {/* anti-FOUC: il tema viene impostato prima del primo paint. Il tag
+            script è serializzato come stringa (innerHTML) e NON è un nodo
+            React, così il browser lo esegue al parse senza che React provi
+            a "renderizzare" uno script lato client (nessun warning). */}
+        <div
+          hidden
+          dangerouslySetInnerHTML={{ __html: `<script>${themeInit}</script>` }}
+        />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

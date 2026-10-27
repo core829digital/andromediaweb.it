@@ -26,17 +26,17 @@ export default function ServiziPage() {
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Servizi â€” Modi in cui lavoriamo</p>
+            <p className="micro-label mb-6">Servizi — Modi in cui lavoriamo</p>
             <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Sei orbite,
               <br />
               <span className="text-outline">un solo sistema.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              &ldquo;Non vendere prodotti, racconta storie.&rdquo; â€” Seth Godin.
+              &ldquo;Non vendere prodotti, racconta storie.&rdquo; — Seth Godin.
               Ogni azienda ha esigenze uniche: che si tratti di costruire un brand
-              da zero o di portare la tua attivitÃ  verso un'evoluzione tecnologica,
-              il nostro team Ã¨ qui per supportarti.
+              da zero o di portare la tua attività verso un'evoluzione tecnologica,
+              il nostro team è qui per supportarti.
             </p>
           </Reveal>
         </Container>
@@ -69,8 +69,8 @@ export default function ServiziPage() {
         <Container className="max-w-4xl py-24">
           <SectionHeading
             icon="node"
-            label="La nostra attivitÃ "
-            title="Dettagli in profonditÃ "
+            label="La nostra attività"
+            title="Dettagli in profondità"
           />
           <div className="mt-10">
             <Accordion type="single" collapsible className="w-full">
@@ -98,7 +98,7 @@ export default function ServiziPage() {
       {/* Processo */}
       <Section>
         <Container className="py-24">
-          <SectionHeading icon="evolve" label="Processo" title="Scoperta â†’ Strategia â†’ Sviluppo â†’ Lancio" />
+          <SectionHeading icon="evolve" label="Processo" title="Scoperta → Strategia → Sviluppo → Lancio" />
           <div className="mt-12 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
@@ -125,7 +125,7 @@ export default function ServiziPage() {
               <CallButton label="Prenota una call" />
               <Link
                 href="/contatti"
-                className="flex h-12 items-center gap-3 border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:border-foreground"
+                className="flex h-12 items-center gap-3 rounded-full border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:border-foreground"
               >
                 Contatti <Icon name="arrow-right" size={14} />
               </Link>
