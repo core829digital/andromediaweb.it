@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Unbounded, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site-data";
@@ -66,8 +67,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        {/* anti-FOUC: imposta il tema prima del primo paint */}
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        {/* anti-FOUC: imposta il tema prima del primo paint (iniettato nel head da next/script) */}
+        <Script id="aw-theme-init" strategy="beforeInteractive">
+          {themeInit}
+        </Script>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
