@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site, services, process, faq, keyPoints } from "@/lib/site-data";
 import { Hero } from "@/components/site/hero";
-import { PortfolioSection, HomeFeatureMarquee } from "@/components/site/showcase";
+import { PortfolioSection } from "@/components/site/showcase";
 import { SectionHeading, Section, Container } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { SpaceCta } from "@/components/site/space-cta";
@@ -17,12 +17,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <HomeFeatureMarquee />
 
       {/* Servizi */}
       <Section id="servizi" className="scroll-mt-20">
-        <Container className="py-24 md:py-32">
-          <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <Container className="py-16 md:py-24">
+          <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               icon="star"
               label="Servizi - Modi in cui lavoriamo"
@@ -63,13 +62,13 @@ export default function HomePage() {
 
       {/* Visione & Missione */}
       <Section>
-        <Container className="py-24 md:py-32">
+        <Container className="py-16 md:py-24">
           <SectionHeading
             icon="compass"
             label="Visione & Missione"
             title="L'unico limite è la tua mente."
           />
-          <div className="mt-12 grid gap-12 lg:grid-cols-2">
+          <div className="mt-10 grid gap-12 lg:grid-cols-2">
             <Reveal delay={0.1}>
               <p className="text-lg leading-relaxed text-muted-foreground">
                 Il nostro lavoro si fonda su concetti strategici e creativi,
@@ -108,8 +107,8 @@ export default function HomePage() {
 
       {/* Lavori */}
       <Section id="lavori">
-        <Container className="py-24 md:py-32">
-          <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <Container className="py-16 md:py-24">
+          <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               icon="eye"
               label="Lavori — Esperienza e progetti"
@@ -130,13 +129,13 @@ export default function HomePage() {
       </Section>
       {/* Processo */}
       <Section id="processo">
-        <Container className="py-24 md:py-32">
+        <Container className="py-16 md:py-24">
           <SectionHeading
             icon="evolve"
             label="Processo — Come"
             title="Lavoriamo all'incrocio tra strategia, creatività e tecnologia"
           />
-          <div className="relative mt-16 grid gap-6 md:grid-cols-4">
+          <div className="relative mt-12 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.12} className="h-full">
                 <div className="group relative flex h-full flex-col gap-6 border border-border bg-card p-8 transition-all duration-500 hover:border-foreground">
@@ -155,9 +154,9 @@ export default function HomePage() {
       </Section>
       {/* FAQ */}
       <Section>
-        <Container className="max-w-4xl py-24 md:py-32">
+        <Container className="max-w-4xl py-16 md:py-24">
           <SectionHeading icon="node" label="Domande frequenti" title="FAQ" align="center" />
-          <div className="mt-12">
+          <div className="mt-10">
             <Accordion type="single" collapsible className="w-full">
               {faq.map((f, i) => (
                 <AccordionItem key={i} value={`f-${i}`} className="border-border">

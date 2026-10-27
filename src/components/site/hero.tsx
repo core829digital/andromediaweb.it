@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { Icon } from "@/components/icons";
 import { CallButton } from "@/components/call-button";
+import { HomeFeatureMarquee } from "@/components/site/showcase";
 import { site } from "@/lib/site-data";
 
 export function Hero() {
@@ -38,7 +39,7 @@ export function Hero() {
         </span>
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-24 pt-36 md:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-10 pt-36 md:px-8">
         <motion.p
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -99,6 +100,11 @@ export function Hero() {
             </Link>
           </div>
         </motion.div>
+      </div>
+
+      {/* fila partner — coda dell'hero, con dissolvenza ai bordi */}
+      <div className="relative z-10 border-t border-border/60 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <HomeFeatureMarquee />
       </div>
 
       {/* scroll hint rimosso per richiesta: niente frecce di scroll tra le sezioni */}

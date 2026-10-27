@@ -36,7 +36,7 @@ export default function PortfolioPage() {
         </Container>
       </Section>
       <Section>
-        <Container className="py-24">
+        <Container className="py-16 md:py-24">
           <Reveal className="flex flex-col items-center text-center">
             <p className="micro-label mb-5">Il tuo progetto è il prossimo</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">

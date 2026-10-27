@@ -42,13 +42,13 @@ export default function ChiSiamoPage() {
       <HomeFeatureMarquee />
 
       <Section>
-        <Container className="py-24">
+        <Container className="py-16 md:py-24">
           <SectionHeading
             icon="team"
             label="Punti chiave"
             title="Sei coordinate, una sola direzione"
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {keyPoints.map((k, i) => (
               <Reveal key={k.title} delay={(i % 3) * 0.08}>
                 <div className="group flex h-full flex-col gap-4 border border-border p-8 transition-all duration-500 hover:border-foreground hover:translate-y-[-2px]">
@@ -64,7 +64,7 @@ export default function ChiSiamoPage() {
         </Container>
       </Section>
       <Section>
-        <Container className="py-24">
+        <Container className="py-16 md:py-24">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="font-heading text-3xl uppercase leading-snug md:text-4xl">
               Costruiamo storie avvincenti,
@@ -76,7 +76,7 @@ export default function ChiSiamoPage() {
       </Section>
       {/* FAQ */}
       <Section>
-        <Container className="max-w-4xl py-24">
+        <Container className="max-w-4xl py-16 md:py-24">
           <SectionHeading icon="node" label="Domande frequenti" title="FAQ" />
           <div className="mt-10">
             <Accordion type="single" collapsible className="w-full">

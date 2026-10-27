@@ -66,7 +66,7 @@ export default function ServiziPage() {
       </Section>
       {/* Dettagli */}
       <Section>
-        <Container className="max-w-4xl py-24">
+        <Container className="max-w-4xl py-16 md:py-24">
           <SectionHeading
             icon="node"
             label="La nostra attività"
@@ -97,9 +97,9 @@ export default function ServiziPage() {
       </Section>
       {/* Processo */}
       <Section>
-        <Container className="py-24">
+        <Container className="py-16 md:py-24">
           <SectionHeading icon="evolve" label="Processo" title="Scoperta → Strategia → Sviluppo → Lancio" />
-          <div className="mt-12 grid gap-6 md:grid-cols-4">
+          <div className="mt-10 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
                 <div className="flex h-full flex-col gap-4 border border-border p-7 transition-colors duration-500 hover:border-foreground">
@@ -115,7 +115,7 @@ export default function ServiziPage() {
 
       {/* CTA */}
       <Section>
-        <Container className="py-24">
+        <Container className="py-16 md:py-24">
           <Reveal className="flex flex-col items-center text-center">
             <p className="micro-label mb-5">Eleva il tuo Brand</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">

@@ -35,7 +35,7 @@ export function PostView({ slug }: { slug: string }) {
 
   if (notFound) {
     return (
-      <div className="flex flex-col items-center gap-6 py-24 text-center">
+      <div className="flex flex-col items-center gap-6 py-16 md:py-20 text-center">
         <p className="font-heading text-3xl uppercase text-muted-foreground">Segnale non trovato</p>
         <Link
           href="/blog"
