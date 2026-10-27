@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Andromedia Web — andromediaweb.it
 
-## Getting Started
+Sito ufficiale di **Andromedia Web** ("The future is now"), agenzia di marketing di Foiano della Chiana (AR). Rinnovo completo in stile **SaaS / Palantir**: bianco e nero, monospace, linee di tracciamento tra le sezioni, micro-animazioni su scroll e hover.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, TypeScript, Turbopack)
+- **Tailwind CSS 4** + **shadcn/ui** (tema monocromatico, radius 0)
+- **Lenis** per lo smooth scroll
+- **Motion** (le animazioni 21st.dev-style) — reveal on scroll, hero animato, marquee
+- **Icone 100% personalizzate** in `src/components/icons.tsx` (nessuna libreria icone)
+- **Convex** per blog, portfolio e messaggi dal backoffice
+- Font tondi coerenti col logo: Unbounded (display), Space Grotesk (testo), JetBrains Mono (label tecniche)
+
+## Sviluppo locale
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Collegare Convex (blog + portfolio + backoffice)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx convex dev     # crea il deployment, genera convex/_generated
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Poi copia l'URL del deployment in `.env.local`:
 
-## Learn More
+```
+NEXT_PUBLIC_CONVEX_URL=https://<deployment>.convex.cloud
+```
 
-To learn more about Next.js, take a look at the following resources:
+Finché Convex non è collegato: il sito mostra il portfolio statico di fallback e il backoffice mostra la schermata "Collega Convex".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Backoffice `/admin`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Accesso riservato alle credenziali configurate (default hardcoded in `src/lib/admin-credentials.ts`, sovrascrivibili via `AW_ADMIN_USERS` in `.env.local`). Dalla dashboard si possono:
 
-## Deploy on Vercel
+- **Blog**: creare, modificare, pubblicare/rimandare in bozza, eliminare post (con copertina upload via Convex Storage)
+- **Portfolio**: caricare lavori svolti (immagine, categoria, URL, descrizione, evidenza)
+- **Messaggi**: leggere i contatti arrivati dal modulo su `/contatti`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+La sessione è un cookie httpOnly firmato HMAC (7 giorni).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Struttura
+
+```
+src/app/(site)/     → home, servizi, chi-siamo, portfolio, blog, contatti, privacy, cookie
+src/app/admin/      → gate autenticazione + dashboard backoffice
+convex/             → schema + funzioni (posts, portfolio, messages)
+src/components/     → design system (icons, nav, footer, hero, reveal, trace-line…)
+public/branding/    → asset del logo forniti dal cliente
+```
+
+## Contatti
+
+- info@andromediaweb.it — (+39) 351 672 8359
+- Corso Vittorio Emanuele, 37 — Foiano della Chiana 52045 (AR)
+- P. IVA 02449760517 — Andromeda di Toni Serban
