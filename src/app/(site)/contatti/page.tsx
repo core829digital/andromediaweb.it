@@ -3,6 +3,7 @@ import { Reveal } from "@/components/reveal";
 import { Icon } from "@/components/icons";
 import { site } from "@/lib/site-data";
 import { buildPageMetadata } from "@/lib/site-settings";
+import { JsonLd, breadcrumbGraph } from "@/lib/seo";
 import { ContactForm } from "@/components/site/contact-form";
 
 export async function generateMetadata() {
@@ -22,6 +23,23 @@ const contactRows = [
 export default function ContattiPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbGraph([
+            { name: "Home", path: "/" },
+            { name: "Contatti", path: "/contatti" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contatti — Andromedia Web",
+            url: `${site.url}/contatti`,
+            inLanguage: "it-IT",
+            mainEntity: { "@id": `${site.url}/#organizzazione` },
+          },
+        ]}
+      />
+
       <Section className="relative overflow-hidden pt-40 pb-16">
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>

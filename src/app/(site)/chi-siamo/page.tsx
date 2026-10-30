@@ -1,9 +1,10 @@
-import { keyPoints, faq } from "@/lib/site-data";
+import { keyPoints, faq, site } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
+import { buildPageMetadata } from "@/lib/site-settings";
+import { JsonLd, breadcrumbGraph } from "@/lib/seo";
 import { Reveal } from "@/components/reveal";
 import { CallButton } from "@/components/call-button";
 import { Icon } from "@/components/icons";
-import { buildPageMetadata } from "@/lib/site-settings";
 import { HomeFeatureMarquee } from "@/components/site/showcase";
 import {
   Accordion,
@@ -23,6 +24,23 @@ export async function generateMetadata() {
 export default function ChiSiamoPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbGraph([
+            { name: "Home", path: "/" },
+            { name: "Chi siamo", path: "/chi-siamo" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            name: "Chi siamo — Andromedia Web",
+            url: `${site.url}/chi-siamo`,
+            inLanguage: "it-IT",
+            about: { "@id": `${site.url}/#organizzazione` },
+          },
+        ]}
+      />
+
       <Section className="relative overflow-hidden pt-40 pb-16">
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>

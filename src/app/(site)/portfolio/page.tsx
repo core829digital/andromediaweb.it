@@ -1,5 +1,7 @@
 import { Section, Container } from "@/components/section";
 import { buildPageMetadata } from "@/lib/site-settings";
+import { JsonLd, breadcrumbGraph } from "@/lib/seo";
+import { site } from "@/lib/site-data";
 import { PortfolioSection } from "@/components/site/showcase";
 import { Reveal } from "@/components/reveal";
 import { CallButton } from "@/components/call-button";
@@ -14,6 +16,23 @@ export async function generateMetadata() {
 export default function PortfolioPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbGraph([
+            { name: "Home", path: "/" },
+            { name: "Portfolio", path: "/portfolio" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Portfolio — Andromedia Web",
+            url: `${site.url}/portfolio`,
+            inLanguage: "it-IT",
+            about: { "@id": `${site.url}/#organizzazione` },
+          },
+        ]}
+      />
+
       <Section className="relative overflow-hidden pt-40 pb-16">
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>

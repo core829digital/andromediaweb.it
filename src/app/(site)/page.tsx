@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, services, process, keyPoints } from "@/lib/site-data";
 import { buildPageMetadata, getHomeContent, getFaq } from "@/lib/site-settings";
+import { JsonLd } from "@/lib/seo";
 import { Hero } from "@/components/site/hero";
 import { PortfolioSection } from "@/components/site/showcase";
 import { SectionHeading, Section, Container } from "@/components/section";
@@ -29,6 +30,36 @@ export default async function HomePage() {
   return (
     <>
       <Hero content={content.hero} />
+
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Servizi Andromedia Web",
+            itemListElement: services.map((s, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "Service",
+                name: s.title,
+                description: s.desc,
+                url: `${site.url}/servizi#${s.id}`,
+                provider: { "@id": `${site.url}/#organizzazione` },
+              },
+            })),
+          },
+        ]}
+      />
 
       {/* Servizi */}
       <Section id="servizi" className="scroll-mt-20">

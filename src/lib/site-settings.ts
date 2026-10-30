@@ -195,19 +195,22 @@ export async function buildPageMetadata(
   const keywords = str(raw, "keywords", fallback.keywords ?? "");
   const noindex = raw.noindex === true || dRaw.noindex === true;
 
-  const siteName = typeof dRaw.siteName === "string" ? dRaw.siteName : site.name;
+  const siteName = typeof dRaw.siteName === "string" && dRaw.siteName ? dRaw.siteName : site.name;
+  const canonicalPath = route === "home" ? "/" : `/${route}`;
 
   return {
     title: title,
     description,
     ...(keywords ? { keywords: keywords.split(",").map((k) => k.trim()).filter(Boolean) } : {}),
     ...(noindex ? { robots: { index: false, follow: false } } : {}),
+    alternates: { canonical: canonicalPath },
     openGraph: {
       title: title,
       description,
       siteName,
       type: "website",
       locale: "it_IT",
+      url: canonicalPath,
       images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: siteName }],
     },
     twitter: {

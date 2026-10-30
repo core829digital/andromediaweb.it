@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/accordion";
 import Link from "next/link";
 import { buildPageMetadata } from "@/lib/site-settings";
+import { JsonLd, breadcrumbGraph } from "@/lib/seo";
+import { site } from "@/lib/site-data";
 
 export async function generateMetadata() {
   return buildPageMetadata("servizi", {
@@ -23,6 +25,25 @@ export async function generateMetadata() {
 export default function ServiziPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbGraph([
+            { name: "Home", path: "/" },
+            { name: "Servizi", path: "/servizi" },
+          ]),
+          ...services.map((s) => ({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: s.title,
+            description: s.desc,
+            serviceType: s.title,
+            url: `${site.url}/servizi#${s.id}`,
+            areaServed: "IT",
+            provider: { "@id": `${site.url}/#organizzazione` },
+          })),
+        ]}
+      />
+
       {/* Header */}
       <Section className="relative overflow-hidden pt-40 pb-16">
         <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />

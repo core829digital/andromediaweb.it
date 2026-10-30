@@ -7,11 +7,19 @@ export function hmacSign(payload: string, secret = process.env.AW_EVENTS_SECRET 
   return crypto.createHmac("sha256", secret).update(payload).digest("hex");
 }
 
-/** Digest della guardia Convex: sha256 del segreto AW_CONVEX_GUARD. */
+/** Digest della guardia Convex: sha256 del segreto AW_CONVEX_GUARD.
+ *  Fail-fast: senza segreto ogni mutation sarebbe rigettata da Convex
+ *  con "firma di sicurezza mancante" — meglio un errore esplicito qui. */
 export function convexGuardDigest(): string {
+  const secret = process.env.AW_CONVEX_GUARD ?? "";
+  if (!secret && process.env.NODE_ENV !== "development") {
+    throw new Error(
+      "AW_CONVEX_GUARD non configurato su questo processo server: riavvia il server dopo aver impostato la variabile in .env.local",
+    );
+  }
   return crypto
     .createHash("sha256")
-    .update(process.env.AW_CONVEX_GUARD ?? "")
+    .update(secret)
     .digest("hex");
 }
 

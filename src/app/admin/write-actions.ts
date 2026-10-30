@@ -21,6 +21,7 @@ async function requireAdmin(): Promise<string> {
 
 function bustSiteCache(): void {
   updateTag("settings");
+  updateTag("posts");
   for (const p of ["/", "/servizi", "/portfolio", "/chi-siamo", "/contatti", "/blog"]) {
     revalidatePath(p);
   }
