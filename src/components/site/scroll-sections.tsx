@@ -57,22 +57,14 @@ function ServiceCard({
 
 /**
  * Sezione servizi con scroll animation: pannello sticky e binario
- * orizzontale guidato dallo scroll verticale. Su mobile (o con
- * prefers-reduced-motion) degrada in una griglia verticale statica.
+ * orizzontale guidato dallo scroll verticale. Su desktop e mobile si
+ * comporta allo stesso modo (coerenza); solo con
+ * prefers-reduced-motion degrada in una griglia verticale statica.
  */
 export function ScrollServices({ title, standalone = false }: { title: string; standalone?: boolean }) {
-  const [compact, setCompact] = useState(true);
   const reduce = useReducedMotion();
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const sync = () => setCompact(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
-  if (compact || reduce) {
+  if (reduce) {
     return (
       <section className="py-4">
         <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
