@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { navLinks } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icons";
@@ -11,22 +12,23 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { CallButton } from "@/components/call-button";
 
 /**
- * Header: logo fisso in alto a sinistra (nessuna animazione) e capsula
- * compatta a destra con menu, tema e CTA. Su mobile resta il burger.
+ * Header: capsula centrata con logo all'interno (nessuna animazione),
+ * menu, tema e CTA. La pagina corrente è evidenziata in desktop e in
+ * mobile; al click su una voce il menu mobile si chiude subito.
  */
 export function Nav() {
-  const [pathname, setPathname] = useState<string | null>(null);
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setPathname(window.location.pathname);
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Rete di sicurezza per back/forward: se cambia rotta, il menu si chiude.
   useEffect(() => setOpen(false), [pathname]);
 
   return (
@@ -51,13 +53,12 @@ export function Nav() {
 
           <nav className="hidden items-center lg:flex">
             {navLinks.map((l) => {
-              const active =
-                pathname !== null &&
-                (l.href === "/" ? pathname === "/" : pathname.startsWith(l.href));
+              const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
               return (
                 <Link
                   key={l.href}
                   href={l.href}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
                     "group relative px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors",
                     active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
@@ -67,8 +68,8 @@ export function Nav() {
                   {l.label}
                   <span
                     className={cn(
-                      "absolute inset-x-2.5 -bottom-px h-px origin-left scale-x-0 bg-foreground transition-transform duration-300",
-                      active ? "scale-x-100" : "group-hover:scale-x-100"
+                      "absolute inset-x-2.5 -bottom-px h-px origin-left bg-foreground transition-transform duration-300",
+                      active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                     )}
                   />
                 </Link>
@@ -95,34 +96,56 @@ export function Nav() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-background px-8 lg:hidden"
-          >
+      {/* Menu mobile: montato solo quando aperto, così al click su una voce
+          sparisce subito (nessun exit trattenuto). */}
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-40 flex flex-col justify-center bg-background px-8 lg:hidden"
+        >
             <nav className="flex flex-col gap-2">
-              {navLinks.map((l, i) => (
-                <motion.div
-                  key={l.href}
-                  initial={{ opacity: 0, x: -24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease: "easeOut" }}
-                >
-                  <Link
-                    href={l.href}
-                    className="flex items-baseline gap-4 border-b border-border py-3.5 font-heading text-2xl uppercase sm:text-3xl"
+              {navLinks.map((l, i) => {
+                const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+                return (
+                  <motion.div
+                    key={l.href}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease: "easeOut" }}
                   >
-                    <span className="font-mono text-[10px] tracking-[0.25em] text-muted-foreground">
-                      {l.index}
-                    </span>
-                    {l.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={l.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex items-baseline gap-4 border-b border-border py-3.5 font-heading text-2xl uppercase transition-colors sm:text-3xl",
+                        active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "font-mono text-[10px] tracking-[0.25em]",
+                          active ? "text-foreground" : "text-muted-foreground"
+                        )}
+                      >
+                        {l.index}
+                      </span>
+                      <span className={cn(active && "underline decoration-1 underline-offset-[8px]")}>
+                        {l.label}
+                      </span>
+                      {active && (
+                        <Icon
+                          name="arrow-right"
+                          size={16}
+                          className="ml-auto self-center text-foreground"
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <motion.div
                 initial={{ opacity: 0, x: -24 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -131,6 +154,7 @@ export function Nav() {
               >
                 <Link
                   href="/contatti"
+                  onClick={() => setOpen(false)}
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 font-mono text-xs uppercase tracking-[0.25em] text-background"
                 >
                   Parliamone <Icon name="arrow-right" size={14} />
@@ -139,7 +163,6 @@ export function Nav() {
             </nav>
           </motion.div>
         )}
-      </AnimatePresence>
     </>
   );
 }
