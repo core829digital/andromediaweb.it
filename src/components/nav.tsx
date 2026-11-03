@@ -31,67 +31,66 @@ export function Nav() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50">
-        <div className="flex items-center justify-between gap-3 px-4 py-3 md:px-6">
-          {/* logo — fisso in alto a sinistra, senza animazione */}
+      <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 py-3 md:px-6">
+        <div
+          className={cn(
+            "flex h-11 items-center gap-0.5 rounded-full border border-foreground bg-background/85 pl-1.5 pr-1 backdrop-blur-md transition-shadow duration-500 md:h-12 md:pr-1.5",
+            scrolled && "shadow-[0_0_36px_oklch(0_0_0/14%)]"
+          )}
+        >
+          {/* logo dentro la capsula, a sinistra — nessuna animazione */}
           <Link
             href="/"
             aria-label="Andromedia Web — Home"
-            className="flex h-10 items-center rounded-full border border-foreground bg-background/85 px-2.5 backdrop-blur-md transition-colors duration-300 hover:bg-muted/60 md:h-11 md:px-3"
+            className="flex h-8 items-center rounded-full px-1.5 transition-colors duration-300 hover:bg-muted/50 md:h-9"
           >
-            <LogoIcon className="h-6 w-auto md:h-7" />
+            <LogoIcon className="h-5 w-auto md:h-6" />
           </Link>
 
-          {/* capsula comandi */}
-          <div
-            className={cn(
-              "flex h-10 items-center gap-0.5 rounded-full border border-foreground bg-background/85 px-1 backdrop-blur-md transition-shadow duration-500 md:h-11 md:px-1.5",
-              scrolled && "shadow-[0_0_36px_oklch(0_0_0/14%)]"
-            )}
-          >
-            <nav className="hidden items-center lg:flex">
-              {navLinks.map((l) => {
-                const active =
-                  pathname !== null &&
-                  (l.href === "/" ? pathname === "/" : pathname.startsWith(l.href));
-                return (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className={cn(
-                      "group relative px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors",
-                      active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    <span className="mr-1 text-[7px] text-muted-foreground/50">{l.index}</span>
-                    {l.label}
-                    <span
-                      className={cn(
-                        "absolute inset-x-2.5 -bottom-px h-px origin-left scale-x-0 bg-foreground transition-transform duration-300",
-                        active ? "scale-x-100" : "group-hover:scale-x-100"
-                      )}
-                    />
-                  </Link>
-                );
-              })}
-            </nav>
+          <span aria-hidden="true" className="mx-0.5 h-5 w-px bg-border" />
 
-            <div className="flex items-center gap-0.5">
-              <ThemeToggle className="h-8 w-8 border-0 bg-transparent hover:bg-muted/50" />
-              <CallButton
-                label="Parliamone"
-                variant="solid"
-                size="sm"
-                className="hidden h-8 px-3.5 text-[10px] tracking-[0.18em] lg:inline-flex"
-              />
-              <button
-                onClick={() => setOpen(!open)}
-                aria-label={open ? "Chiudi menu" : "Apri menu"}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground lg:hidden"
-              >
-                <Icon name={open ? "close" : "menu"} size={17} />
-              </button>
-            </div>
+          <nav className="hidden items-center lg:flex">
+            {navLinks.map((l) => {
+              const active =
+                pathname !== null &&
+                (l.href === "/" ? pathname === "/" : pathname.startsWith(l.href));
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={cn(
+                    "group relative px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors",
+                    active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  <span className="mr-1 text-[7px] text-muted-foreground/50">{l.index}</span>
+                  {l.label}
+                  <span
+                    className={cn(
+                      "absolute inset-x-2.5 -bottom-px h-px origin-left scale-x-0 bg-foreground transition-transform duration-300",
+                      active ? "scale-x-100" : "group-hover:scale-x-100"
+                    )}
+                  />
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-0.5">
+            <ThemeToggle className="h-8 w-8 border-0 bg-transparent hover:bg-muted/50" />
+            <CallButton
+              label="Parliamone"
+              variant="solid"
+              size="sm"
+              className="hidden h-8 px-3.5 text-[10px] tracking-[0.18em] lg:inline-flex"
+            />
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Chiudi menu" : "Apri menu"}
+              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground lg:hidden"
+            >
+              <Icon name={open ? "close" : "menu"} size={17} />
+            </button>
           </div>
         </div>
       </header>
