@@ -16,7 +16,6 @@ export async function generateMetadata() {
 const contactRows = [
   { icon: "mail" as const, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },
   { icon: "phone" as const, label: "Telefono", value: site.contact.phone, href: site.contact.phoneHref },
-  { icon: "node" as const, label: "Partita IVA", value: site.legal.piva },
   { icon: "clock" as const, label: "Orari", value: site.contact.hours },
 ];
 
@@ -44,9 +43,7 @@ export default function ContattiPage() {
         <Container>
           <Reveal>
             <h1 className="font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
-              Parliamone di
-              <br />
-              <span className="text-outline">idee e progetti.</span>
+              Parliamo di Idee e Progetti
             </h1>
           </Reveal>
         </Container>

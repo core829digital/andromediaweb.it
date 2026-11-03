@@ -42,7 +42,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
     <footer className="relative mt-14 bg-background">
       <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
         <div className="mb-8 flex flex-col gap-6 pb-8 md:flex-row md:items-center md:justify-between">
-          <LogoFull className="h-6 w-auto max-w-[70vw] sm:h-7 md:h-10" />
+          <LogoFull className="h-7 w-auto sm:h-8 md:h-10 max-w-full" />
           <div className="flex gap-2">
             {socials.map((s) => (
               <a
@@ -132,7 +132,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
               </p>
             ) : (
               <form
-                className="flex"
+                className="flex gap-2"
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (email.includes("@")) setSubscribed(true);
@@ -162,14 +162,10 @@ export function Footer({ info }: { info?: SiteGlobal }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-2 pb-2 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground md:flex-row">
+        <div className="flex justify-center py-4 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           <p>
             © {year ?? 2026} {brandName} — P. IVA: {site.legal.piva}
           </p>
-          <p>{claim}</p>
-          <Link href="/admin" className="transition-colors hover:text-foreground">
-            Backoffice
-          </Link>
         </div>
       </div>
     </footer>
