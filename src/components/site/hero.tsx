@@ -4,8 +4,6 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { Icon } from "@/components/icons";
 import { CallButton } from "@/components/call-button";
-import { HomeFeatureMarquee } from "@/components/site/showcase";
-import { site } from "@/lib/site-data";
 import type { HeroContent } from "@/lib/site-settings";
 
 const HERO_DEFAULT: HeroContent = {
@@ -14,7 +12,7 @@ const HERO_DEFAULT: HeroContent = {
   titleB: "Brand",
   subtitle:
     "Brand identity, siti web su misura, SEO, social media e intelligenza artificiale. Tutto in un unico orbita creativa.",
-  ctaPrimary: { label: "Prenota una call", href: "/contatti" },
+  ctaPrimary: { label: "Parliamone", href: "/contatti" },
   ctaSecondary: { label: "Esplora i servizi", href: "/servizi" },
 };
 
@@ -24,8 +22,7 @@ export function Hero({ content }: { content?: HeroContent }) {
 
   return (
     <section className="relative flex min-h-svh flex-col overflow-hidden bg-background">
-      {/* blueprint grid + glow */}
-      <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
+      {/* alone morbido */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-40 left-1/2 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,oklch(0_0_0/6%),transparent_70%)]"
@@ -43,24 +40,9 @@ export function Hero({ content }: { content?: HeroContent }) {
         <span className="absolute right-0 top-0 h-5 w-5 border-r border-t border-foreground/30" />
         <span className="absolute bottom-0 left-0 h-5 w-5 border-b border-l border-foreground/30" />
         <span className="absolute bottom-0 right-0 h-5 w-5 border-b border-r border-foreground/30" />
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 -rotate-90 font-mono text-[9px] uppercase tracking-[0.4em] text-muted-foreground/70">
-          Agenzia Creativa — IT
-        </span>
-        <span className="absolute right-3 top-1/2 -translate-y-1/2 rotate-90 font-mono text-[9px] uppercase tracking-[0.4em] text-muted-foreground/70">
-          EST. Foiano della Chiana
-        </span>
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-10 pt-36 md:px-8">
-        <motion.p
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="micro-label mb-8"
-        >
-          ✦ {site.name} — {c.microLabel}
-        </motion.p>
-
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-20 pt-36 md:px-8">
         <h1 className="font-heading text-[13vw] uppercase leading-[0.95] tracking-tight sm:text-7xl md:text-8xl lg:text-[7.5rem]">
           <span className="block overflow-hidden">
             <motion.span
@@ -112,13 +94,6 @@ export function Hero({ content }: { content?: HeroContent }) {
           </div>
         </motion.div>
       </div>
-
-      {/* fila partner — coda dell'hero, con dissolvenza ai bordi */}
-      <div className="relative z-10 border-t border-border/60 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <HomeFeatureMarquee />
-      </div>
-
-      {/* scroll hint rimosso per richiesta: niente frecce di scroll tra le sezioni */}
     </section>
   );
 }

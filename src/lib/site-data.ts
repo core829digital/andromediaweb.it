@@ -10,11 +10,9 @@ export const site = {
     support: "support@andromediaweb.it",
     phone: "(+39) 351 672 8359",
     phoneHref: "tel:+393516728359",
-    address: "Corso Vittorio Emanuele, 37",
-    city: "Foiano della Chiana 52045 — Arezzo",
+    city: "Foiano della Chiana (AR)",
     hours: "24/7",
     calendly: "https://calendly.com/toni-andromediaweb/30min",
-    directions: "https://g.co/kgs/mv9kPrV",
   },
   legal: {
     piva: "02449760517",
@@ -213,8 +211,7 @@ export const clientLogos = [
 export const navLinks = [
   { href: "/", label: "Home", index: "01" },
   { href: "/servizi", label: "Servizi", index: "02" },
-  { href: "/chi-siamo", label: "Chi siamo", index: "03" },
-  { href: "/portfolio", label: "Portfolio", index: "04" },
-  { href: "/blog", label: "Blog", index: "05" },
-  { href: "/contatti", label: "Contatti", index: "06" },
+  { href: "/portfolio", label: "Portfolio", index: "03" },
+  { href: "/blog", label: "Blog", index: "04" },
+  { href: "/contatti", label: "Contatti", index: "05" },
 ] as const;

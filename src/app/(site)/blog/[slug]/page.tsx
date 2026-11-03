@@ -67,7 +67,6 @@ export default async function BlogPostPage({
 
   return (
     <Section className="relative overflow-hidden pt-40 pb-28">
-      <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
       <Container className="max-w-4xl">
         <JsonLd
           data={[
@@ -118,14 +117,14 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          <p className="micro-label mb-4">
-            <time dateTime={new Date(post.createdAt).toISOString()}>{published}</time>
-            {post.tags?.length ? ` — ${post.tags.join(" · ")}` : ""}
-          </p>
-
           <h1 className="font-heading text-4xl uppercase leading-tight md:text-6xl">
             {post.title}
           </h1>
+
+          <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+            <time dateTime={new Date(post.createdAt).toISOString()}>{published}</time>
+            {post.tags?.length ? ` — ${post.tags.join(" · ")}` : ""}
+          </p>
 
           {post.excerpt && (
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">

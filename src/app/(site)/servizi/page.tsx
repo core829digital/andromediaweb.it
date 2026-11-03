@@ -13,6 +13,7 @@ import Link from "next/link";
 import { buildPageMetadata } from "@/lib/site-settings";
 import { JsonLd, breadcrumbGraph } from "@/lib/seo";
 import { site } from "@/lib/site-data";
+import { ScrollServices } from "@/components/site/scroll-sections";
 
 export async function generateMetadata() {
   return buildPageMetadata("servizi", {
@@ -46,10 +47,8 @@ export default function ServiziPage() {
 
       {/* Header */}
       <Section className="relative overflow-hidden pt-40 pb-16">
-        <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Servizi — Modi in cui lavoriamo</p>
             <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Sei orbite,
               <br />
@@ -58,46 +57,23 @@ export default function ServiziPage() {
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
               &ldquo;Non vendere prodotti, racconta storie.&rdquo; — Seth Godin.
               Ogni azienda ha esigenze uniche: che si tratti di costruire un brand
-              da zero o di portare la tua attività verso un'evoluzione tecnologica,
+              da zero o di portare la tua attività verso un&apos;evoluzione tecnologica,
               il nostro team è qui per supportarti.
             </p>
           </Reveal>
         </Container>
       </Section>
 
-      {/* Servizi overview */}
-      <Section>
-        <Container className="py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.id} delay={(i % 3) * 0.08}>
-                <div
-                  id={s.id}
-                  className="group relative flex h-full scroll-mt-24 flex-col gap-5 border border-border p-8 transition-colors duration-500 hover:border-foreground"
-                >
-                  <div className="flex items-center justify-between">
-                    <Icon name={s.icon} size={24} className="text-muted-foreground transition-colors group-hover:text-foreground" />
-                    <span className="font-mono text-xs text-muted-foreground/50">{s.index}</span>
-                  </div>
-                  <h2 className="font-heading text-xl uppercase whitespace-pre-line">{s.short}</h2>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      {/* Servizi — scroll animation */}
+      <ScrollServices title="Cosa facciamo" standalone />
+
       {/* Dettagli */}
       <Section>
         <Container className="max-w-4xl py-16 md:py-24">
-          <SectionHeading
-            icon="node"
-            label="La nostra attività"
-            title="Dettagli in profondità"
-          />
+          <SectionHeading title="Dettagli in profondità" />
           <div className="mt-10">
             <Accordion type="single" collapsible className="w-full">
-              {services.map((s, i) => (
+              {services.map((s) => (
                 <AccordionItem
                   key={s.id}
                   value={s.id}
@@ -118,10 +94,11 @@ export default function ServiziPage() {
           </div>
         </Container>
       </Section>
+
       {/* Processo */}
       <Section>
         <Container className="py-16 md:py-24">
-          <SectionHeading icon="evolve" label="Processo" title="Scoperta → Strategia → Sviluppo → Lancio" />
+          <SectionHeading title="Scoperta → Strategia → Sviluppo → Lancio" />
           <div className="mt-10 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
@@ -140,12 +117,11 @@ export default function ServiziPage() {
       <Section>
         <Container className="py-16 md:py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-5">Eleva il tuo Brand</p>
             <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">
               Parliamo del tuo progetto
             </h2>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <CallButton label="Prenota una call" />
+              <CallButton label="Parliamone" />
               <Link
                 href="/contatti"
                 className="flex h-12 items-center gap-3 rounded-full border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:border-foreground"

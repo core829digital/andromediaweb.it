@@ -178,49 +178,6 @@
     linear-gradient(to bottom, oklch(0.985 0 0 / 4%) 1px, transparent 1px);
 }
 
-/* ---------- Campo pattern MW: si rivela solo attorno al mouse ---------- */
-
-.mw-pattern {
-  position: relative;
-  isolation: isolate;
-}
-
-.mw-pattern-field {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: url("/branding/icon-do-black.png");
-  background-size: 118px 118px;
-  background-repeat: repeat;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  -webkit-mask-image: radial-gradient(
-    circle 150px at var(--mx, 50%) var(--my, 50%),
-    oklch(0 0 0 / 90%) 0%,
-    transparent 70%
-  );
-  mask-image: radial-gradient(
-    circle 150px at var(--mx, 50%) var(--my, 50%),
-    oklch(0 0 0 / 90%) 0%,
-    transparent 70%
-  );
-}
-
-.mw-pattern.pattern-on .mw-pattern-field {
-  opacity: 0.085;
-}
-
-.dark .mw-pattern-field {
-  background-image: url("/branding/icon-trans-white.png");
-}
-
-.dark .mw-pattern.pattern-on .mw-pattern-field {
-  opacity: 0.11;
-}
-
-/* il pattern sta dietro al contenuto grazie a isolation + z-index -1 */
-
 /* ---------- Lenis smooth scroll ---------- */
 
 html.lenis,
@@ -263,27 +220,6 @@ html.lenis body {
 }
 
 /* ---------- Hero: orbite / bagliore logomark ---------- */
-
-/* ---------- Spin loop brand (icona header) ---------- */
-
-@keyframes slow-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.animate-slow-spin {
-  animation: slow-spin 60s linear infinite;
-}
-.animate-spin-slow {
-  animation: slow-spin 12s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-spin-slow,
-  .animate-slow-spin,
-  .animate-marquee {
-    animation: none;
-  }
-}
 
 /* ---------- Typewriter caret (hero) ---------- */
 @keyframes caret-blink {

@@ -29,10 +29,11 @@ export function organizationGraph(): Record<string, unknown> {
     logo: `${site.url}/icon.png`,
     email: site.contact.email,
     telephone: "+393516728359",
+    vatID: `IT${site.legal.piva}`,
+    taxID: site.legal.piva,
     priceRange: "€€",
     address: {
       "@type": "PostalAddress",
-      streetAddress: site.contact.address,
       addressLocality: "Foiano della Chiana",
       addressRegion: "AR",
       postalCode: "52045",

@@ -76,7 +76,7 @@ export const GLOBAL_DEFAULT: SiteGlobal = {
   tagline: site.claim,
   email: site.contact.email,
   phone: site.contact.phone,
-  address: `${site.contact.address} — ${site.contact.city}`,
+  address: site.contact.city,
   socials: site.socials.map((s) => ({ name: s.name, href: s.href, icon: s.icon })),
   toggles: { marquee: true, heroBadges: true, spaceCta: true },
 };
@@ -227,7 +227,6 @@ export const SEO_ROUTES = [
   { key: "home", label: "Home" },
   { key: "servizi", label: "Servizi" },
   { key: "portfolio", label: "Portfolio" },
-  { key: "chi-siamo", label: "Chi siamo" },
   { key: "contatti", label: "Contatti" },
   { key: "blog", label: "Blog" },
 ] as const;

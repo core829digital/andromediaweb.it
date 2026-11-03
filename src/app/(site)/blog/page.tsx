@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
 import { Section, Container } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { BlogGrid } from "@/components/site/showcase";
+import { BlogEditorial } from "@/components/site/blog-editorial";
 import { getPublishedPosts } from "@/lib/server-posts";
 import { JsonLd, breadcrumbGraph, websiteGraph, organizationGraph } from "@/lib/seo";
 import { buildPageMetadata } from "@/lib/site-settings";
@@ -18,23 +17,22 @@ export default async function BlogPage() {
   const posts = await getPublishedPosts();
   return (
     <>
-      <Section className="relative overflow-hidden pt-40 pb-16">
-        <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
+      <Section className="relative overflow-hidden pt-40 pb-14">
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Blog — Segnali spaziali</p>
             <h1 className="font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Il <span className="text-outline">journal</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Storie di brand, tecnologia e marketing digitale — quattro volte l&apos;anno, quando
-              serve davvero.
+              Storie di brand, tecnologia e marketing digitale: idee, progetti e
+              appunti di lavoro dal nostro studio.
             </p>
           </Reveal>
         </Container>
       </Section>
+
       <Section>
-        <Container className="py-16 pb-28">
+        <Container className="pb-28">
           <h2 className="sr-only">Tutti gli articoli</h2>
           <JsonLd
             data={[
@@ -55,7 +53,7 @@ export default async function BlogPage() {
               organizationGraph(),
             ]}
           />
-          <BlogGrid posts={posts} />
+          <BlogEditorial posts={posts} />
         </Container>
       </Section>
     </>

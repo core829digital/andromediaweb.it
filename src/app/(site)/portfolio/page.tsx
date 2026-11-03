@@ -2,9 +2,7 @@ import { Section, Container } from "@/components/section";
 import { buildPageMetadata } from "@/lib/site-settings";
 import { JsonLd, breadcrumbGraph } from "@/lib/seo";
 import { site } from "@/lib/site-data";
-import { PortfolioSection } from "@/components/site/showcase";
-import { Reveal } from "@/components/reveal";
-import { CallButton } from "@/components/call-button";
+import { PortfolioGrid } from "@/components/site/showcase";
 
 export async function generateMetadata() {
   return buildPageMetadata("portfolio", {
@@ -33,38 +31,10 @@ export default function PortfolioPage() {
         ]}
       />
 
-      <Section className="relative overflow-hidden pt-40 pb-16">
-        <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
+      <Section className="pt-32 pb-24 md:pt-36">
         <Container>
-          <Reveal>
-            <p className="micro-label mb-6">Lavori — Esperienza e progetti</p>
-            <h1 className="max-w-3xl font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
-              Progetti
-              <br />
-              <span className="text-outline">in orbita.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Ogni progetto è un sistema vivente: strategia, design e tecnologia
-              disposti su un'unica traiettoria.
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="py-16 pb-28">
-          <PortfolioSection limit={24} />
-        </Container>
-      </Section>
-      <Section>
-        <Container className="py-16 md:py-24">
-          <Reveal className="flex flex-col items-center text-center">
-            <p className="micro-label mb-5">Il tuo progetto è il prossimo</p>
-            <h2 className="max-w-2xl font-heading text-3xl uppercase leading-tight md:text-5xl">
-              Mettiamolo in orbita
-            </h2>
-            <CallButton label="Prenota una call" className="mt-9" />
-          </Reveal>
+          <h1 className="sr-only">Portfolio — Progetti Andromedia Web</h1>
+          <PortfolioGrid initial={6} step={6} />
         </Container>
       </Section>
     </>

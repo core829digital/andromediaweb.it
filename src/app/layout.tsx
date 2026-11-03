@@ -53,10 +53,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem("aw-theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.classList.add("dark");}catch(e){}})();`;
+// Tema iniziale: preferenza salvata oppure tema di sistema; se l'utente non
+// ha mai scelto, segue in tempo reale i cambi del sistema operativo.
+const themeInit = `(function(){try{var d=document.documentElement;var mq=window.matchMedia("(prefers-color-scheme: dark)");var saved=localStorage.getItem("aw-theme");var apply=function(dark){d.classList.toggle("dark",dark);};apply(saved?saved==="dark":mq.matches);if(mq.addEventListener){mq.addEventListener("change",function(e){try{if(!localStorage.getItem("aw-theme"))apply(e.matches);}catch(_){}});}}catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

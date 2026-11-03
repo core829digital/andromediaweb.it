@@ -18,7 +18,6 @@ const stars = Array.from({ length: 42 }, (_, i) => ({
 export function SpaceCta({
   titleA = "Un giorno o",
   titleB = "giorno uno?",
-  label = "Hai un'idea in mente?",
   buttonLabel = "Parliamone",
 }: {
   titleA?: string;
@@ -60,16 +59,11 @@ export function SpaceCta({
         <span aria-hidden="true" className="absolute right-6 top-6 h-5 w-5 border-r border-t border-foreground/25" />
         <span aria-hidden="true" className="absolute bottom-6 left-6 h-5 w-5 border-b border-l border-foreground/25" />
         <span aria-hidden="true" className="absolute bottom-6 right-6 h-5 w-5 border-b border-r border-foreground/25" />
-        <span className="micro-label absolute left-1/2 top-8 -translate-x-1/2">
-          Trasmissione finale — Missione
-        </span>
-
         {/* testo */}
         <motion.div
           style={{ opacity: titleOpacity, y: titleY }}
           className="relative z-10 flex flex-col items-center text-center"
         >
-          <p className="micro-label mb-6">{label}</p>
           <h2 className="font-heading text-4xl uppercase leading-[1.05] md:text-6xl">
             {titleA}
             <br />

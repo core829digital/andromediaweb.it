@@ -12,7 +12,6 @@ const SEO_ROUTES = [
   { key: "home", label: "Home" },
   { key: "servizi", label: "Servizi" },
   { key: "portfolio", label: "Portfolio" },
-  { key: "chi-siamo", label: "Chi siamo" },
   { key: "contatti", label: "Contatti" },
   { key: "blog", label: "Blog" },
 ] as const;

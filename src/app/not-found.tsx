@@ -4,9 +4,7 @@ import { Container, Section } from "@/components/section";
 export default function NotFound() {
   return (
     <Section className="relative overflow-hidden pt-40 pb-28">
-      <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
       <Container className="max-w-3xl text-center">
-        <p className="micro-label mb-6">Errore 404 — Segnale perso</p>
         <h1 className="font-heading text-7xl uppercase leading-none md:text-9xl">
           4<span className="text-outline">0</span>4
         </h1>

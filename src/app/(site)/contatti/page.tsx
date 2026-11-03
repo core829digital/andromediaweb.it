@@ -16,7 +16,7 @@ export async function generateMetadata() {
 const contactRows = [
   { icon: "mail" as const, label: "Email", value: site.contact.email, href: `mailto:${site.contact.email}` },
   { icon: "phone" as const, label: "Telefono", value: site.contact.phone, href: site.contact.phoneHref },
-  { icon: "pin" as const, label: "Indirizzo", value: `${site.contact.address}, ${site.contact.city}`, href: site.contact.directions },
+  { icon: "node" as const, label: "Partita IVA", value: site.legal.piva },
   { icon: "clock" as const, label: "Orari", value: site.contact.hours },
 ];
 
@@ -41,10 +41,8 @@ export default function ContattiPage() {
       />
 
       <Section className="relative overflow-hidden pt-40 pb-16">
-        <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
         <Container>
           <Reveal>
-            <p className="micro-label mb-6">Contatti — Avvia la trasmissione</p>
             <h1 className="font-heading text-5xl uppercase leading-[1.02] md:text-7xl">
               Parliamone di
               <br />
@@ -59,7 +57,7 @@ export default function ContattiPage() {
           <div className="grid gap-12 lg:grid-cols-5">
             {/* Recapiti */}
             <div className="lg:col-span-2">
-              <SectionHeading icon="mail" label="Recapiti" title="Canali diretti" />
+              <SectionHeading title="Canali diretti" />
               <div className="mt-8 divide-y divide-border border border-border">
                 {contactRows.map((r) => {
                   const content = (
@@ -93,39 +91,13 @@ export default function ContattiPage() {
                   );
                 })}
               </div>
-
-              <div className="mt-8 border border-border p-6">
-                <p className="micro-label mb-3">Prenota un appuntamento</p>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Se hai bisogno di maggiori informazioni, vieni a trovarci nel
-                  nostro studio. Saremo felici di conoscerti e di prendere un caffè insieme.
-                </p>
-                <a
-                  href={site.contact.directions}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Direzioni <Icon name="arrow-up-right" size={13} />
-                </a>
-              </div>
             </div>
 
             {/* Form */}
             <div className="lg:col-span-3">
-              <SectionHeading icon="send" label="Modulo" title="Scrivici ora" />
+              <SectionHeading title="Scrivici ora" />
               <div className="mt-8">
                 <ContactForm />
-              </div>
-
-              <div className="mt-10 border border-border p-7">
-                <p className="micro-label mb-4">Oppure prenota direttamente una call</p>
-                <iframe
-                  src={`${site.contact.calendly.replace("?background=1", "")}?background=1&hide_gdpr_banner=1`}
-                  title="Calendly — Prenota un appuntamento"
-                  className="h-[560px] w-full border-0"
-                  loading="lazy"
-                />
               </div>
             </div>
           </div>

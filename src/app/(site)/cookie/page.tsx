@@ -79,11 +79,9 @@ const sections = [
 
 export default function CookiePage() {
   return (
-    <Section className="relative overflow-hidden pt-40 pb-28">
-      <div className="grid-bg grid-bg-fade absolute inset-0" aria-hidden="true" />
+    <Section className="pt-40 pb-28">
       <Container className="max-w-3xl">
         <Reveal>
-          <p className="micro-label mb-6">Legale — Cookie</p>
           <h1 className="font-heading text-4xl uppercase md:text-6xl">Cookie</h1>
         </Reveal>
         <div className="mt-14 space-y-12">

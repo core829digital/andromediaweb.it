@@ -18,7 +18,6 @@ const linkGroups = [
     links: [
       { href: "/", label: "Home" },
       { href: "/servizi", label: "Servizi" },
-      { href: "/chi-siamo", label: "Chi siamo" },
       { href: "/portfolio", label: "Portfolio" },
       { href: "/blog", label: "Blog" },
       { href: "/contatti", label: "Contatti" },
@@ -37,14 +36,13 @@ export function Footer({ info }: { info?: SiteGlobal }) {
   const contactEmail = info?.email ?? site.contact.email;
   const contactPhone = info?.phone ?? site.contact.phone;
   const phoneHref = info?.phone ? `tel:${info.phone.replace(/[^\d+]/g, "")}` : site.contact.phoneHref;
-  const contactAddress = info?.address ?? `${site.contact.address} — ${site.contact.city}`;
   const socials = info?.socials?.length ? info.socials : site.socials;
 
   return (
     <footer className="relative mt-14 bg-background">
       <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
         <div className="mb-8 flex flex-col gap-6 pb-8 md:flex-row md:items-center md:justify-between">
-          <LogoFull className="h-9 md:h-11" />
+          <LogoFull className="h-6 w-auto max-w-[70vw] sm:h-7 md:h-10" />
           <div className="flex gap-2">
             {socials.map((s) => (
               <a
@@ -114,11 +112,9 @@ export function Footer({ info }: { info?: SiteGlobal }) {
                   {contactPhone}
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Icon name="pin" size={13} className="mt-0.5 shrink-0" />
-                <span>
-                  {contactAddress}
-                </span>
+              <li className="flex items-center gap-2.5">
+                <Icon name="node" size={13} />
+                <span>P. IVA {site.legal.piva}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Icon name="clock" size={13} />

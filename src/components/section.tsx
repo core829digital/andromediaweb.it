@@ -1,19 +1,21 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/reveal";
-import { Icon, type IconName } from "@/components/icons";
-import { PatternField } from "@/components/pattern-field";
+import type { IconName } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
-/** Etichetta micro + titolo display, inaugurazione standard di sezione. */
+/**
+ * Titolo di sezione, senza etichette micro né icone decorative:
+ * il cliente ha chiesto di eliminare le scritte piccole sopra i titoli.
+ * Le prop `icon`/`label` restano accettate (retrocompatibilità con i
+ * chiamanti e con l'editor contenuti) ma non vengono più mostrate.
+ */
 export function SectionHeading({
-  icon,
-  label,
   title,
   align = "left",
   className,
 }: {
   icon?: IconName;
-  label: string;
+  label?: string;
   title: string;
   align?: "left" | "center";
   className?: string;
@@ -22,12 +24,6 @@ export function SectionHeading({
     <Reveal
       className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}
     >
-      {icon && (
-        <span className="flex h-14 w-14 items-center justify-center border border-border text-muted-foreground transition-all duration-500 hover:rotate-90 hover:border-foreground hover:text-foreground">
-          <Icon name={icon} size={22} />
-        </span>
-      )}
-      <p className="micro-label">{label}</p>
       <h2
         className={cn(
           "max-w-2xl font-heading text-3xl uppercase leading-[1.08] tracking-tight md:text-4xl",
@@ -40,10 +36,7 @@ export function SectionHeading({
   );
 }
 
-/**
- * Sezione standard: campo pattern MW con reveal radiale attorno al
- * mouse; il tono (chiaro/scuro) segue il tema globale del sito.
- */
+/** Sezione standard: nessun pattern di sfondo, solo contenuto. */
 export function Section({
   children,
   className,
@@ -54,11 +47,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section
-      id={id}
-      className={cn("mw-pattern relative", className)}
-    >
-      <PatternField />
+    <section id={id} className={cn("relative", className)}>
       {children}
     </section>
   );
