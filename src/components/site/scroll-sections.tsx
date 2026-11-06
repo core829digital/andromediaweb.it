@@ -56,10 +56,9 @@ function ServiceCard({
 }
 
 /**
- * Sezione servizi con scroll animation: pannello sticky e binario
- * orizzontale guidato dallo scroll verticale. Su desktop e mobile si
- * comporta allo stesso modo (coerenza); solo con
- * prefers-reduced-motion degrada in una griglia verticale statica.
+ * Sezione servizi con scroll animation: su desktop pannello sticky e binario
+ * orizzontale guidato dallo scroll verticale; su mobile carosello orizzontale
+ * nativo (swipe). Con prefers-reduced-motion degrada in griglia statica.
  */
 export function ScrollServices({ title, standalone = false }: { title: string; standalone?: boolean }) {
   const reduce = useReducedMotion();
@@ -81,7 +80,46 @@ export function ScrollServices({ title, standalone = false }: { title: string; s
     );
   }
 
-  return <PinnedServices title={title} standalone={standalone} />;
+  return (
+    <>
+      {/* Mobile: scroll orizzontale nativo (swipe), più fluido del pin. */}
+      <div className="md:hidden">
+        <MobileServices title={title} standalone={standalone} />
+      </div>
+      {/* Desktop: sezione pinnata con binario orizzontale. */}
+      <div className="hidden md:block">
+        <PinnedServices title={title} standalone={standalone} />
+      </div>
+    </>
+  );
+}
+
+/** Carosello orizzontale nativo per il mobile. */
+function MobileServices({ title, standalone }: { title: string; standalone: boolean }) {
+  return (
+    <section className="py-4">
+      <div className="mx-auto w-full max-w-7xl px-5">
+        <h2 className="font-heading text-3xl uppercase leading-[1.08]">{title}</h2>
+      </div>
+
+      <div
+        className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 pr-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-lenis-prevent
+      >
+        {services.map((s) => (
+          <div key={s.id} className="flex shrink-0 snap-start">
+            <ServiceCard index={s.index} short={s.short} desc={s.desc} standalone={standalone} id={s.id} />
+          </div>
+        ))}
+      </div>
+
+      <div className="mx-auto mt-4 w-full max-w-7xl px-5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          Scorri →
+        </span>
+      </div>
+    </section>
+  );
 }
 
 /**
@@ -164,7 +202,15 @@ function PinnedServices({ title, standalone }: { title: string; standalone: bool
 /* Lavori — card impilate in sticky, si coprono una con l'altra         */
 /* ------------------------------------------------------------------ */
 
-export function ScrollWorks({ title, limit = 6 }: { title: string; limit?: number }) {
+export function ScrollWorks({
+  title,
+  limit = 6,
+  showLink = true,
+}: {
+  title: string;
+  limit?: number;
+  showLink?: boolean;
+}) {
   const items = usePortfolioItems().slice(0, limit);
 
   return (
@@ -174,13 +220,15 @@ export function ScrollWorks({ title, limit = 6 }: { title: string; limit?: numbe
           <h2 className="max-w-2xl font-heading text-3xl uppercase leading-[1.08] md:text-4xl">
             {title}
           </h2>
-          <Link
-            href="/portfolio"
-            className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Vedi il portfolio completo
-            <Icon name="arrow-right" size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          {showLink && (
+            <Link
+              href="/portfolio"
+              className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Vedi tutti i lavori
+              <Icon name="arrow-right" size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          )}
         </div>
       </div>
 

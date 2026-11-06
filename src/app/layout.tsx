@@ -1,19 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Unbounded, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site-data";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+// Saans (Displaay) è un font commerciale: il sito usa "Saans" se installato
+// localmente, altrimenti il fallback libero Inter (look neutro e friendly,
+// vicino al mood di ChatGPT).
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -67,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
-      className={`${unbounded.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

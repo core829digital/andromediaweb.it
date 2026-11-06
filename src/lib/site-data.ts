@@ -211,7 +211,7 @@ export const clientLogos = [
 export const navLinks = [
   { href: "/", label: "Home", index: "01" },
   { href: "/servizi", label: "Servizi", index: "02" },
-  { href: "/portfolio", label: "Portfolio", index: "03" },
+  { href: "/portfolio", label: "Lavori", index: "03" },
   { href: "/blog", label: "Blog", index: "04" },
   { href: "/contatti", label: "Contatti", index: "05" },
 ] as const;

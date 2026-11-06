@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { Icon } from "@/components/icons";
 import { LogoIcon } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { CallButton } from "@/components/call-button";
 
 /**
  * Header: capsula centrata con logo all'interno (nessuna animazione),
@@ -79,12 +78,6 @@ export function Nav() {
 
           <div className="flex items-center gap-0.5">
             <ThemeToggle className="h-8 w-8 border-0 bg-transparent hover:bg-muted/50" />
-            <CallButton
-              label="Parliamone"
-              variant="solid"
-              size="sm"
-              className="hidden h-8 px-3.5 text-[10px] tracking-[0.18em] lg:inline-flex"
-            />
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? "Chiudi menu" : "Apri menu"}
@@ -146,20 +139,6 @@ export function Nav() {
                   </motion.div>
                 );
               })}
-              <motion.div
-                initial={{ opacity: 0, x: -24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.38, duration: 0.5, ease: "easeOut" }}
-                className="mt-6 flex justify-center"
-              >
-                <Link
-                  href="/contatti"
-                  onClick={() => setOpen(false)}
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 font-mono text-xs uppercase tracking-[0.25em] text-background"
-                >
-                  Parliamone <Icon name="arrow-right" size={14} />
-                </Link>
-              </motion.div>
             </nav>
           </motion.div>
         )}

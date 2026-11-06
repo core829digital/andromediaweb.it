@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Icon, type IconName } from "@/components/icons";
 import { LogoFull } from "@/components/logo";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { site } from "@/lib/site-data";
 import type { SiteGlobal } from "@/lib/site-settings";
 
@@ -18,7 +19,7 @@ const linkGroups = [
     links: [
       { href: "/", label: "Home" },
       { href: "/servizi", label: "Servizi" },
-      { href: "/portfolio", label: "Portfolio" },
+      { href: "/portfolio", label: "Lavori" },
       { href: "/blog", label: "Blog" },
       { href: "/contatti", label: "Contatti" },
     ],
@@ -32,7 +33,6 @@ export function Footer({ info }: { info?: SiteGlobal }) {
   useEffect(() => setYear(new Date().getFullYear()), []);
 
   const brandName = info?.name ?? site.name;
-  const claim = info?.tagline ?? site.claim;
   const contactEmail = info?.email ?? site.contact.email;
   const contactPhone = info?.phone ?? site.contact.phone;
   const phoneHref = info?.phone ? `tel:${info.phone.replace(/[^\d+]/g, "")}` : site.contact.phoneHref;
@@ -42,7 +42,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
     <footer className="relative mt-14 bg-background">
       <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
         <div className="mb-8 flex flex-col gap-6 pb-8 md:flex-row md:items-center md:justify-between">
-          <LogoFull className="h-7 w-auto sm:h-8 md:h-10 max-w-full" />
+          <LogoFull className="h-auto w-[190px] max-w-full shrink-0 object-contain sm:w-[220px] md:w-[260px]" />
           <div className="flex gap-2">
             {socials.map((s) => (
               <a
@@ -67,6 +67,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
               Design, tecnologia e marketing creano l'esperienza del brand,
               per promuovere la vostra attività nel mondo digitale.
             </p>
+            <LanguageSwitcher />
           </div>
 
           {/* Sitemap */}

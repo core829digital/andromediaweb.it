@@ -54,11 +54,6 @@ export function SpaceCta({
           ))}
         </div>
 
-        {/* HUD corners */}
-        <span aria-hidden="true" className="absolute left-6 top-6 h-5 w-5 border-l border-t border-foreground/25" />
-        <span aria-hidden="true" className="absolute right-6 top-6 h-5 w-5 border-r border-t border-foreground/25" />
-        <span aria-hidden="true" className="absolute bottom-6 left-6 h-5 w-5 border-b border-l border-foreground/25" />
-        <span aria-hidden="true" className="absolute bottom-6 right-6 h-5 w-5 border-b border-r border-foreground/25" />
         {/* testo */}
         <motion.div
           style={{ opacity: titleOpacity, y: titleY }}

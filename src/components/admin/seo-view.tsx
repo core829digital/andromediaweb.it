@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const SEO_ROUTES = [
   { key: "home", label: "Home" },
   { key: "servizi", label: "Servizi" },
-  { key: "portfolio", label: "Portfolio" },
+  { key: "portfolio", label: "Lavori" },
   { key: "contatti", label: "Contatti" },
   { key: "blog", label: "Blog" },
 ] as const;

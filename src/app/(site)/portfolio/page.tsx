@@ -1,12 +1,11 @@
-import { Section, Container } from "@/components/section";
 import { buildPageMetadata } from "@/lib/site-settings";
 import { JsonLd, breadcrumbGraph } from "@/lib/seo";
 import { site } from "@/lib/site-data";
-import { PortfolioGrid } from "@/components/site/showcase";
+import { ScrollWorks } from "@/components/site/scroll-sections";
 
 export async function generateMetadata() {
   return buildPageMetadata("portfolio", {
-    title: "Portfolio",
+    title: "Lavori",
     description: "I lavori svolti da Andromedia Web: e-commerce, siti web, branding, social media e intelligenza artificiale.",
   });
 }
@@ -18,12 +17,12 @@ export default function PortfolioPage() {
         data={[
           breadcrumbGraph([
             { name: "Home", path: "/" },
-            { name: "Portfolio", path: "/portfolio" },
+            { name: "Lavori", path: "/portfolio" },
           ]),
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Portfolio — Andromedia Web",
+            name: "Lavori — Andromedia Web",
             url: `${site.url}/portfolio`,
             inLanguage: "it-IT",
             about: { "@id": `${site.url}/#organizzazione` },
@@ -31,12 +30,10 @@ export default function PortfolioPage() {
         ]}
       />
 
-      <Section className="pt-32 pb-24 md:pt-36">
-        <Container>
-          <h1 className="sr-only">Portfolio — Progetti Andromedia Web</h1>
-          <PortfolioGrid initial={6} step={6} />
-        </Container>
-      </Section>
+      <div className="pt-32 pb-24 md:pt-36">
+        <h1 className="sr-only">Lavori — Progetti Andromedia Web</h1>
+        <ScrollWorks title="Lavori" limit={24} showLink={false} />
+      </div>
     </>
   );
 }

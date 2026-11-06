@@ -50,6 +50,7 @@ const sections = [
     h: "Visualizzazione di contenuti da piattaforme esterne",
     body: [
       "Google Fonts (Google LLC): servizio di visualizzazione di stili di carattere. Dati Personali trattati: Dati di utilizzo; Strumenti di Tracciamento. Luogo del trattamento: Stati Uniti.",
+      "Google Translate (Google LLC): servizio di traduzione automatica dei contenuti del sito, attivato su richiesta dell'Utente tramite il selettore lingua. Dati Personali trattati: testo dei contenuti visualizzati; Dati di utilizzo. Luogo del trattamento: Stati Uniti.",
       "Widget Google Maps (Google LLC): servizio di visualizzazione di mappe. Dati Personali trattati: Strumenti di Tracciamento. Luogo del trattamento: Stati Uniti.",
     ],
   },

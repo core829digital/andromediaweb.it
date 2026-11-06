@@ -30,6 +30,7 @@ const sections = [
       "Pulsante \"Mi Piace\" e widget sociali di Facebook (Meta Platforms, Inc.). Dati Personali trattati: Dati di utilizzo e Strumenti di Tracciamento. Durata di archiviazione: _fbp: 3 mesi.",
       "Pulsante e widget sociali di LinkedIn (LinkedIn Corporation). Dati Personali trattati: Dati di utilizzo e Strumenti di Tracciamento. Durate: AnalyticsSyncHistory: 1 mese; JSESSIONID: durata della sessione; UserMatchHistory: 1 mese; bcookie: 1 anno; bscookie: 1 anno; lang: durata della sessione; lidc: 1 giorno; lissc: 1 anno; lms_ads: 1 mese; lms_analytics: 1 mese.",
       "Google Fonts (Google LLC): servizio di visualizzazione di stili di carattere. Dati Personali trattati: Dati di utilizzo e Strumenti di Tracciamento.",
+      "Google Translate (Google LLC): servizio di traduzione automatica attivato dal selettore lingua del sito. Dati Personali trattati: testo dei contenuti visualizzati e Strumenti di Tracciamento.",
       "Widget Google Maps (Google LLC): servizio di visualizzazione di mappe. Dati Personali trattati: Strumenti di Tracciamento.",
     ],
   },

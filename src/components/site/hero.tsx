@@ -28,22 +28,8 @@ export function Hero({ content }: { content?: HeroContent }) {
         className="pointer-events-none absolute -top-40 left-1/2 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,oklch(0_0_0/6%),transparent_70%)]"
       />
 
-      {/* corner HUD markers */}
-      <motion.div
-        aria-hidden="true"
-        initial={reduce ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
-        className="pointer-events-none absolute inset-4 hidden md:block"
-      >
-        <span className="absolute left-0 top-0 h-5 w-5 border-l border-t border-foreground/30" />
-        <span className="absolute right-0 top-0 h-5 w-5 border-r border-t border-foreground/30" />
-        <span className="absolute bottom-0 left-0 h-5 w-5 border-b border-l border-foreground/30" />
-        <span className="absolute bottom-0 right-0 h-5 w-5 border-b border-r border-foreground/30" />
-      </motion.div>
-
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-20 pt-36 md:px-8">
-        <h1 className="font-heading text-[13vw] uppercase leading-[0.95] tracking-tight sm:text-7xl md:text-8xl lg:text-[7.5rem]">
+        <h1 className="font-heading text-[14vw] uppercase leading-[0.95] tracking-tight sm:text-7xl md:text-8xl lg:text-[8rem]">
           <span className="block overflow-hidden">
             <motion.span
               className="block"
