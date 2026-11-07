@@ -26,7 +26,7 @@ export function SectionHeading({
     >
       <h2
         className={cn(
-          "max-w-2xl font-heading text-3xl leading-[1.08] tracking-tight md:text-4xl",
+          "max-w-2xl font-heading text-4xl leading-[1.08] tracking-tight md:text-5xl",
           align === "center" && "mx-auto"
         )}
       >

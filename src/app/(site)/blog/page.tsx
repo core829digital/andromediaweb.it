@@ -20,8 +20,8 @@ export default async function BlogPage() {
       <Section className="relative overflow-hidden pt-40 pb-14">
         <Container>
           <Reveal>
-            <h1 className="font-heading text-5xl leading-[1.02] md:text-7xl">
-              Il <span className="text-outline">journal</span>
+            <h1 className="font-heading text-6xl leading-[1.02] md:text-8xl">
+              Il <span>journal</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
               Storie di brand, tecnologia e marketing digitale: idee, progetti e

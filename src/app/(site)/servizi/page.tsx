@@ -49,10 +49,10 @@ export default function ServiziPage() {
       <Section className="relative overflow-hidden pt-40 pb-16">
         <Container>
           <Reveal>
-            <h1 className="max-w-3xl font-heading text-5xl leading-[1.02] md:text-7xl">
+            <h1 className="max-w-3xl font-heading text-6xl leading-[1.02] md:text-8xl">
               Sei orbite,
               <br />
-              <span className="text-outline">un solo sistema.</span>
+              <span>un solo sistema.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
               &ldquo;Non vendere prodotti, racconta storie.&rdquo; — Seth Godin.
@@ -80,7 +80,7 @@ export default function ServiziPage() {
                   className={"border-border"}
                 >
                   <AccordionTrigger className="py-5 text-left hover:no-underline">
-                    <span className="flex items-baseline gap-4 font-heading text-base tracking-wide">
+                    <span className="flex items-baseline gap-4 font-heading text-lg tracking-wide">
                       <span className="font-mono text-xs text-muted-foreground/60">{s.index}</span>
                       {s.title}
                     </span>
@@ -104,7 +104,7 @@ export default function ServiziPage() {
               <Reveal key={p.id} delay={i * 0.1}>
                 <div className="flex h-full flex-col gap-4 border border-border p-7 transition-colors duration-500 hover:border-foreground">
                   <span className="font-mono text-xs text-muted-foreground">{p.index}</span>
-                  <h3 className="font-heading text-lg">{p.title}</h3>
+                  <h3 className="font-heading text-xl">{p.title}</h3>
                   <p className="text-sm text-muted-foreground">{p.desc}</p>
                 </div>
               </Reveal>
@@ -117,7 +117,7 @@ export default function ServiziPage() {
       <Section>
         <Container className="py-16 md:py-24">
           <Reveal className="flex flex-col items-center text-center">
-            <h2 className="max-w-2xl font-heading text-3xl leading-tight md:text-5xl">
+            <h2 className="max-w-2xl font-heading text-4xl leading-tight md:text-6xl">
               Parliamo del tuo progetto
             </h2>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

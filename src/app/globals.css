@@ -164,7 +164,7 @@
   h3,
   h4 {
     @apply font-heading;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.03em;
     text-wrap: balance;
   }
@@ -220,17 +220,6 @@ html.lenis body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
-}
-
-/* ---------- Titoli outline (testo vuoto con contorno) ---------- */
-
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px oklch(0.14 0 0);
-}
-
-.dark .text-outline {
-  -webkit-text-stroke-color: oklch(0.985 0 0);
 }
 
 /* ---------- Marquee logos ---------- */

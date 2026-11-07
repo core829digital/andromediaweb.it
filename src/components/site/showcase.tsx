@@ -56,7 +56,7 @@ export function WorkCard({ item, index }: { item: ShowcaseItem; index: number })
 
         <div className="flex items-center justify-between gap-4 p-5">
           <div>
-            <p className="font-heading text-lg">{item.title}</p>
+            <p className="font-heading text-xl">{item.title}</p>
             {item.description && (
               <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
                 {item.description}
@@ -135,7 +135,7 @@ export function PortfolioGrid({ initial = 6, step = 6 }: { initial?: number; ste
 export function StatCounter({ value, label }: { value: string; label: string }) {
   return (
     <div className={cn("border-l border-border pl-5")}>
-      <p className="font-heading text-4xl md:text-5xl">{value}</p>
+      <p className="font-heading text-5xl md:text-6xl">{value}</p>
       <p className="micro-label mt-2">{label}</p>
     </div>
   );
