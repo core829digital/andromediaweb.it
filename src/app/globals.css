@@ -164,7 +164,7 @@
   h3,
   h4 {
     @apply font-heading;
-    font-weight: 700;
+    font-weight: 560;
     letter-spacing: -0.03em;
     text-wrap: balance;
   }

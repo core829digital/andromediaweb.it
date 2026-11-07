@@ -100,7 +100,7 @@ export default function PrivacyPage() {
     <Section className="pt-40 pb-28">
       <Container className="max-w-3xl">
         <Reveal>
-          <h1 className="font-heading text-5xl md:text-7xl">Privacy Policy</h1>
+          <h1 className="font-heading text-[2.7rem] leading-none md:text-[4.05rem]">Privacy Policy</h1>
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
             Questa Applicazione raccoglie alcuni Dati Personali dei propri Utenti.
             Questo documento può essere stampato utilizzando il comando di stampa
@@ -112,7 +112,7 @@ export default function PrivacyPage() {
           {sections.map((s) => (
             <Reveal key={s.h}>
               <section>
-                <h2 className="font-heading text-xl tracking-wide">{s.h}</h2>
+                <h2 className="font-heading text-[1.13rem] leading-[1.4] tracking-wide">{s.h}</h2>
                 <div className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
                   {s.body.map((p, i) => (
                     <p key={i} className="whitespace-pre-line">

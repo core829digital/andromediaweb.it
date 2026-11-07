@@ -42,7 +42,7 @@ export default function ContattiPage() {
       <Section className="relative overflow-hidden pt-40 pb-16">
         <Container>
           <Reveal>
-            <h1 className="font-heading text-6xl leading-[1.02] md:text-8xl">
+            <h1 className="font-heading text-[3.38rem] leading-[1.02] md:text-[5.4rem]">
               Parliamo di Idee e Progetti
             </h1>
           </Reveal>
