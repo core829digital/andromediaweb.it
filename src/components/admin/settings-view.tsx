@@ -166,7 +166,7 @@ export function SettingsView() {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="font-heading text-2xl uppercase">Impostazioni del sito</h2>
+        <h2 className="font-heading text-2xl">Impostazioni del sito</h2>
         <div className="flex gap-1">
           {(["generale", "home", "faq"] as SubTab[]).map((t) => (
             <button

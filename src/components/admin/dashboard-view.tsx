@@ -68,7 +68,7 @@ export function DashboardView() {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="font-heading text-2xl uppercase">Dashboard — statistiche del sito</h2>
+        <h2 className="font-heading text-2xl">Dashboard — statistiche del sito</h2>
         <div className="flex items-center gap-2">
           {([7, 30] as const).map((d) => (
             <button

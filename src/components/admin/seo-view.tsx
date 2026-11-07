@@ -87,7 +87,7 @@ export function SeoView() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="font-heading text-2xl uppercase">SEO &amp; Metatags</h2>
+        <h2 className="font-heading text-2xl">SEO &amp; Metatags</h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
           Titoli, descrizioni e keywords per ogni pagina. I campi vuoti usano i testi predefiniti del sito.
           L&apos;immagine di condivisione (og:image) è il logo MW — configurata a livello globale.

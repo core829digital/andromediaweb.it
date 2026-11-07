@@ -201,7 +201,7 @@ function BlogPanel() {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="font-heading text-2xl uppercase">Blog — {posts.length} post</h2>
+        <h2 className="font-heading text-2xl">Blog — {posts.length} post</h2>
         <button
           onClick={() => {
             setCreating(true);
@@ -481,7 +481,7 @@ function PortfolioPanel() {
 
   return (
     <div className="space-y-8">
-      <h2 className="font-heading text-2xl uppercase">Portfolio — {works.length} lavori</h2>
+      <h2 className="font-heading text-2xl">Portfolio — {works.length} lavori</h2>
       {message && (
         <p className="flex items-center gap-2 border border-border bg-muted px-4 py-2 text-xs">
           <Icon name="check" size={13} /> {message}
@@ -510,7 +510,7 @@ function PortfolioPanel() {
               </div>
               <div className="flex items-start justify-between gap-3 p-4">
                 <div>
-                  <p className="font-heading text-sm uppercase">{w.title}</p>
+                  <p className="font-heading text-sm">{w.title}</p>
                   <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                     {w.category} {w.featured ? "★" : ""}
                   </p>
@@ -674,7 +674,7 @@ function MessagesPanel() {
 
   return (
     <div className="space-y-8">
-      <h2 className="font-heading text-2xl uppercase">Messaggi — {messages.length}</h2>
+      <h2 className="font-heading text-2xl">Messaggi — {messages.length}</h2>
       {loading ? (
         <p className="micro-label p-8 text-center">Caricamento…</p>
       ) : messages.length === 0 ? (
@@ -736,7 +736,7 @@ function NoConvex() {
       <div className="max-w-md border border-border p-10 text-center">
         <LogoMark className="mx-auto mb-6 h-12" />
         <p className="micro-label mb-4">Backoffice in standby</p>
-        <h2 className="font-heading text-xl uppercase">Collega Convex</h2>
+        <h2 className="font-heading text-xl">Collega Convex</h2>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           Il backoffice (blog, portfolio, messaggi) è alimentato da Convex.
           Esegui <code className="border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">npx convex dev</code>{" "}

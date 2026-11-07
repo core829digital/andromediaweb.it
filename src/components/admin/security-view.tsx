@@ -57,7 +57,7 @@ export function SecurityView() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="font-heading text-2xl uppercase">Sicurezza &amp; audit</h2>
+        <h2 className="font-heading text-2xl">Sicurezza &amp; audit</h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
           Tutte le difese attive sul backoffice e sul sito pubblico, con il registro di ogni azione.
         </p>

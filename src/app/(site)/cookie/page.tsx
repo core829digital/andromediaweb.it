@@ -83,13 +83,13 @@ export default function CookiePage() {
     <Section className="pt-40 pb-28">
       <Container className="max-w-3xl">
         <Reveal>
-          <h1 className="font-heading text-4xl uppercase md:text-6xl">Cookie</h1>
+          <h1 className="font-heading text-4xl md:text-6xl">Cookie</h1>
         </Reveal>
         <div className="mt-14 space-y-12">
           {sections.map((s) => (
             <Reveal key={s.h}>
               <section>
-                <h2 className="font-heading text-lg uppercase tracking-wide">{s.h}</h2>
+                <h2 className="font-heading text-lg tracking-wide">{s.h}</h2>
                 <div className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
                   {s.body.map((p, i) => (
                     <p key={i} className="whitespace-pre-line">
