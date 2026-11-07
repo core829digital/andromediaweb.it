@@ -113,7 +113,7 @@ export function Nav() {
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "flex items-baseline gap-4 border-b border-border py-3.5 font-heading text-[1.69rem] leading-[1.2] transition-colors sm:text-[2.03rem]",
+                        "flex items-baseline gap-4 border-b border-border py-3.5 font-heading text-[1.352rem] leading-[1.2] transition-colors sm:text-[1.624rem]",
                         active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       )}
                     >

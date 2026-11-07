@@ -39,7 +39,7 @@ function ServiceCard({
         )}
       </div>
       <div>
-        <h3 className="font-heading text-[1.69rem] leading-[1.1] whitespace-pre-line md:text-[1.8rem]">
+        <h3 className="font-heading text-[1.352rem] leading-[1.1] whitespace-pre-line md:text-[1.44rem]">
           {short}
         </h3>
         <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">{desc}</p>
@@ -67,7 +67,7 @@ export function ScrollServices({ title, standalone = false }: { title: string; s
     return (
       <section className="py-4">
         <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
-          <h2 className="mb-8 font-heading text-[2.03rem] leading-[1.08] md:text-[2.7rem]">{title}</h2>
+          <h2 className="mb-8 font-heading text-[1.624rem] leading-[1.08] md:text-[2.16rem]">{title}</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             {services.map((s, i) => (
               <Reveal key={s.id} delay={(i % 2) * 0.08} className="h-full">
@@ -99,7 +99,7 @@ function MobileServices({ title, standalone }: { title: string; standalone: bool
   return (
     <section className="py-4">
       <div className="mx-auto w-full max-w-7xl px-5">
-        <h2 className="font-heading text-[2.03rem] leading-[1.08]">{title}</h2>
+        <h2 className="font-heading text-[1.624rem] leading-[1.08]">{title}</h2>
       </div>
 
       <div
@@ -164,7 +164,7 @@ function PinnedServices({ title, standalone }: { title: string; standalone: bool
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden">
         <div className="mx-auto mb-10 w-full max-w-7xl px-8">
           <div className="flex items-end justify-between gap-6">
-            <h2 className="max-w-2xl font-heading text-[2.7rem] leading-[1.05] md:text-[3.38rem]">
+            <h2 className="max-w-2xl font-heading text-[2.16rem] leading-[1.05] md:text-[2.704rem]">
               {title}
             </h2>
             <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground lg:block">
@@ -217,7 +217,7 @@ export function ScrollWorks({
     <div className="relative">
       <div className="mx-auto mb-10 w-full max-w-7xl px-5 md:px-8">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <h2 className="max-w-2xl font-heading text-[2.03rem] leading-[1.08] md:text-[2.7rem]">
+          <h2 className="max-w-2xl font-heading text-[1.624rem] leading-[1.08] md:text-[2.16rem]">
             {title}
           </h2>
           {showLink && (
@@ -276,7 +276,7 @@ export function ScrollWorks({
                   <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                     {item.category}
                   </p>
-                  <h3 className="mt-3 font-heading text-[1.69rem] leading-tight md:text-[2.7rem]">
+                  <h3 className="mt-3 font-heading text-[1.352rem] leading-tight md:text-[2.16rem]">
                     {item.title}
                   </h3>
                   {item.description && (

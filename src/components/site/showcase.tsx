@@ -56,7 +56,7 @@ export function WorkCard({ item, index }: { item: ShowcaseItem; index: number })
 
         <div className="flex items-center justify-between gap-4 p-5">
           <div>
-            <p className="font-heading text-[1.13rem] leading-[1.4]">{item.title}</p>
+            <p className="font-heading text-[0.904rem] leading-[1.4]">{item.title}</p>
             {item.description && (
               <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
                 {item.description}

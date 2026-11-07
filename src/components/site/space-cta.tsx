@@ -59,7 +59,7 @@ export function SpaceCta({
           style={{ opacity: titleOpacity, y: titleY }}
           className="relative z-10 flex flex-col items-center text-center"
         >
-          <h2 className="font-heading text-[2.7rem] leading-[1.05] md:text-[4.05rem]">
+          <h2 className="font-heading text-[2.16rem] leading-[1.05] md:text-[3.24rem]">
             {titleA}
             <br />
             <span>{titleB}</span>

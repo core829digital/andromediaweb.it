@@ -34,7 +34,7 @@ export function ContactForm() {
         <span className="flex h-12 w-12 items-center justify-center bg-foreground text-background">
           <Icon name="check" size={20} />
         </span>
-        <p className="font-heading text-[1.35rem] leading-[1.35]">Messaggio ricevuto</p>
+        <p className="font-heading text-[1.08rem] leading-[1.35]">Messaggio ricevuto</p>
         <p className="text-sm text-muted-foreground">
           Ti risponderemo al più presto — siamo operativi 24/7.
         </p>

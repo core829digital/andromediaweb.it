@@ -29,7 +29,7 @@ export function Hero({ content }: { content?: HeroContent }) {
       />
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-20 pt-36 md:px-8">
-        <h1 className="font-heading text-[12.6vw] leading-[0.95] tracking-tight sm:text-[4.05rem] md:text-[5.4rem] lg:text-[8.1rem]">
+        <h1 className="font-heading text-[10.08vw] leading-[0.95] tracking-tight sm:text-[3.24rem] md:text-[4.32rem] lg:text-[6.48rem]">
           <span className="block overflow-hidden pb-[0.18em] -mb-[0.18em]">
             <motion.span
               className="block"

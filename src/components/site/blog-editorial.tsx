@@ -68,7 +68,7 @@ export function BlogEditorial({ posts }: { posts: PostItem[] }) {
   if (posts.length === 0) {
     return (
       <div className="border border-dashed border-border px-8 py-20 text-center">
-        <p className="font-heading text-[1.69rem] leading-[1.2] text-muted-foreground">
+        <p className="font-heading text-[1.352rem] leading-[1.2] text-muted-foreground">
           Nessun articolo pubblicato
         </p>
         <p className="mt-3 text-sm text-muted-foreground">
@@ -97,7 +97,7 @@ export function BlogEditorial({ posts }: { posts: PostItem[] }) {
               </span>
             </div>
             <div>
-              <h2 className="font-heading text-[2.03rem] leading-[1.08] md:text-[3.38rem]">
+              <h2 className="font-heading text-[1.624rem] leading-[1.08] md:text-[2.704rem]">
                 {featured.title}
               </h2>
               {featured.excerpt && (
@@ -123,7 +123,7 @@ export function BlogEditorial({ posts }: { posts: PostItem[] }) {
                 <Cover post={post} index={i + 1} />
                 <div className="mt-5 flex flex-1 flex-col">
                   <Meta post={post} />
-                  <h3 className="mt-3 font-heading text-[1.35rem] leading-snug transition-colors group-hover:text-muted-foreground">
+                  <h3 className="mt-3 font-heading text-[1.08rem] leading-snug transition-colors group-hover:text-muted-foreground">
                     {post.title}
                   </h3>
                   {post.excerpt && (
