@@ -102,7 +102,7 @@ export default function ServiziPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-4">
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
-                <div className="flex h-full flex-col gap-4 border border-border p-7 transition-colors duration-500 hover:border-foreground">
+                <div className="flex h-full flex-col gap-4 rounded-2xl border border-border p-7 transition-colors duration-500 hover:border-foreground">
                   <span className="font-sans text-xs text-muted-foreground">{p.index}</span>
                   <h3 className="font-heading text-[0.904rem] leading-[1.4]">{p.title}</h3>
                   <p className="text-sm text-muted-foreground">{p.desc}</p>

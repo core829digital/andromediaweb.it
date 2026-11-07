@@ -68,7 +68,7 @@ export function Hero({ content }: { content?: HeroContent }) {
             <CallButton label={c.ctaPrimary.label} href={c.ctaPrimary.href} />
             <Link
               href={c.ctaSecondary.href}
-              className="group flex h-12 items-center justify-center gap-3 whitespace-nowrap border border-border px-7 font-sans text-xs tracking-[0.02em] transition-all duration-300 hover:border-foreground"
+              className="group flex h-12 items-center justify-center gap-3 whitespace-nowrap rounded-full border border-border px-7 font-sans text-xs tracking-[0.02em] transition-all duration-300 hover:border-foreground"
             >
               {c.ctaSecondary.label}
               <Icon

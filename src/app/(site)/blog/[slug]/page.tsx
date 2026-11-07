@@ -106,7 +106,7 @@ export default async function BlogPostPage({
           </nav>
 
           {post.coverUrl && (
-            <div className="relative mb-12 aspect-[21/9] overflow-hidden border border-border">
+            <div className="relative mb-12 aspect-[21/9] overflow-hidden rounded-2xl border border-border">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={post.coverUrl}

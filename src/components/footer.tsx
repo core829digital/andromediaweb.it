@@ -127,7 +127,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="la-tua@email.it"
-                  className="h-9 w-full border border-border bg-transparent px-3 text-xs outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
+                  className="h-9 w-full rounded-lg border border-border bg-transparent px-3 text-xs outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
                 />
                 <button
                   type="submit"
@@ -149,7 +149,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.name}
-                  className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
                 >
                   <Icon name={s.icon as IconName} size={15} />
                 </a>

@@ -55,11 +55,11 @@ export default function ContattiPage() {
             {/* Recapiti */}
             <div className="lg:col-span-2">
               <SectionHeading title="Canali diretti" />
-              <div className="mt-8 divide-y divide-border border border-border">
+              <div className="mt-8 divide-y divide-border overflow-hidden rounded-2xl border border-border">
                 {contactRows.map((r) => {
                   const content = (
                     <>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-border text-muted-foreground">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground">
                         <Icon name={r.icon} size={16} />
                       </span>
                       <div>

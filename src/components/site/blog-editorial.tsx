@@ -32,7 +32,7 @@ function Cover({
   index: number;
 }) {
   return (
-    <div className={`relative overflow-hidden bg-muted ${ratio}`}>
+    <div className={`relative overflow-hidden rounded-2xl bg-muted ${ratio}`}>
       {post.coverUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -67,7 +67,7 @@ function Meta({ post }: { post: PostItem }) {
 export function BlogEditorial({ posts }: { posts: PostItem[] }) {
   if (posts.length === 0) {
     return (
-      <div className="border border-dashed border-border px-8 py-20 text-center">
+      <div className="rounded-2xl border border-dashed border-border px-8 py-20 text-center">
         <p className="font-heading text-[1.352rem] leading-[1.2] text-muted-foreground">
           Nessun articolo pubblicato
         </p>
@@ -86,13 +86,13 @@ export function BlogEditorial({ posts }: { posts: PostItem[] }) {
       <Reveal>
         <Link
           href={`/blog/${featured.slug}`}
-          className="group grid overflow-hidden border border-border transition-colors duration-500 hover:border-foreground md:grid-cols-[1.25fr_1fr]"
+          className="group grid overflow-hidden rounded-2xl border border-border transition-colors duration-500 hover:border-foreground md:grid-cols-[1.25fr_1fr]"
         >
           <Cover post={featured} ratio="aspect-[16/10] md:aspect-auto md:min-h-[58vh]" index={0} />
           <div className="flex flex-col justify-between gap-10 p-7 md:p-10">
             <div className="flex items-start justify-between gap-4">
               <Meta post={featured} />
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
                 <Icon name="arrow-up-right" size={16} />
               </span>
             </div>

@@ -28,12 +28,12 @@ function ServiceCard({
   const body = (
     <article
       id={standalone ? id : undefined}
-      className="group flex h-full w-[80vw] shrink-0 scroll-mt-28 flex-col justify-between gap-10 overflow-hidden border border-border bg-background p-7 transition-colors duration-500 hover:border-foreground md:w-[46vw] lg:w-[31vw]"
+      className="group flex h-full w-[80vw] shrink-0 scroll-mt-28 flex-col justify-between gap-10 overflow-hidden rounded-2xl border border-border bg-background p-7 transition-colors duration-500 hover:border-foreground md:w-[46vw] lg:w-[31vw]"
     >
       <div className="flex items-start justify-between gap-4">
         <span className="font-sans text-xs tracking-[0.25em] text-muted-foreground">{index}</span>
         {!standalone && (
-          <span className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
             <Icon name="arrow-up-right" size={14} />
           </span>
         )}
@@ -243,7 +243,7 @@ export function ScrollWorks({
               href={item.url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mb-6 grid overflow-hidden border border-border bg-background transition-colors duration-500 hover:border-foreground md:grid-cols-[1.15fr_1fr]"
+              className="group mb-6 grid overflow-hidden rounded-2xl border border-border bg-background transition-colors duration-500 hover:border-foreground md:grid-cols-[1.15fr_1fr]"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-muted md:aspect-auto md:min-h-[52vh]">
                 {item.imageUrl ? (
@@ -267,7 +267,7 @@ export function ScrollWorks({
                   <span className="font-sans text-xs tracking-[0.25em] text-muted-foreground">
                     {String(i + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
                   </span>
-                  <span className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
                     <Icon name="arrow-up-right" size={15} />
                   </span>
                 </div>

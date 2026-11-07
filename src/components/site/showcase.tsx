@@ -26,7 +26,7 @@ export function WorkCard({ item, index }: { item: ShowcaseItem; index: number })
         href={item.url || "#"}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex h-full flex-col overflow-hidden border border-border bg-card transition-colors duration-500 hover:border-foreground"
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-500 hover:border-foreground"
       >
         {/* copertina */}
         <div className="relative aspect-[16/10] overflow-hidden bg-muted">
@@ -44,7 +44,7 @@ export function WorkCard({ item, index }: { item: ShowcaseItem; index: number })
               </span>
             </div>
           )}
-          <span className="micro-label absolute left-4 top-4 !text-[9px] !tracking-[0.3em] !text-foreground/80 bg-background/80 px-2 py-1 border border-border">
+          <span className="micro-label absolute left-4 top-4 !text-[9px] !tracking-[0.3em] !text-foreground/80 bg-background/80 px-2 py-1 rounded-full border border-border">
             {item.category}
           </span>
           {/* scan-line on hover */}
@@ -63,7 +63,7 @@ export function WorkCard({ item, index }: { item: ShowcaseItem; index: number })
               </p>
             )}
           </div>
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
             <Icon name="arrow-up-right" size={15} />
           </span>
         </div>

@@ -13,7 +13,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="group mt-10 inline-flex h-12 items-center gap-3 bg-foreground px-8 font-sans text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground"
+          className="group mt-10 inline-flex h-12 items-center gap-3 rounded-full bg-foreground px-8 font-sans text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground"
         >
           Torna a casa
         </Link>

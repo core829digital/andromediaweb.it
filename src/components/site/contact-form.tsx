@@ -30,8 +30,8 @@ export function ContactForm() {
 
   if (state === "sent") {
     return (
-      <div className="flex flex-col items-center justify-center gap-5 border border-foreground/20 p-14 text-center">
-        <span className="flex h-12 w-12 items-center justify-center bg-foreground text-background">
+      <div className="flex flex-col items-center justify-center gap-5 rounded-2xl border border-foreground/20 p-14 text-center">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-background">
           <Icon name="check" size={20} />
         </span>
         <p className="font-heading text-[1.08rem] leading-[1.35]">Messaggio ricevuto</p>
@@ -43,7 +43,7 @@ export function ContactForm() {
   }
 
   const inputCls =
-    "h-11 w-full border border-border bg-transparent px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground";
+    "h-11 w-full rounded-xl border border-border bg-transparent px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground";
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-4">
@@ -82,7 +82,7 @@ export function ContactForm() {
         placeholder="Raccontaci il tuo progetto…"
         value={form.message}
         onChange={(e) => setForm({ ...form, message: e.target.value })}
-        className="w-full border border-border bg-transparent px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
+        className="w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
       />
       <button
         type="submit"
