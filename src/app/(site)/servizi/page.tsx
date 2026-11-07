@@ -81,7 +81,7 @@ export default function ServiziPage() {
                 >
                   <AccordionTrigger className="py-5 text-left hover:no-underline">
                     <span className="flex items-baseline gap-4 font-heading text-[0.808rem] leading-[1.55] tracking-wide">
-                      <span className="font-mono text-xs text-muted-foreground/60">{s.index}</span>
+                      <span className="font-sans text-xs text-muted-foreground/60">{s.index}</span>
                       {s.title}
                     </span>
                   </AccordionTrigger>
@@ -103,7 +103,7 @@ export default function ServiziPage() {
             {process.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
                 <div className="flex h-full flex-col gap-4 border border-border p-7 transition-colors duration-500 hover:border-foreground">
-                  <span className="font-mono text-xs text-muted-foreground">{p.index}</span>
+                  <span className="font-sans text-xs text-muted-foreground">{p.index}</span>
                   <h3 className="font-heading text-[0.904rem] leading-[1.4]">{p.title}</h3>
                   <p className="text-sm text-muted-foreground">{p.desc}</p>
                 </div>
@@ -124,7 +124,7 @@ export default function ServiziPage() {
               <CallButton label="Parliamone" />
               <Link
                 href="/contatti"
-                className="flex h-12 items-center gap-3 rounded-full border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] text-foreground transition-colors hover:border-foreground"
+                className="flex h-12 items-center gap-3 rounded-full border border-border px-7 font-sans text-xs tracking-[0.02em] text-foreground transition-colors hover:border-foreground"
               >
                 Contatti <Icon name="arrow-right" size={14} />
               </Link>

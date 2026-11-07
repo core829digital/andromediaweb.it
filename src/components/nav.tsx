@@ -59,7 +59,7 @@ export function Nav() {
                   href={l.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "group relative px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] transition-colors",
+                    "group relative px-2.5 py-1 font-sans text-[9px] uppercase tracking-[0.18em] transition-colors",
                     active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
@@ -119,7 +119,7 @@ export function Nav() {
                     >
                       <span
                         className={cn(
-                          "font-mono text-[10px] tracking-[0.25em]",
+                          "font-sans text-[10px] tracking-[0.25em]",
                           active ? "text-foreground" : "text-muted-foreground"
                         )}
                       >

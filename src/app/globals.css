@@ -178,7 +178,7 @@
 @layer utilities {
   /* Palantir-style monospace uppercase micro label */
   .micro-label {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.6875rem;
     letter-spacing: 0.32em;
     text-transform: uppercase;

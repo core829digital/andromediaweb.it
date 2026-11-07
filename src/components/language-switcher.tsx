@@ -60,7 +60,7 @@ export function LanguageSwitcher() {
           value={lang}
           onChange={(e) => change(e.target.value as SiteLang)}
           aria-label="Cambia lingua del sito"
-          className="h-8 cursor-pointer border border-border bg-background px-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground outline-none transition-colors hover:border-foreground focus:border-foreground"
+          className="h-8 cursor-pointer border border-border bg-background px-2 font-sans text-[10px] uppercase tracking-[0.15em] text-muted-foreground outline-none transition-colors hover:border-foreground focus:border-foreground"
         >
           {SITE_LANGUAGES.map((l) => (
             <option key={l.code} value={l.code}>

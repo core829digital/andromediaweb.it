@@ -67,7 +67,7 @@ export function SpaceCta({
           <CallButton
             label={buttonLabel}
             size="md"
-            className="mt-10 h-14 px-9 tracking-[0.25em]"
+            className="mt-10 h-14 px-9 tracking-[0.02em]"
           />
         </motion.div>
       </div>

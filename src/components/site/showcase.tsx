@@ -115,7 +115,7 @@ export function PortfolioGrid({ initial = 6, step = 6 }: { initial?: number; ste
           <button
             type="button"
             onClick={() => setVisible((v) => Math.min(items.length, v + step))}
-            className="group flex h-12 items-center gap-3 rounded-full border border-border px-7 font-mono text-xs uppercase tracking-[0.22em] transition-colors duration-300 hover:border-foreground"
+            className="group flex h-12 items-center gap-3 rounded-full border border-border px-7 font-sans text-xs tracking-[0.02em] transition-colors duration-300 hover:border-foreground"
           >
             Carica altri
             <span className="text-muted-foreground">({remaining})</span>

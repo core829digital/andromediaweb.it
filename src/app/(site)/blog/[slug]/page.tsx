@@ -121,7 +121,7 @@ export default async function BlogPostPage({
             {post.title}
           </h1>
 
-          <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+          <p className="mt-5 font-sans text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
             <time dateTime={new Date(post.createdAt).toISOString()}>{published}</time>
             {post.tags?.length ? ` — ${post.tags.join(" · ")}` : ""}
           </p>
@@ -145,7 +145,7 @@ export default async function BlogPostPage({
 
           <Link
             href="/blog"
-            className="group mt-16 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
+            className="group mt-16 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
           >
             <Icon name="arrow-right" size={13} className="rotate-180" /> Torna al blog
           </Link>

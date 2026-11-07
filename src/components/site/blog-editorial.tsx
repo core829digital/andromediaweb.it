@@ -53,7 +53,7 @@ function Cover({
 
 function Meta({ post }: { post: PostItem }) {
   return (
-    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+    <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
       <time dateTime={new Date(post.createdAt).toISOString()}>{formatDate(post.createdAt)}</time>
       {post.tags?.length ? ` — ${post.tags.slice(0, 2).join(" · ")}` : ""}
     </p>
@@ -105,7 +105,7 @@ export function BlogEditorial({ posts }: { posts: PostItem[] }) {
                   {featured.excerpt}
                 </p>
               )}
-              <span className="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors group-hover:text-foreground">
+              <span className="mt-8 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors group-hover:text-foreground">
                 Leggi l&apos;articolo
                 <Icon name="arrow-right" size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
@@ -131,7 +131,7 @@ export function BlogEditorial({ posts }: { posts: PostItem[] }) {
                       {post.excerpt}
                     </p>
                   )}
-                  <span className="mt-auto inline-flex items-center gap-2 pt-5 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors group-hover:text-foreground">
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 font-sans text-[10px] uppercase tracking-[0.25em] text-muted-foreground transition-colors group-hover:text-foreground">
                     Leggi
                     <Icon name="arrow-right" size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </span>

@@ -128,7 +128,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
           <div className="space-y-3">
             <p className="micro-label">Newsletter</p>
             {subscribed ? (
-              <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground">
+              <p className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-[0.2em] text-foreground">
                 <Icon name="check" size={13} /> Iscrizione avvenuta
               </p>
             ) : (
@@ -163,7 +163,7 @@ export function Footer({ info }: { info?: SiteGlobal }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex justify-center py-4 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+        <div className="flex justify-center py-4 font-sans text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           <p>
             © {year ?? 2026} {brandName} — P. IVA: {site.legal.piva}
           </p>

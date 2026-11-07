@@ -31,7 +31,7 @@ function ServiceCard({
       className="group flex h-full w-[80vw] shrink-0 scroll-mt-28 flex-col justify-between gap-10 overflow-hidden border border-border bg-background p-7 transition-colors duration-500 hover:border-foreground md:w-[46vw] lg:w-[31vw]"
     >
       <div className="flex items-start justify-between gap-4">
-        <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground">{index}</span>
+        <span className="font-sans text-xs tracking-[0.25em] text-muted-foreground">{index}</span>
         {!standalone && (
           <span className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
             <Icon name="arrow-up-right" size={14} />
@@ -114,7 +114,7 @@ function MobileServices({ title, standalone }: { title: string; standalone: bool
       </div>
 
       <div className="mx-auto mt-4 w-full max-w-7xl px-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
           Scorri →
         </span>
       </div>
@@ -167,7 +167,7 @@ function PinnedServices({ title, standalone }: { title: string; standalone: bool
             <h2 className="max-w-2xl font-heading text-[2.16rem] leading-[1.05] md:text-[2.704rem]">
               {title}
             </h2>
-            <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground lg:block">
+            <span className="hidden shrink-0 font-sans text-[10px] uppercase tracking-[0.3em] text-muted-foreground lg:block">
               Scorri
             </span>
           </div>
@@ -223,7 +223,7 @@ export function ScrollWorks({
           {showLink && (
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
+              className="group inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
             >
               Vedi tutti i lavori
               <Icon name="arrow-right" size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -264,7 +264,7 @@ export function ScrollWorks({
 
               <div className="flex flex-col justify-between gap-8 p-7 md:p-10">
                 <div className="flex items-start justify-between gap-4">
-                  <span className="font-mono text-xs tracking-[0.25em] text-muted-foreground">
+                  <span className="font-sans text-xs tracking-[0.25em] text-muted-foreground">
                     {String(i + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
                   </span>
                   <span className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-all duration-300 group-hover:bg-foreground group-hover:text-background">
@@ -273,7 +273,7 @@ export function ScrollWorks({
                 </div>
 
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                     {item.category}
                   </p>
                   <h3 className="mt-3 font-heading text-[1.352rem] leading-tight md:text-[2.16rem]">

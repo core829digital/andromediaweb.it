@@ -30,7 +30,7 @@ export function CallButton({
   const external = /^https?:\/\//.test(href);
 
   const base = cn(
-    "group/call inline-flex items-center justify-center overflow-hidden rounded-full font-mono uppercase tracking-[0.22em] transition-colors duration-300",
+    "group/call inline-flex items-center justify-center overflow-hidden rounded-full font-sans tracking-[0.02em] transition-colors duration-300",
     size === "sm" ? "h-9 px-4 text-[11px]" : "h-12 px-7 text-xs",
     variant === "solid" && "bg-foreground text-background hover:bg-muted-foreground",
     variant === "outline" && "border border-border text-foreground hover:border-foreground",

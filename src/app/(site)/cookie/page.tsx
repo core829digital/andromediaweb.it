@@ -101,7 +101,7 @@ export default function CookiePage() {
             </Reveal>
           ))}
         </div>
-        <p className="mt-16 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+        <p className="mt-16 font-sans text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
           Ultima modifica: {site.legal.lastUpdate}
         </p>
       </Container>
