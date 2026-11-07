@@ -41,28 +41,10 @@ export function Footer({ info }: { info?: SiteGlobal }) {
   return (
     <footer className="relative mt-14 bg-background">
       <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
-        <div className="mb-8 flex flex-col gap-6 pb-8 md:flex-row md:items-center md:justify-between">
-          <LogoFull className="h-auto w-[190px] max-w-full shrink-0 object-contain sm:w-[220px] md:w-[260px]" />
-          <div className="flex gap-2">
-            {socials.map((s) => (
-              <a
-                key={s.name}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.name}
-                className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
-              >
-                <Icon name={s.icon as IconName} size={15} />
-              </a>
-            ))}
-          </div>
-        </div>
-
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-3">
-            <p className="micro-label">Andromedia Web</p>
+            <LogoFull className="h-auto w-[190px] max-w-full object-contain sm:w-[210px] md:w-[230px]" />
             <p className="text-xs leading-relaxed text-muted-foreground">
               Design, tecnologia e marketing creano l'esperienza del brand,
               per promuovere la vostra attività nel mondo digitale.
@@ -159,6 +141,20 @@ export function Footer({ info }: { info?: SiteGlobal }) {
             <p className="text-[10px] text-muted-foreground/70">
               Un segnale spaziale, ogni tanto. Zero spam.
             </p>
+            <div className="flex gap-2 pt-1">
+              {socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                  className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                >
+                  <Icon name={s.icon as IconName} size={15} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
