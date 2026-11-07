@@ -63,7 +63,6 @@ export function Nav() {
                     active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  <span className="mr-1 text-[7px] text-muted-foreground/50">{l.index}</span>
                   {l.label}
                   <span
                     className={cn(
@@ -117,14 +116,6 @@ export function Nav() {
                         active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                       )}
                     >
-                      <span
-                        className={cn(
-                          "font-sans text-[10px] tracking-[0.25em]",
-                          active ? "text-foreground" : "text-muted-foreground"
-                        )}
-                      >
-                        {l.index}
-                      </span>
                       <span className={cn(active && "underline decoration-1 underline-offset-[8px]")}>
                         {l.label}
                       </span>

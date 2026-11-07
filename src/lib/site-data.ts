@@ -145,7 +145,7 @@ export const portfolioSeed = [
     client: "Dottor Canapa",
     url: "https://dottorcanapa.com/",
     category: "E-Commerce",
-    imageUrl: "/works/dottor-canapa.jpg",
+    imageUrl: "/works/galaxy-template.jpg",
     description:
       "Consulenza Marketing Dedicata, E-Commerce, Social Media, Intelligenza Artificiale, SEO, Grafiche e Stampe, Set Fotografico Prodotti.",
   },
@@ -154,7 +154,7 @@ export const portfolioSeed = [
     client: "Sara Calligrafia",
     url: "https://saracalligrafia.com/",
     category: "Sito Web",
-    imageUrl: "/works/sara-calligrafia.jpg",
+    imageUrl: "/works/galaxy-template.jpg",
     description: "Sviluppo Sito Web, Adattamento Logo, Mail Professionale, SEO.",
   },
   {
@@ -162,7 +162,7 @@ export const portfolioSeed = [
     client: "The Office Agency",
     url: "https://theofficeagency.it/",
     category: "Sito Web",
-    imageUrl: "/works/the-office-agency.jpg",
+    imageUrl: "/works/galaxy-template.jpg",
     description: "Sviluppo Sito Web, Intelligenza Artificiale, Consulenza Marchio, SEO, Email Professionale.",
   },
   {
@@ -170,7 +170,7 @@ export const portfolioSeed = [
     client: "QuartoAtto",
     url: "https://quartoatto.com/",
     category: "E-Commerce",
-    imageUrl: "/works/quartoatto.jpg",
+    imageUrl: "/works/galaxy-template.jpg",
     description: "Consulenza Marketing Dedicata, E-Commerce, Intelligenza Artificiale, Grafiche, Mail Professionale.",
   },
   {
@@ -178,7 +178,7 @@ export const portfolioSeed = [
     client: "Gelateria C'era Una Volta",
     url: "https://gelateriaceraunavolta.com/",
     category: "Sito Web",
-    imageUrl: "/works/cera-una-volta.jpg",
+    imageUrl: "/works/galaxy-template.jpg",
     description: "Sviluppo Sito Web, Social Media, Grafiche e Stampe.",
   },
   {
@@ -186,7 +186,7 @@ export const portfolioSeed = [
     client: "Winex",
     url: "https://winex.ro/",
     category: "Sito Web",
-    imageUrl: "/works/winex.jpg",
+    imageUrl: "/works/galaxy-template.jpg",
     description: "Consulenza Marketing Dedicata, Sviluppo Sito Web, Intelligenza Artificiale, Grafiche e Stampe, Social Media.",
   },
 ] as const;

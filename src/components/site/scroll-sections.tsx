@@ -250,7 +250,7 @@ export function ScrollWorks({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={item.imageUrl}
-                    alt={item.title}
+                    alt={item.imageUrl?.includes("galaxy-template") ? "" : item.title}
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
                 ) : (
