@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AdminDashboard } from "@/app/admin/admin-dashboard";
 import { DashboardView } from "./dashboard-view";
@@ -23,11 +23,51 @@ const NAV: Array<{ key: ViewKey; label: string; icon: IconName }> = [
 ];
 
 /**
- * Guscio del backoffice: menu laterale (desktop) + nav orizzontale (mobile)
+ * Guscio del backoffice: menu laterale (desktop) + menu a tendina (mobile)
  * che orchestra le viste. Le scritture vivono nelle server actions.
  */
 export function AdminShell({ email }: { email: string }) {
   const [view, setView] = useState<ViewKey>("dashboard");
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<Array<HTMLButtonElement | null>>([]);
+
+  /* Come sull'app iOS: la sezione abbandonata è quella su cui si torna
+     (l'ultima vista visitata viene ripristinata) */
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("aw-backoffice-view");
+      if (saved && NAV.some((n) => n.key === saved)) setView(saved as ViewKey);
+    } catch {}
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem("aw-backoffice-view", view);
+    } catch {}
+  }, [view]);
+
+  /* Chiusura con Escape (e ritorno del focus), come i menu di sistema iOS/WebKit */
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuRef.current?.querySelector<HTMLElement>("[aria-haspopup='menu']")?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  /** Seleziona una vista e chiude il menu: i menu di sistema si chiudono a scelta fatta. */
+  function choose(key: ViewKey) {
+    setView(key);
+    setOpen(false);
+  }
+
+  /* Su mobile il menu tendina sostituisce la fila di chip orizzontali. */
+  const menuItemCls =
+    "flex min-h-11 w-full items-center gap-3 rounded-xl px-3 text-sm transition-colors";
 
   return (
     <div className="min-h-svh bg-background lg:flex">
@@ -79,39 +119,97 @@ export function AdminShell({ email }: { email: string }) {
 
       {/* ---------- Area principale ---------- */}
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* topbar mobile + nav */}
-        <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md">
-          <div className="flex h-14 items-center justify-between px-5 lg:hidden">
+        {/* topbar mobile: logo + menu a tendina delle viste */}
+        <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md lg:hidden">
+          <div className="flex h-14 items-center justify-between px-5">
             <Link href="/" className="flex items-center gap-2">
               <LogoMark className="h-8" />
               <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Backoffice</span>
             </Link>
-            <form action={logout}>
+
+            {/* menu a tendina stile iOS, ancorato al pulsante */}
+            <div className="relative" ref={menuRef}>
               <button
-                type="submit"
-                className="flex h-9 items-center gap-2 rounded-full border border-border px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={open}
+                onClick={() => setOpen((v) => !v)}
+                className="flex h-9 items-center gap-2 rounded-full border border-border px-4 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
               >
-                Esci <Icon name="close" size={12} />
+                <Icon name={open ? "close" : "menu"} size={14} />
+                {NAV.find((n) => n.key === view)?.label}
               </button>
-            </form>
+
+              {open && (
+                <>
+                  {/* tocco esterno chiude il menu */}
+                  <button
+                    type="button"
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    onClick={() => setOpen(false)}
+                    className="fixed inset-0 z-40 cursor-default"
+                  />
+                  <div
+                    role="menu"
+                    aria-label="Navigazione backoffice"
+                    onKeyDown={(e) => {
+                      // navigazione da tastiera con le frecce, come nei menu di macOS
+                      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+                      e.preventDefault();
+                      const items = itemsRef.current.filter(Boolean) as HTMLButtonElement[];
+                      const i = items.indexOf(document.activeElement as HTMLButtonElement);
+                      const next = e.key === "ArrowDown" ? i + 1 : i - 1;
+                      items[(next + items.length) % items.length]?.focus();
+                    }}
+                    className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 origin-top-right rounded-2xl border border-border bg-popover p-1.5 shadow-xl shadow-black/10 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 motion-reduce:animate-none"
+                  >
+                    {NAV.map((n, i) => (
+                      <button
+                        key={n.key}
+                        ref={(el) => { itemsRef.current[i] = el; }}
+                        role="menuitem"
+                        onClick={() => choose(n.key)}
+                        className={cn(
+                          menuItemCls,
+                          view === n.key
+                            ? "bg-muted text-foreground"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        <Icon name={n.icon} size={16} />
+                        <span>{n.label}</span>
+                        {/* la vista corrente è segnata come nei menu di iOS */}
+                        {view === n.key && <Icon name="check" size={14} className="ml-auto" />}
+                      </button>
+                    ))}
+
+                    <div className="my-1.5 h-px bg-border" role="separator" />
+
+                    {/* azioni accessorie dentro lo stesso menu, come nel menu di iOS */}
+                    <Link
+                      href="/"
+                      role="menuitem"
+                      className={cn(menuItemCls, "text-sm text-muted-foreground")}
+                    >
+                      <Icon name="external" size={16} />
+                      <span>Vedi sito</span>
+                    </Link>
+                    <form action={logout}>
+                      <button
+                        type="submit"
+                        role="menuitem"
+                        className={cn(menuItemCls, "text-sm text-destructive")}
+                      >
+                        <Icon name="close" size={16} />
+                        <span>Esci</span>
+                      </button>
+                    </form>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-          <nav className="flex gap-1 overflow-x-auto px-4 pb-2 lg:hidden">
-            {NAV.map((n) => (
-              <button
-                key={n.key}
-                onClick={() => setView(n.key)}
-                className={cn(
-                  "flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors",
-                  view === n.key
-                    ? "border-foreground text-foreground"
-                    : "border-border text-muted-foreground hover:text-foreground"
-                )}
-              >
-                <Icon name={n.icon} size={13} />
-                {n.label}
-              </button>
-            ))}
-          </nav>
         </header>
 
         <div className="p-5 md:p-8">
