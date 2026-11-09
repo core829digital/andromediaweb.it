@@ -37,6 +37,20 @@ export const metadata: Metadata = {
     "Foiano della Chiana",
     "Arezzo",
   ],
+  category: "Agenzia di marketing digitale",
+  creator: site.legalName,
+  publisher: site.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "it_IT",
@@ -46,7 +60,19 @@ export const metadata: Metadata = {
     description: site.description,
     images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: site.name }],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — The Future is Now`,
+    description: site.description,
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: site.name }],
+    site: "@andromediaweb_",
+  },
+  appleWebApp: {
+    capable: true,
+    title: site.name,
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: { telephone: false, address: false, email: false },
 };
 
 export const viewport: Viewport = {

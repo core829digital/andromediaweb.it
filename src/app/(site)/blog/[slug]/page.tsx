@@ -45,6 +45,7 @@ export async function generateMetadata({
       card: post.coverUrl ? "summary_large_image" : "summary",
       title,
       description,
+      site: "@andromediaweb_",
       ...(post.coverUrl ? { images: [post.coverUrl] } : {}),
     },
   };

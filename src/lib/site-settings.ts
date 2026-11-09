@@ -218,6 +218,7 @@ export async function buildPageMetadata(
       title: title,
       description,
       images: ["/opengraph-image.png"],
+      site: "@andromediaweb_",
     },
   };
 }
