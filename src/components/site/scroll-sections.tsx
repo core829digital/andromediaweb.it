@@ -103,7 +103,7 @@ function MobileServices({ title, standalone }: { title: string; standalone: bool
       </div>
 
       <div
-        className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 pr-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 scroll-px-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         data-lenis-prevent
       >
         {services.map((s) => (
