@@ -211,7 +211,7 @@ export async function buildPageMetadata(
       type: "website",
       locale: "it_IT",
       url: canonicalPath,
-      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: siteName }],
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, type: "image/png", alt: siteName }],
     },
     twitter: {
       card: "summary_large_image",

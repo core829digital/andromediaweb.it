@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     url: site.url,
     title: `${site.name} — The Future is Now`,
     description: site.description,
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: site.name }],
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, type: "image/png", alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
@@ -73,6 +73,10 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   formatDetection: { telephone: false, address: false, email: false },
+  other: {
+    "msapplication-TileImage": "/mstile-270.png",
+    "msapplication-TileColor": "#09090b",
+  },
 };
 
 export const viewport: Viewport = {

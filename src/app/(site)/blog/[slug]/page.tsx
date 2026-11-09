@@ -37,16 +37,15 @@ export async function generateMetadata({
       publishedTime: new Date(post.createdAt).toISOString(),
       modifiedTime: new Date(post.updatedAt ?? post.createdAt).toISOString(),
       ...(post.tags?.length ? { tags: post.tags.slice(0, 8) } : {}),
-      ...(post.coverUrl
-        ? { images: [{ url: post.coverUrl, width: 1200, height: 628, alt: title }] }
-        : {}),
+      images: [{ url: post.coverUrl || "/opengraph-image.png", width: 1200, height: 630, alt: title }],
     },
     twitter: {
-      card: post.coverUrl ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
       site: "@andromediaweb_",
-      ...(post.coverUrl ? { images: [post.coverUrl] } : {}),
+      // senza copertina l'immagine di condivisione resta la banner di brand
+      images: [post.coverUrl || "/opengraph-image.png"],
     },
   };
 }

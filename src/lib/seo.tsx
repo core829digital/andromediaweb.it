@@ -29,6 +29,13 @@ export function organizationGraph(): Record<string, unknown> {
     logo: `${site.url}/icon.png`,
     email: site.contact.email,
     telephone: "+393516728359",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: site.contact.email,
+      telephone: "+393516728359",
+      availableLanguage: ["Italian", "English", "Spanish", "French", "Swedish"],
+    },
     vatID: `IT${site.legal.piva}`,
     taxID: site.legal.piva,
     priceRange: "€€",
