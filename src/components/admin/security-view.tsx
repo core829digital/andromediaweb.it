@@ -74,12 +74,12 @@ export function SecurityView() {
         />
       </div>
 
-      <div className="border border-border">
+      <div className="rounded-2xl border border-border">
         <p className="micro-label border-b border-border p-4">Difese attive</p>
-        <div className="grid gap-px bg-border md:grid-cols-2">
+        <div className="grid gap-px overflow-hidden rounded-b-2xl bg-border md:grid-cols-2">
           {DEFENSES.map((d) => (
             <div key={d.label} className="flex items-start gap-3 bg-background p-4">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-foreground text-background">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-foreground text-background">
                 <Icon name="check" size={12} />
               </span>
               <div>
@@ -91,7 +91,7 @@ export function SecurityView() {
         </div>
       </div>
 
-      <div className="border border-border">
+      <div className="overflow-hidden rounded-2xl border border-border">
         <p className="micro-label border-b border-border p-4">Registro audit</p>
         {loading ? (
           <p className="micro-label p-10 text-center">Caricamento…</p>
@@ -106,7 +106,7 @@ export function SecurityView() {
                 </span>
                 <span
                   className={
-                    "border px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] " +
+                    "rounded-full border px-2.5 py-0.5 text-[9px] uppercase tracking-[0.25em] " +
                     (r.action.includes("fallito")
                       ? "border-destructive/60 text-destructive"
                       : "border-border text-muted-foreground")

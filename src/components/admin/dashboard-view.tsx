@@ -75,7 +75,7 @@ export function DashboardView() {
               key={d}
               onClick={() => setDays(d)}
               className={cn(
-                "h-9 border px-4 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors",
+                "h-9 rounded-full border px-4 text-xs tracking-[0.02em] transition-colors",
                 days === d ? "border-foreground text-foreground" : "border-border text-muted-foreground hover:text-foreground"
               )}
             >
@@ -86,7 +86,7 @@ export function DashboardView() {
             onClick={purge}
             disabled={busy}
             title="Elimina eventi più vecchi di 90 giorni"
-            className="flex h-9 items-center gap-2 border border-border px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground disabled:opacity-50"
+            className="flex h-9 items-center gap-2 rounded-full border border-border px-4 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground disabled:opacity-50"
           >
             <Icon name="trash" size={12} /> Pulizia
           </button>
@@ -108,17 +108,17 @@ export function DashboardView() {
             />
           </div>
 
-          <div className="border border-border p-6">
+          <div className="rounded-2xl border border-border p-6">
             <p className="micro-label mb-6">Timeline — visualizzazioni e click</p>
             <TimelineChart data={series} />
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <div className="border border-border p-6">
+            <div className="rounded-2xl border border-border p-6">
               <p className="micro-label mb-6">Pagine più viste ({days}gg)</p>
               <HBars items={topPaths.map((p) => ({ label: p.path, count: p.count }))} emptyLabel="Nessuna visita registrata." />
             </div>
-            <div className="border border-border p-6">
+            <div className="rounded-2xl border border-border p-6">
               <p className="micro-label mb-6">Click per zona ({days}gg)</p>
               <HBars items={topLabels.map((l) => ({ label: l.label, count: l.count }))} emptyLabel="Nessun click registrato." />
             </div>

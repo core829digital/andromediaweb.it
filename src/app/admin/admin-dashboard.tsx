@@ -66,7 +66,7 @@ interface Message {
 }
 
 const inputCls =
-  "h-10 w-full border border-border bg-transparent px-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground";
+  "h-11 w-full rounded-xl border border-border bg-transparent px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground";
 const labelCls = "micro-label mb-1.5 block";
 
 function slugify(s: string): string {
@@ -92,7 +92,7 @@ export function AdminDashboard({ email, embedded = false }: { email: string; emb
           key={t}
           onClick={() => setTab(t)}
           className={cn(
-            "relative px-5 py-3 font-mono text-[11px] uppercase tracking-[0.22em] transition-colors",
+            "relative px-5 py-3 text-[11px] uppercase tracking-[0.25em] transition-colors",
             tab === t ? "text-foreground" : "text-muted-foreground hover:text-foreground"
           )}
         >
@@ -125,26 +125,23 @@ export function AdminDashboard({ email, embedded = false }: { email: string; emb
       {/* topbar */}
       <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
             <LogoMark />
-            <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-              Backoffice
-            </span>
           </Link>
           <div className="flex items-center gap-4">
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:block">
+            <span className="hidden font-mono text-[10px] text-muted-foreground sm:block" title={email}>
               {email}
             </span>
             <Link
               href="/"
-              className="flex h-9 items-center gap-2 border border-border px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+              className="flex h-9 items-center gap-2 rounded-full border border-border px-4 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
             >
               Vedi sito <Icon name="external" size={12} />
             </Link>
             <form action={logout}>
               <button
                 type="submit"
-                className="flex h-9 items-center gap-2 bg-foreground px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-background transition-colors hover:bg-muted-foreground"
+                className="flex h-9 items-center gap-2 rounded-full bg-foreground px-4 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground"
               >
                 Esci <Icon name="close" size={12} />
               </button>
@@ -207,14 +204,14 @@ function BlogPanel() {
             setCreating(true);
             setEditing(null);
           }}
-          className="flex h-10 items-center gap-2 bg-foreground px-5 font-mono text-[11px] uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground"
+          className="flex h-10 items-center gap-2 rounded-full bg-foreground px-5 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground"
         >
           <Icon name="plus" size={14} /> Nuovo post
         </button>
       </div>
 
       {message && (
-        <p className="flex items-center gap-2 border border-border bg-muted px-4 py-2 text-xs">
+        <p className="flex items-center gap-2 rounded-xl border border-border bg-muted px-4 py-2.5 text-xs">
           <Icon name="check" size={13} /> {message}
         </p>
       )}
@@ -235,7 +232,7 @@ function BlogPanel() {
         />
       )}
 
-      <div className="border border-border">
+      <div className="overflow-hidden rounded-2xl border border-border">
         {loading ? (
           <p className="micro-label p-8 text-center">Caricamento…</p>
         ) : posts.length === 0 ? (
@@ -246,10 +243,10 @@ function BlogPanel() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border text-left">
-                <th className="p-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Titolo</th>
-                <th className="hidden p-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground md:table-cell">Stato</th>
-                <th className="hidden p-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground lg:table-cell">Data</th>
-                <th className="p-4 text-right font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Azioni</th>
+                <th className="micro-label p-4 font-normal">Titolo</th>
+                <th className="micro-label hidden p-4 font-normal md:table-cell">Stato</th>
+                <th className="micro-label hidden p-4 font-normal lg:table-cell">Data</th>
+                <th className="micro-label p-4 text-right font-normal">Azioni</th>
               </tr>
             </thead>
             <tbody>
@@ -262,7 +259,7 @@ function BlogPanel() {
                   <td className="hidden p-4 md:table-cell">
                     <span
                       className={cn(
-                        "border px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em]",
+                        "rounded-full border px-2.5 py-1 text-[9px] uppercase tracking-[0.25em]",
                         p.status === "published"
                           ? "border-foreground text-foreground"
                           : "border-border text-muted-foreground"
@@ -279,7 +276,7 @@ function BlogPanel() {
                       <button
                         title={p.status === "published" ? "Manda in bozza" : "Pubblica"}
                         onClick={() => setStatus(p._id, p.status === "published" ? "draft" : "published")}
-                        className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                       >
                         <Icon name={p.status === "published" ? "eye" : "check"} size={14} />
                       </button>
@@ -289,14 +286,14 @@ function BlogPanel() {
                           setEditing(p);
                           setCreating(false);
                         }}
-                        className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                       >
                         <Icon name="edit" size={14} />
                       </button>
                       <button
                         title="Elimina"
                         onClick={() => remove(p._id)}
-                        className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                       >
                         <Icon name="trash" size={14} />
                       </button>
@@ -358,7 +355,7 @@ function PostEditor({
   }
 
   return (
-    <form onSubmit={save} className="border border-border p-6">
+    <form onSubmit={save} className="rounded-2xl border border-border p-6">
       <p className="micro-label mb-6">{post ? "Modifica post" : "Nuovo post"}</p>
       <div className="grid gap-4 md:grid-cols-2">
         <div>
@@ -394,7 +391,7 @@ function PostEditor({
             rows={10}
             value={form.content}
             onChange={(e) => setForm({ ...form, content: e.target.value })}
-            className="w-full border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground"
+            className="w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
           />
         </div>
         <div>
@@ -420,13 +417,13 @@ function PostEditor({
           <label className={labelCls}>Copertina</label>
           {post?.coverUrl && !file && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={post.coverUrl} alt="" className="mb-2 h-24 w-auto border border-border object-cover" />
+            <img src={post.coverUrl} alt="" className="mb-2 h-24 w-auto rounded-lg border border-border object-cover" />
           )}
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-            className="block w-full border border-border bg-transparent p-2 text-xs file:mr-3 file:border file:border-border file:bg-transparent file:px-3 file:py-1 file:font-mono file:text-[10px] file:uppercase file:tracking-[0.2em]"
+            className="block w-full rounded-xl border border-border bg-transparent p-2.5 text-xs file:mr-3 file:rounded-full file:border file:border-border file:bg-transparent file:px-3 file:py-1 file:text-[10px] file:uppercase file:tracking-[0.2em]"
           />
         </div>
       </div>
@@ -434,14 +431,14 @@ function PostEditor({
         <button
           type="submit"
           disabled={busy}
-          className="flex h-10 items-center gap-2 bg-foreground px-6 font-mono text-[11px] uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+          className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
         >
           {busy ? "Salvataggio…" : "Salva"}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="flex h-10 items-center border border-border px-6 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+          className="flex h-10 items-center rounded-full border border-border px-6 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
         >
           Annulla
         </button>
@@ -483,7 +480,7 @@ function PortfolioPanel() {
     <div className="space-y-8">
       <h2 className="font-heading text-2xl">Portfolio — {works.length} lavori</h2>
       {message && (
-        <p className="flex items-center gap-2 border border-border bg-muted px-4 py-2 text-xs">
+        <p className="flex items-center gap-2 rounded-xl border border-border bg-muted px-4 py-2.5 text-xs">
           <Icon name="check" size={13} /> {message}
         </p>
       )}
@@ -494,12 +491,12 @@ function PortfolioPanel() {
         {loading ? (
           <p className="micro-label col-span-full p-8 text-center">Caricamento…</p>
         ) : works.length === 0 ? (
-          <p className="col-span-full border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+          <p className="col-span-full rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
             Nessun lavoro caricato.
           </p>
         ) : (
           works.map((w) => (
-            <div key={w._id} className="group border border-border">
+            <div key={w._id} className="group overflow-hidden rounded-2xl border border-border transition-colors duration-500 hover:border-foreground">
               <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                 {w.imageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -511,7 +508,7 @@ function PortfolioPanel() {
               <div className="flex items-start justify-between gap-3 p-4">
                 <div>
                   <p className="font-heading text-sm">{w.title}</p>
-                  <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  <p className="mt-0.5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                     {w.category} {w.featured ? "★" : ""}
                   </p>
                 </div>
@@ -521,14 +518,14 @@ function PortfolioPanel() {
                       href={w.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                     >
                       <Icon name="external" size={13} />
                     </a>
                   )}
                   <button
                     onClick={() => remove(w._id)}
-                    className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                   >
                     <Icon name="trash" size={13} />
                   </button>
@@ -576,7 +573,7 @@ function WorkForm({ onDone }: { onDone: (m: string) => void }) {
   }
 
   return (
-    <form onSubmit={save} className="border border-border p-6">
+    <form onSubmit={save} className="rounded-2xl border border-border p-6">
       <p className="micro-label mb-6">Carica nuovo lavoro</p>
       <div className="grid gap-4 md:grid-cols-2">
         <div>
@@ -609,7 +606,7 @@ function WorkForm({ onDone }: { onDone: (m: string) => void }) {
             rows={3}
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
-            className="w-full border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground"
+            className="w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
           />
         </div>
         <div>
@@ -618,7 +615,7 @@ function WorkForm({ onDone }: { onDone: (m: string) => void }) {
             type="file"
             accept="image/*"
             onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-            className="block w-full border border-border bg-transparent p-2 text-xs file:mr-3 file:border file:border-border file:bg-transparent file:px-3 file:py-1 file:font-mono file:text-[10px] file:uppercase file:tracking-[0.2em]"
+            className="block w-full rounded-xl border border-border bg-transparent p-2.5 text-xs file:mr-3 file:rounded-full file:border file:border-border file:bg-transparent file:px-3 file:py-1 file:text-[10px] file:uppercase file:tracking-[0.2em]"
           />
         </div>
         <div className="flex items-end">
@@ -636,7 +633,7 @@ function WorkForm({ onDone }: { onDone: (m: string) => void }) {
       <button
         type="submit"
         disabled={busy}
-        className="mt-6 flex h-10 items-center gap-2 bg-foreground px-6 font-mono text-[11px] uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+        className="mt-6 flex h-10 items-center gap-2 rounded-full bg-foreground px-6 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
       >
         <Icon name="upload" size={14} />
         {busy ? "Caricamento…" : "Carica lavoro"}
@@ -678,15 +675,15 @@ function MessagesPanel() {
       {loading ? (
         <p className="micro-label p-8 text-center">Caricamento…</p>
       ) : messages.length === 0 ? (
-        <p className="border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+        <p className="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
           Nessun messaggio ricevuto.
         </p>
       ) : (
         <div className="space-y-4">
           {messages.map((m) => (
-            <div key={m._id} className="flex flex-col gap-3 border border-border p-5 md:flex-row md:items-start">
+            <div key={m._id} className="flex flex-col gap-3 rounded-2xl border border-border p-5 md:flex-row md:items-start">
               <div className="flex-1">
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                   {new Date(m.createdAt).toLocaleString("it-IT")} — {m.source}
                 </p>
                 <p className="mt-1 font-medium">{m.name} · {m.email}</p>
@@ -695,13 +692,13 @@ function MessagesPanel() {
               <div className="flex gap-2">
                 <a
                   href={`mailto:${m.email}`}
-                  className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                 >
                   <Icon name="mail" size={13} />
                 </a>
                 <button
                   onClick={() => remove(m._id)}
-                  className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                 >
                   <Icon name="trash" size={13} />
                 </button>
@@ -733,19 +730,19 @@ async function upload(file: File, kind: "posts" | "portfolio"): Promise<string> 
 function NoConvex() {
   return (
     <div className="flex min-h-svh items-center justify-center px-5">
-      <div className="max-w-md border border-border p-10 text-center">
+      <div className="max-w-md rounded-2xl border border-border p-10 text-center">
         <LogoMark className="mx-auto mb-6 h-12" />
         <p className="micro-label mb-4">Backoffice in standby</p>
         <h2 className="font-heading text-xl">Collega Convex</h2>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
           Il backoffice (blog, portfolio, messaggi) è alimentato da Convex.
-          Esegui <code className="border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">npx convex dev</code>{" "}
-          e imposta <code className="border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">NEXT_PUBLIC_CONVEX_URL</code>{" "}
-          nel file <code className="border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">.env.local</code>.
+          Esegui <code className="rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">npx convex dev</code>{" "}
+          e imposta <code className="rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">NEXT_PUBLIC_CONVEX_URL</code>{" "}
+          nel file <code className="rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">.env.local</code>.
         </p>
         <Link
           href="/"
-          className="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground"
+          className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           Torna al sito
         </Link>

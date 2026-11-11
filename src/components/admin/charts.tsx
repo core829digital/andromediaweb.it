@@ -75,12 +75,12 @@ export function TimelineChart({
           {data[data.length - 1]?.day.slice(5)}
         </text>
       </svg>
-      <figcaption className="mt-3 flex items-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+      <figcaption className="micro-label mt-3 flex items-center gap-6">
         <span className="flex items-center gap-2">
-          <span className="inline-block h-0.5 w-5 bg-foreground" /> Visualizzazioni
+          <span className="inline-block h-0.5 w-5 rounded-full bg-foreground" /> Visualizzazioni
         </span>
         <span className="flex items-center gap-2">
-          <span className="inline-block h-0.5 w-5 bg-foreground/40 [background-image:repeating-linear-gradient(90deg,currentColor_0_3px,transparent_3px_6px)]" /> Click
+          <span className="inline-block h-0.5 w-5 rounded-full bg-foreground/40 [background-image:repeating-linear-gradient(90deg,currentColor_0_3px,transparent_3px_6px)]" /> Click
         </span>
       </figcaption>
     </figure>
@@ -109,9 +109,9 @@ export function HBars({
           <span className="w-40 shrink-0 truncate font-mono text-[10px] text-muted-foreground" title={it.label}>
             {it.label}
           </span>
-          <div className="h-2.5 flex-1 overflow-hidden bg-muted">
+          <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full bg-foreground transition-all duration-700"
+              className="h-full rounded-full bg-foreground transition-all duration-700"
               style={{ width: `${Math.max(3, (it.count / max) * 100)}%` }}
             />
           </div>
@@ -136,10 +136,10 @@ export function StatCard({
   className?: string;
 }) {
   return (
-    <div className={cn("border border-border p-5", className)}>
+    <div className={cn("rounded-2xl border border-border p-5", className)}>
       <p className="micro-label">{label}</p>
       <p className="mt-3 font-heading text-3xl tabular-nums">{value}</p>
-      {hint && <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{hint}</p>}
+      {hint && <p className="micro-label mt-1.5">{hint}</p>}
     </div>
   );
 }

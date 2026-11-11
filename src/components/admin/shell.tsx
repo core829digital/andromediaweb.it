@@ -73,9 +73,8 @@ export function AdminShell({ email }: { email: string }) {
     <div className="min-h-svh bg-background lg:flex">
       {/* ---------- Sidebar desktop ---------- */}
       <aside className="sticky top-0 hidden h-svh w-60 shrink-0 flex-col border-r border-border lg:flex">
-        <Link href="/" className="flex h-16 items-center gap-3 border-b border-border px-5">
+        <Link href="/" className="flex h-16 items-center border-b border-border px-5">
           <LogoMark className="h-8" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Backoffice</span>
         </Link>
 
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
@@ -84,10 +83,10 @@ export function AdminShell({ email }: { email: string }) {
               key={n.key}
               onClick={() => setView(n.key)}
               className={cn(
-                "flex w-full items-center gap-3 border px-3 py-2.5 text-left font-mono text-[11px] uppercase tracking-[0.2em] transition-colors",
+                "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors",
                 view === n.key
-                  ? "border-foreground text-foreground"
-                  : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+                  ? "bg-muted text-foreground"
+                  : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
               )}
             >
               <Icon name={n.icon} size={16} />
@@ -102,14 +101,14 @@ export function AdminShell({ email }: { email: string }) {
           </p>
           <Link
             href="/"
-            className="flex h-9 items-center gap-2 border border-border px-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            className="flex h-9 items-center gap-2 rounded-full border border-border px-3 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
           >
             Vedi sito <Icon name="external" size={12} />
           </Link>
           <form action={logout}>
             <button
               type="submit"
-              className="flex h-9 w-full items-center justify-center gap-2 rounded-full bg-foreground font-mono text-[10px] uppercase tracking-[0.2em] text-background transition-colors hover:bg-muted-foreground"
+              className="flex h-9 w-full items-center justify-center gap-2 rounded-full bg-foreground text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground"
             >
               Esci <Icon name="close" size={12} />
             </button>
@@ -122,9 +121,8 @@ export function AdminShell({ email }: { email: string }) {
         {/* topbar mobile: logo + menu a tendina delle viste */}
         <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md lg:hidden">
           <div className="flex h-14 items-center justify-between px-5">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center">
               <LogoMark className="h-8" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Backoffice</span>
             </Link>
 
             {/* menu a tendina stile iOS, ancorato al pulsante */}

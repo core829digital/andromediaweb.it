@@ -82,7 +82,7 @@ export function SeoView() {
   }
 
   const inputCls =
-    "h-10 w-full border border-border bg-transparent px-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground";
+    "h-11 w-full rounded-xl border border-border bg-transparent px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground";
 
   return (
     <div className="space-y-8">
@@ -95,7 +95,7 @@ export function SeoView() {
       </div>
 
       {message && (
-        <p className="flex items-center gap-2 border border-border bg-muted px-4 py-2 text-xs">
+        <p className="flex items-center gap-2 rounded-xl border border-border bg-muted px-4 py-2.5 text-xs">
           <Icon name="check" size={13} /> {message}
         </p>
       )}
@@ -107,15 +107,15 @@ export function SeoView() {
           {SEO_ROUTES.map((r) => {
             const m = data[r.key] ?? EMPTY;
             return (
-              <div key={r.key} className="border border-border p-6">
+              <div key={r.key} className="rounded-2xl border border-border p-6">
                 <div className="mb-5 flex items-center justify-between gap-4">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+                  <p className="micro-label">
                     /{r.key === "home" ? "" : r.key} — {r.label}
                   </p>
                   <button
                     onClick={() => save(r.key)}
                     disabled={busy === r.key}
-                    className="flex h-9 items-center gap-2 rounded-full bg-foreground px-5 font-mono text-[10px] uppercase tracking-[0.2em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+                    className="flex h-9 items-center gap-2 rounded-full bg-foreground px-5 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
                   >
                     <Icon name="check" size={12} /> {busy === r.key ? "Salvataggio…" : "Salva"}
                   </button>
@@ -139,7 +139,7 @@ export function SeoView() {
                       maxLength={300}
                       placeholder="Descrizione mostrata sui motori di ricerca (max 160 caratteri consigliati)"
                       onChange={(e) => field(r.key, { description: e.target.value })}
-                      className="w-full border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground"
+                      className="w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground"
                     />
                   </div>
                   <div>

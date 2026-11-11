@@ -42,9 +42,9 @@ interface FaqItem {
 }
 
 const inputCls =
-  "h-10 w-full border border-border bg-transparent px-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground";
+  "h-11 w-full rounded-xl border border-border bg-transparent px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground";
 const areaCls =
-  "w-full border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-foreground";
+  "w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-foreground";
 
 export function SettingsView() {
   const [sub, setSub] = useState<SubTab>("generale");
@@ -173,7 +173,7 @@ export function SettingsView() {
               key={t}
               onClick={() => setSub(t)}
               className={cn(
-                "relative px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors",
+                "relative px-4 py-2 text-[11px] uppercase tracking-[0.25em] transition-colors",
                 sub === t ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               )}
             >
@@ -185,7 +185,7 @@ export function SettingsView() {
       </div>
 
       {message && (
-        <p className="flex items-center gap-2 border border-border bg-muted px-4 py-2 text-xs">
+        <p className="flex items-center gap-2 rounded-xl border border-border bg-muted px-4 py-2.5 text-xs">
           <Icon name="check" size={13} /> {message}
         </p>
       )}
@@ -220,7 +220,7 @@ export function SettingsView() {
                 </div>
               </div>
 
-              <div className="border border-border p-5">
+              <div className="rounded-2xl border border-border p-5">
                 <p className="micro-label mb-4">Canali social (footer)</p>
                 <div className="space-y-3">
                   {global.socials.map((s, i) => (
@@ -231,7 +231,7 @@ export function SettingsView() {
                         type="button"
                         onClick={() => setGlobal({ ...global, socials: global.socials.filter((_, j) => j !== i) })}
                         title="Rimuovi"
-                        className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                       >
                         <Icon name="trash" size={13} />
                       </button>
@@ -241,7 +241,7 @@ export function SettingsView() {
                     <button
                       type="button"
                       onClick={() => setGlobal({ ...global, socials: [...global.socials, { name: "", href: "" }] })}
-                      className="flex h-9 items-center gap-2 border border-border px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                      className="flex h-9 items-center gap-2 rounded-full border border-border px-4 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                     >
                       <Icon name="plus" size={12} /> Aggiungi social
                     </button>
@@ -249,7 +249,7 @@ export function SettingsView() {
                 </div>
               </div>
 
-              <div className="border border-border p-5">
+              <div className="rounded-2xl border border-border p-5">
                 <p className="micro-label mb-4">Interruttori componenti</p>
                 <div className="grid gap-4 sm:grid-cols-3">
                   {([
@@ -273,7 +273,7 @@ export function SettingsView() {
               <button
                 onClick={() => save("global")}
                 disabled={busy}
-                className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 font-mono text-[11px] uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+                className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
               >
                 {busy ? "Salvataggio…" : "Salva impostazioni"}
               </button>
@@ -283,7 +283,7 @@ export function SettingsView() {
           {/* ---------- Home ---------- */}
           {sub === "home" && home && (
             <div className="space-y-6">
-              <div className="border border-border p-5">
+              <div className="rounded-2xl border border-border p-5">
                 <p className="micro-label mb-4">Hero</p>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
@@ -323,7 +323,7 @@ export function SettingsView() {
                   ["visione", "Sezione Visione"],
                   ["faq", "Sezione FAQ"],
                 ] as const).map(([k, titolo]) => (
-                  <div key={k} className="border border-border p-5">
+                  <div key={k} className="rounded-2xl border border-border p-5">
                     <p className="micro-label mb-4">{titolo}</p>
                     <label className={label}>Label</label>
                     <input value={home[k].label} maxLength={120} onChange={(e) => setHome({ ...home, [k]: { ...home[k], label: e.target.value } })} className={inputCls} />
@@ -336,7 +336,7 @@ export function SettingsView() {
               <button
                 onClick={() => save("home")}
                 disabled={busy}
-                className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 font-mono text-[11px] uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+                className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
               >
                 {busy ? "Salvataggio…" : "Salva contenuti home"}
               </button>
@@ -348,7 +348,7 @@ export function SettingsView() {
             <div className="space-y-6">
               <div className="space-y-4">
                 {faq.map((item, i) => (
-                  <div key={i} className="border border-border p-5">
+                  <div key={i} className="rounded-2xl border border-border p-5">
                     <div className="flex items-start gap-3">
                       <span className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
                       <div className="flex-1 space-y-3">
@@ -359,7 +359,7 @@ export function SettingsView() {
                         type="button"
                         onClick={() => setFaq(faq.filter((_, j) => j !== i))}
                         title="Elimina"
-                        className="flex h-9 w-9 shrink-0 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-destructive hover:text-destructive"
                       >
                         <Icon name="trash" size={13} />
                       </button>
@@ -370,7 +370,7 @@ export function SettingsView() {
                   <button
                     type="button"
                     onClick={() => setFaq([...faq, { q: "", a: "" }])}
-                    className="flex h-9 items-center gap-2 border border-border px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                    className="flex h-9 items-center gap-2 rounded-full border border-border px-4 text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                   >
                     <Icon name="plus" size={12} /> Aggiungi domanda
                   </button>
@@ -380,7 +380,7 @@ export function SettingsView() {
               <button
                 onClick={() => save("faq")}
                 disabled={busy}
-                className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 font-mono text-[11px] uppercase tracking-[0.22em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
+                className="flex h-10 items-center gap-2 rounded-full bg-foreground px-6 text-xs tracking-[0.02em] text-background transition-colors hover:bg-muted-foreground disabled:opacity-50"
               >
                 {busy ? "Salvataggio…" : "Salva FAQ"}
               </button>
