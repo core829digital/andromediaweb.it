@@ -1,4 +1,4 @@
-import { services, process } from "@/lib/site-data";
+import { services, processSteps } from "@/lib/site-data";
 import { Section, Container, SectionHeading } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { CallButton } from "@/components/call-button";
@@ -100,7 +100,7 @@ export default function ServiziPage() {
         <Container className="py-16 md:py-24">
           <SectionHeading title="Scoperta → Strategia → Sviluppo → Lancio" />
           <div className="mt-10 grid gap-6 md:grid-cols-4">
-            {process.map((p, i) => (
+            {processSteps.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
                 <div className="flex h-full flex-col gap-4 rounded-2xl border border-border p-7 transition-colors duration-500 hover:border-foreground">
                   <span className="font-sans text-xs text-muted-foreground">{p.index}</span>

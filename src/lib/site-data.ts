@@ -1,7 +1,8 @@
 export const site = {
   name: "Andromedia Web",
   legalName: "Andromeda di Toni Serban",
-  url: "https://andromediaweb.it",
+  /** URL canonico: override con NEXT_PUBLIC_SITE_URL finché il dominio definitivo non è attivo. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://andromediaweb.it",
   claim: "The future is now",
   description:
     "Agenzia di marketing e sviluppo web: Brand Identity, SEO, Social Media, Advertising, Intelligenza Artificiale e Sviluppo Siti Web ed E-Commerce.",
@@ -79,7 +80,7 @@ export const services = [
   },
 ] as const;
 
-export const process = [
+export const processSteps = [
   {
     id: "scoperta",
     index: "01",
