@@ -16,7 +16,7 @@ export interface AdminUser {
 const DEFAULT_ADMINS: AdminUser[] = [
   {
     email: "toni@andromediaweb.it",
-    password: "Theonly@limit80!",
+    password: "CocaCola80!",
     role: "owner",
   },
   {
